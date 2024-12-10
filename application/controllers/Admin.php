@@ -39,5 +39,13 @@ class Admin extends CI_Controller {
         $this->load->view('admin/live_chat');
         $this->load->view('admin/partials/footer');
     }
+
+    public function game_categories()
+    {
+        $this->load->view('admin/partials/header');
+        $this->load->view('admin/partials/navigate');
+        $this->load->view('admin/game_categories');
+        $this->load->view('admin/partials/footer');
+    }
    
 }

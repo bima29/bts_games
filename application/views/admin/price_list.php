@@ -48,6 +48,8 @@
                                     <th>Kode Produk</th>
                                     <th>Harga</th>
                                     <th>Deskripsi</th>
+                                    <th>Kategori Game</th>
+                                    <th>Jenis</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -57,6 +59,8 @@
                                     <td>GA1200</td>
                                     <td>Rp 50.000</td>
                                     <td>Top-up Game A dengan nominal 1200</td>
+                                    <td>Action</td>
+                                    <td>PC</td>
                                     <td>
                                         <a href="#" class="btn btn-info btn-sm">Detail</a>
                                         <a href="#" class="btn btn-warning btn-sm">Edit</a>
@@ -68,6 +72,8 @@
                                     <td>GB1200</td>
                                     <td>Rp 100.000</td>
                                     <td>Top-up Game B dengan nominal 1200</td>
+                                    <td>Adventure</td>
+                                    <td>Mobile</td>
                                     <td>
                                         <a href="#" class="btn btn-info btn-sm">Detail</a>
                                         <a href="#" class="btn btn-warning btn-sm">Edit</a>
@@ -79,6 +85,8 @@
                                     <td>GC1500</td>
                                     <td>Rp 75.000</td>
                                     <td>Top-up Game C dengan nominal 1500</td>
+                                    <td>Puzzle</td>
+                                    <td>PC</td>
                                     <td>
                                         <a href="#" class="btn btn-info btn-sm">Detail</a>
                                         <a href="#" class="btn btn-warning btn-sm">Edit</a>
@@ -90,6 +98,8 @@
                                     <td>GD1000</td>
                                     <td>Rp 25.000</td>
                                     <td>Top-up Game D dengan nominal 1000</td>
+                                    <td>RPG</td>
+                                    <td>Mobile</td>
                                     <td>
                                         <a href="#" class="btn btn-info btn-sm">Detail</a>
                                         <a href="#" class="btn btn-warning btn-sm">Edit</a>
@@ -101,6 +111,8 @@
                                     <td>GE2000</td>
                                     <td>Rp 150.000</td>
                                     <td>Top-up Game E dengan nominal 2000</td>
+                                    <td>RPG</td>
+                                    <td>PC</td>
                                     <td>
                                         <a href="#" class="btn btn-info btn-sm">Detail</a>
                                         <a href="#" class="btn btn-warning btn-sm">Edit</a>
@@ -110,6 +122,7 @@
                             </tbody>
                         </table>
                     </div>
+
                 </div>
             </div>
         </div>
