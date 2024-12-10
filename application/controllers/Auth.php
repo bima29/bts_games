@@ -1,6 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
+/**
+ * @property CI_Loader $load
+ * @property CI_Input $input
+ * @property CI_Output $output
+ * @property CI_Session $session
+ * @property CI_DB $db
+ */
 class Auth extends CI_Controller {
     public function index()
     {

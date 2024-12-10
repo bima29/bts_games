@@ -120,8 +120,8 @@ height: 100%;
 
         if (!hasVisited) {
             setTimeout(() => {
-                loadingScreen.style.display = 'none';                
-                mainContent.style.display = 'block'; 
+                loadingScreen.style.display = 'none';
+                mainContent.style.display = 'block';
 
                 sessionStorage.setItem('hasVisited', 'true');
             }, 2000);
