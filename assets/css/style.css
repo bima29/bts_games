@@ -1,0 +1,244 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.header-top {
+    background: rgba(0, 0, 0, 0.9);
+    /* Warna hitam dengan transparansi */
+    -webkit-backdrop-filter: blur(10px);
+    /* Untuk browser berbasis WebKit */
+    backdrop-filter: blur(10px);
+    /* Efek blur */
+    color: rgb(255, 255, 255);
+    /* Warna teks putih untuk kontras */
+}
+
+.hover {
+    color: antiquewhite;
+}
+
+.hover:hover {
+    color: #00021F;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: auto;
+}
+
+/* Hover effect for navbar items */
+.navbar-hover:hover {
+    background-color: #007bff;
+}
+
+/* When the link is hovered or the navbar item is active */
+.navbar-hover a:hover,
+.navbar-hover.active a {
+    color: white !important;
+    /* Force white color */
+}
+
+.nav-item.active a {
+    color: #fff !important;
+    background-color: #007bff;
+    border-radius: 5px;
+}
+
+.bg-blur {
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.1);
+    /* Hampir transparan */
+    padding: 15px;
+    border: none;
+    /* Menghilangkan border */
+    border-radius: 10px;
+    box-shadow: none;
+    /* Pastikan tidak ada bayangan */
+}
+
+.blurred {
+    filter: blur(5px);
+    /* Mengatur tingkat blur */
+    transition: filter 0.3s ease;
+    /* Animasi halus */
+}
+
+/* Teks berada di tengah gambar dan disembunyikan */
+.gameText {
+    position: absolute;
+    top: 40%;
+    margin-left: 5%;
+    display: none;
+    /* Teks disembunyikan pada awalnya */
+    z-index: 10;
+    /* Pastikan teks berada di atas gambar */
+}
+
+/* Gambar akan blur saat hover */
+.card:hover .gameImage {
+    filter: blur(5px);
+    /* Blur gambar saat hover */
+}
+
+/* Tampilkan teks saat hover pada gambar */
+.card:hover .gameText {
+    display: block;
+    /* Tampilkan teks saat hover pada gambar */
+}
+
+/* Loading Screen */
+#loadingScreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    /* Pastikan mengcover seluruh lebar viewport */
+    height: 100vh;
+    /* Pastikan mengcover seluruh tinggi viewport */
+    background-color: rgba(0, 0, 0, 0.8);
+    /* Transparansi putih */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    /* Pastikan berada di atas semua elemen */
+}
+
+/* GIF di tengah layar */
+.loadingGif {
+    width: 300px;
+    height: 300px;
+}
+
+/* form pencarian */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.search-icon {
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.search-form {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    width: 0;
+    height: 35px;
+    overflow: hidden;
+    transition: width 0.4s ease-in-out;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.search-form input {
+    width: 100%;
+    height: 100%;
+    padding: 0 10px;
+    font-size: 14px;
+    border: none;
+    outline: none;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.search-form.active {
+    width: 300px;
+}
+
+
+
+/* ===================LIVE CHAT==================== */
+.chat-box {
+    height: 400px;
+    overflow-y: auto;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.chat-message {
+    margin-bottom: 10px;
+}
+
+.chat-message.admin {
+    text-align: left;
+}
+
+.chat-message.user {
+    text-align: right;
+}
+
+.chat-message p {
+    display: inline-block;
+    padding: 8px 12px;
+    border-radius: 12px;
+    max-width: 70%;
+}
+
+.chat-message.admin p {
+    background-color: #e9ecef;
+}
+
+.chat-message.user p {
+    background-color: #0d6efd;
+    color: #fff;
+}
+
+
+
+@media (max-width: 768px) {
+    .card {
+        height: auto; 
+    }
+    .card-img-top {
+        height: 150px; 
+        object-fit: cover; 
+    }
+}
+
+.responsive-p {
+    display: inline-block;
+    background-color: #fff;
+    border-radius: 8px; 
+    margin-right: 0;
+    padding: 5px 10px;
+    font-size: 14px;
+    color: #000; 
+    overflow-wrap: break-word; 
+    word-wrap: break-word; 
+    text-align: center; 
+}
+
+
+@media (max-width: 768px) {
+    .responsive-p {
+        font-size: 12px; 
+        padding: 4px 8px;
+    }
+}
+
+@media (max-width: 576px) {
+    .responsive-p {
+        font-size: 10px; 
+        padding: 3px 6px;
+    }
+}
+
+
+

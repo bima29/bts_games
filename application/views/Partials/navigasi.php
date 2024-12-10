@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+    <div class="container">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon" id="hamburger-icon"></span> 
+            <i class="fa-solid fa-xmark d-none" id="close-icon"></i>
+        </button>
+
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item navbar-hover rounded me-2 <?= (uri_string() == '' || uri_string() == '/') ? 'active' : ''; ?>">
+                    <a class="nav-link" aria-current="page" href="<?= base_url(); ?>"><i class="fas fa-home me-2"></i>Beranda</a>
+                </li>
+                <li class="nav-item navbar-hover rounded me-2 <?= (uri_string() == 'Home/games') ? 'active' : ''; ?>">
+                    <a class="nav-link" aria-current="page" href="<?= base_url('Home/games'); ?>"><i class="fas fa-gamepad me-2"></i>Semua Game</a>
+                </li>
+                <li class="nav-item navbar-hover rounded me-2 <?= (uri_string() == 'Home/track') ? 'active' : ''; ?>">
+                    <a class="nav-link" aria-current="page" href="<?= base_url('Home/track'); ?>"><i class="fas fa-truck me-2"></i>Lacak Pesanan</a>
+                </li>
+                <li class="nav-item navbar-hover rounded me-2 <?= (uri_string() == 'Home/price') ? 'active' : ''; ?>">
+                    <a class="nav-link" aria-current="page" href="<?= base_url('Home/price'); ?>"><i class="fas fa-tag me-2"></i>Catatan Harga</a>
+                </li>
+                <li class="nav-item navbar-hover rounded me-2 <?= (uri_string() == 'Home/Live') ? 'active' : ''; ?>">
+                    <a class="nav-link" aria-current="page" href="<?= base_url('Home/Live'); ?>"><i class="fa-solid fa-headset me-2"></i>LiveChat</a>
+                </li>
+                <li class="nav-item navbar-hover  me-2 active d-block d-md-none">
+                    <a class="nav-link" aria-current="page" href="<?= base_url('Home/Login'); ?>"><i class="fa-solid fa-right-to-bracket fa-lg"></i> Masuk/Daftar</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<script>
+    const searchIcon = document.getElementById('searchIcon');
+    const searchForm = document.getElementById('searchForm');
+
+    searchIcon.addEventListener('click', () => {
+        searchForm.classList.toggle('active');
+    });
+
+    document.addEventListener('click', (event) => {
+        if (!searchForm.contains(event.target) && !searchIcon.contains(event.target)) {
+            searchForm.classList.remove('active');
+        }
+    });
+</script>
