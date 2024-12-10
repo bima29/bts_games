@@ -1,0 +1,153 @@
+<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="<?= base_url("admin") ?>" class="brand-link">
+        <img src="<?= base_url('assets/dashboard'); ?>/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <span class="brand-text font-weight-light">AdminLTE 3</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+                <img src="<?= base_url('assets/dashboard'); ?>/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+            </div>
+            <div class="info">
+                <a href="#" class="d-block">Alexander Pierce</a>
+            </div>
+        </div>
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <li class="nav-item">
+                    <a href="<?= base_url('admin') ?>" class="nav-link <?= (uri_string() == 'admin') ? 'active' : '' ?>">
+                        <i class="nav-icon fas fa-home"></i>
+                        <p>Home</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="<?= base_url('admin/track_order') ?>" class="nav-link <?= (uri_string() == 'admin/track_order') ? 'active' : '' ?>">
+                        <i class="nav-icon fas fa-truck"></i>
+                        <p>Track Order</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="<?= base_url('admin/price_list') ?>" class="nav-link <?= (uri_string() == 'admin/price_list') ? 'active' : '' ?>">
+                        <i class="nav-icon fas fa-list-alt"></i>
+                        <p>Price List</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="<?= base_url('admin/live_chat') ?>" class="nav-link <?= (uri_string() == 'admin/live_chat') ? 'active' : '' ?>">
+                        <i class="nav-icon fas fa-comment-dots"></i>
+                        <p>Live Chat</p>
+                    </a>
+                </li>
+
+                <li class="nav-item has-treeview <?= (uri_string() == 'admin/game_categories' || uri_string() == 'admin/game_list') ? 'menu-open' : '' ?>">
+                    <a href="#" class="nav-link <?= (uri_string() == 'admin/game_categories' || uri_string() == 'admin/game_list') ? 'active' : '' ?>">
+                        <i class="nav-icon fas fa-gamepad"></i>
+                        <p>
+                            All Games
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview" style="background-color: #2c3e50; padding-left: 15px;">
+                        <li class="nav-item">
+                            <a href="<?= base_url('admin/game_categories') ?>" class="nav-link <?= (uri_string() == 'admin/game_categories') ? 'active' : '' ?>" style="padding-left: 30px;">
+                                <i class="nav-icon fas fa-tags"></i>
+                                <p>Game Categories</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= base_url('admin/game_list') ?>" class="nav-link <?= (uri_string() == 'admin/game_list') ? 'active' : '' ?>" style="padding-left: 30px;">
+                                <i class="nav-icon fas fa-list"></i>
+                                <p>List of Games</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a href="<?= base_url('admin/banner') ?>" class="nav-link <?= (uri_string() == 'admin/banner') ? 'active' : '' ?>">
+                        <i class="nav-icon fas fa-image"></i>
+                        <p>Banners</p>
+                    </a>
+                </li>
+
+                <li class="nav-item has-treeview <?= (uri_string() == 'admin/duitku' || uri_string() == 'admin/digiflazz') ? 'menu-open' : '' ?>">
+                    <a href="#" class="nav-link <?= (uri_string() == 'admin/duitku' || uri_string() == 'admin/digiflazz') ? 'active' : '' ?>">
+                        <i class="nav-icon fas fa-plug"></i>
+                        <p>
+                            Connect API
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview" style="background-color: #2c3e50; padding-left: 15px;">
+                        <li class="nav-item">
+                            <a href="<?= base_url('admin/duitku') ?>" class="nav-link <?= (uri_string() == 'admin/duitku') ? 'active' : '' ?>" style="padding-left: 30px;">
+                                <i class="nav-icon fas fa-wallet"></i>
+                                <p>Duitku</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= base_url('admin/digiflazz') ?>" class="nav-link <?= (uri_string() == 'admin/digiflazz') ? 'active' : '' ?>" style="padding-left: 30px;">
+                                <i class="nav-icon fas fa-credit-card"></i>
+                                <p>Digiflazz</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item has-treeview <?= (uri_string() == 'admin/account_role' || uri_string() == 'admin/manage_account') ? 'menu-open' : '' ?>">
+                    <a href="#" class="nav-link <?= (uri_string() == 'admin/account_role' || uri_string() == 'admin/manage_account') ? 'active' : '' ?>">
+                        <i class="nav-icon fas fa-user-cog"></i>
+                        <p>
+                            Account
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview" style="background-color: #2c3e50; padding-left: 15px;">
+                        <li class="nav-item">
+                            <a href="<?= base_url('admin/account_role') ?>" class="nav-link <?= (uri_string() == 'admin/account_role') ? 'active' : '' ?>" style="padding-left: 30px;">
+                                <i class="nav-icon fas fa-id-badge"></i>
+                                <p>Account Role</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= base_url('admin/manage_account') ?>" class="nav-link <?= (uri_string() == 'admin/manage_account') ? 'active' : '' ?>" style="padding-left: 30px;">
+                                <i class="nav-icon fas fa-cogs"></i>
+                                <p>Manage Account</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a href="<?= base_url('admin/profile') ?>" class="nav-link <?= (uri_string() == 'admin/profile') ? 'active' : '' ?>">
+                        <i class="nav-icon fas fa-user"></i>
+                        <p>My Profile</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="<?= base_url('admin/logout') ?>" class="nav-link" style="padding: 0;">
+                        <button class="btn btn-danger w-100" style="text-align: left;">
+                            <i class="nav-icon fas fa-sign-out-alt"></i>
+                            <p style="display: inline-block; margin-left: 10px;">Logged Out</p>
+                        </button>
+                    </a>
+                </li>
+            </ul>
+
+        </nav>
+
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>

@@ -15,5 +15,29 @@ class Admin extends CI_Controller {
         $this->load->view('admin/index');
         $this->load->view('admin/partials/footer');
     }
+ 
+    public function track_order()
+    {
+        $this->load->view('admin/partials/header');
+        $this->load->view('admin/partials/navigate');
+        $this->load->view('admin/track_order');
+        $this->load->view('admin/partials/footer');
+    }
+  
+    public function price_list()
+    {
+        $this->load->view('admin/partials/header');
+        $this->load->view('admin/partials/navigate');
+        $this->load->view('admin/price_list');
+        $this->load->view('admin/partials/footer');
+    }
+   
+    public function live_chat()
+    {
+        $this->load->view('admin/partials/header');
+        $this->load->view('admin/partials/navigate');
+        $this->load->view('admin/live_chat');
+        $this->load->view('admin/partials/footer');
+    }
    
 }
