@@ -8,7 +8,7 @@ class Auth extends CI_Controller {
         $this->load->view('Partials/Fitur/Login/content');
         $this->load->view('Partials/Fitur/footer');
     }
-    public function Sign()
+    public function sign_up()
     {
         $this->load->view('Partials/Fitur/header');
         $this->load->view('Partials/Fitur/Sign/content');

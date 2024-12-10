@@ -24,7 +24,7 @@
                     <a class="nav-link" aria-current="page" href="<?= base_url('Home/Live'); ?>"><i class="fa-solid fa-headset me-2"></i>LiveChat</a>
                 </li>
                 <li class="nav-item navbar-hover  me-2 active d-block d-md-none">
-                    <a class="nav-link" aria-current="page" href="<?= base_url('Home/Login'); ?>"><i class="fa-solid fa-right-to-bracket fa-lg"></i> Masuk/Daftar</a>
+                    <a class="nav-link" aria-current="page" href="<?= base_url('auth'); ?>"><i class="fa-solid fa-right-to-bracket fa-lg"></i> Masuk/Daftar</a>
                 </li>
             </ul>
         </div>

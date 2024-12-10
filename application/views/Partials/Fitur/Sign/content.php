@@ -51,7 +51,7 @@ background-repeat: no-repeat;
     <div class="container-wrapper">
         <div class="row justify-content-center align-items-center w-100">
             <div class="card login-card p-4">
-                <a href="<?= base_url('Home/Login'); ?>">
+                <a href="<?= base_url(''); ?>">
                     <i class="fa-solid fa-arrow-left" style="color:white;"></i>
                 </a>
                 <h4 class="text-center mb-4 text-white">Daftarkan Akun Anda</h4>
@@ -96,7 +96,7 @@ background-repeat: no-repeat;
                     <button type="submit" class="btn btn-primary w-100">Daftar</button>
                 </form>
                 <div class="text-center mt-4">
-                    <p class="text-white">Anda Memiliki Akun? <a href="<?= base_url('Home/Login'); ?>" class="text-decoration-none">Masuk</a></p>
+                    <p class="text-white">Anda Memiliki Akun? <a href="<?= base_url('auth'); ?>" class="text-decoration-none">Masuk</a></p>
                 </div>
             </div>
         </div>

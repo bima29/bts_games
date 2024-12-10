@@ -47,7 +47,7 @@
                             </a>
                         </small>
                     </div>
-                    <a class="text-decoration-none text-white" href="<?= base_url('home/login'); ?>">Masuk/Daftar</a>
+                    <a class="text-decoration-none text-white" href="<?= base_url('auth'); ?>">Masuk/Daftar</a>
                 </div>
             </div>
         </div>
