@@ -65,16 +65,5 @@ class Home extends CI_Controller {
         $this->load->view('Partials/Fitur/Checkout/content3');
         $this->load->view('Partials/Fitur/footer');
     }
-    public function login()
-    {
-        $this->load->view('Partials/Fitur/header');
-        $this->load->view('Partials/Fitur/Login/content');
-        $this->load->view('Partials/Fitur/footer');
-    }
-    public function Sign()
-    {
-        $this->load->view('Partials/Fitur/header');
-        $this->load->view('Partials/Fitur/Sign/content');
-        $this->load->view('Partials/Fitur/footer');
-    }
+    
 }
