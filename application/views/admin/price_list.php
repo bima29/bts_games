@@ -47,7 +47,8 @@
                                     <th>Nama Produk</th>
                                     <th>Kode Produk</th>
                                     <th>Harga</th>
-                                    <th>Deskripsi</th>
+                                    <th>Nominal</th>
+                                    <th>Satuan</th>
                                     <th>Kategori Game</th>
                                     <th>Jenis</th>
                                     <th>Aksi</th>
@@ -58,7 +59,8 @@
                                     <td>Game A</td>
                                     <td>GA1200</td>
                                     <td>Rp 50.000</td>
-                                    <td>Top-up Game A dengan nominal 1200</td>
+                                    <td>1200</td>
+                                    <td>Diamond</td>
                                     <td>Action</td>
                                     <td>PC</td>
                                     <td>
@@ -71,7 +73,8 @@
                                     <td>Game B</td>
                                     <td>GB1200</td>
                                     <td>Rp 100.000</td>
-                                    <td>Top-up Game B dengan nominal 1200</td>
+                                    <td>1200</td>
+                                    <td>Cash</td>
                                     <td>Adventure</td>
                                     <td>Mobile</td>
                                     <td>
@@ -84,7 +87,8 @@
                                     <td>Game C</td>
                                     <td>GC1500</td>
                                     <td>Rp 75.000</td>
-                                    <td>Top-up Game C dengan nominal 1500</td>
+                                    <td>1500</td>
+                                    <td>Ushee</td>
                                     <td>Puzzle</td>
                                     <td>PC</td>
                                     <td>
@@ -97,7 +101,8 @@
                                     <td>Game D</td>
                                     <td>GD1000</td>
                                     <td>Rp 25.000</td>
-                                    <td>Top-up Game D dengan nominal 1000</td>
+                                    <td>1000</td>
+                                    <td>Diamond</td>
                                     <td>RPG</td>
                                     <td>Mobile</td>
                                     <td>
@@ -110,7 +115,8 @@
                                     <td>Game E</td>
                                     <td>GE2000</td>
                                     <td>Rp 150.000</td>
-                                    <td>Top-up Game E dengan nominal 2000</td>
+                                    <td>2000</td>
+                                    <td>Cash</td>
                                     <td>RPG</td>
                                     <td>PC</td>
                                     <td>

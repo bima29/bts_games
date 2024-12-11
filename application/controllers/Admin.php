@@ -47,5 +47,37 @@ class Admin extends CI_Controller {
         $this->load->view('admin/game_categories');
         $this->load->view('admin/partials/footer');
     }
+
+    public function game_list()
+    {
+        $this->load->view('admin/partials/header');
+        $this->load->view('admin/partials/navigate');
+        $this->load->view('admin/game_list');
+        $this->load->view('admin/partials/footer');
+    }
+
+    public function banner()
+    {
+        $this->load->view('admin/partials/header');
+        $this->load->view('admin/partials/navigate');
+        $this->load->view('admin/banner');
+        $this->load->view('admin/partials/footer');
+    }
+
+    public function payment_gateway()
+    {
+        $this->load->view('admin/partials/header');
+        $this->load->view('admin/partials/navigate');
+        $this->load->view('admin/payment_gateway');
+        $this->load->view('admin/partials/footer');
+    }
+
+    public function digiflazz()
+    {
+        $this->load->view('admin/partials/header');
+        $this->load->view('admin/partials/navigate');
+        $this->load->view('admin/digiflazz');
+        $this->load->view('admin/partials/footer');
+    }
    
 }

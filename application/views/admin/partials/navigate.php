@@ -75,8 +75,8 @@
                     </a>
                 </li>
 
-                <li class="nav-item has-treeview <?= (uri_string() == 'admin/duitku' || uri_string() == 'admin/digiflazz') ? 'menu-open' : '' ?>">
-                    <a href="#" class="nav-link <?= (uri_string() == 'admin/duitku' || uri_string() == 'admin/digiflazz') ? 'active' : '' ?>">
+                <li class="nav-item has-treeview <?= (uri_string() == 'admin/payment_gateway' || uri_string() == 'admin/digiflazz') ? 'menu-open' : '' ?>">
+                    <a href="#" class="nav-link <?= (uri_string() == 'admin/payment_gateway' || uri_string() == 'admin/digiflazz') ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-plug"></i>
                         <p>
                             Connect API
@@ -85,9 +85,9 @@
                     </a>
                     <ul class="nav nav-treeview" style="background-color: #2c3e50; padding-left: 15px;">
                         <li class="nav-item">
-                            <a href="<?= base_url('admin/duitku') ?>" class="nav-link <?= (uri_string() == 'admin/duitku') ? 'active' : '' ?>" style="padding-left: 30px;">
+                            <a href="<?= base_url('admin/payment_gateway') ?>" class="nav-link <?= (uri_string() == 'admin/payment_gateway') ? 'active' : '' ?>" style="padding-left: 30px;">
                                 <i class="nav-icon fas fa-wallet"></i>
-                                <p>Duitku</p>
+                                <p>Payment Gateway</p>
                             </a>
                         </li>
                         <li class="nav-item">
