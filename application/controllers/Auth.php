@@ -1,14 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-/**
- * @property CI_Loader $load
- * @property CI_Input $input
- * @property CI_Output $output
- * @property CI_Session $session
- * @property CI_DB $db
- * @property Auth_model $auth_model
- */
-class Auth extends CI_Controller
+
+class Auth extends MY_Controller
 {
     public function __construct()
     {
@@ -18,17 +11,14 @@ class Auth extends CI_Controller
 
     public function index()
     {
-        // Check if user is already logged in
         if ($this->session->userdata('user_id')) {
-            // Redirect based on the role_id
             $role_id = $this->session->userdata('role_id');
             if ($role_id == 1 || $role_id == 2) {
-                redirect('admin');
+                redirect(base_url('admin'));
             } elseif ($role_id == 3) {
                 redirect(base_url());
             }
         } else {
-            // Load login page if not logged in
             $this->load->view('Partials/Fitur/header');
             $this->load->view('Partials/Fitur/Login/content');
             $this->load->view('Partials/Fitur/footer');
@@ -37,31 +27,26 @@ class Auth extends CI_Controller
 
     public function sign_up()
     {
-        // Check if user is already logged in
         if ($this->session->userdata('user_id')) {
-            // Redirect based on the role_id
             $role_id = $this->session->userdata('role_id');
             if ($role_id == 1 || $role_id == 2) {
-                redirect('admin');
+                redirect(base_url('admin'));
             } elseif ($role_id == 3) {
                 redirect(base_url());
             }
         } else {
-            // Load sign-up page if not logged in
             $this->load->view('Partials/Fitur/header');
             $this->load->view('Partials/Fitur/Sign/content');
             $this->load->view('Partials/Fitur/footer');
         }
     }
 
-    public function login()
+    public function prosses_login()
     {
-        // Check if user is already logged in
         if ($this->session->userdata('user_id')) {
-            // Redirect based on the role_id
             $role_id = $this->session->userdata('role_id');
             if ($role_id == 1 || $role_id == 2) {
-                redirect('admin');
+                redirect(base_url('admin'));
             } elseif ($role_id == 3) {
                 redirect(base_url());
             }
@@ -73,18 +58,22 @@ class Auth extends CI_Controller
         $user = $this->auth_model->get_user_by_email_password($email, $password);
 
         if ($user) {
-            $this->session->set_userdata('user_id', $user->id);
-            $this->session->set_userdata('username', $user->username);
-            $this->session->set_userdata('role_id', $user->role_id);
+            $session_data = array(
+                'user_id'   => $user->id,
+                'username'  => $user->username,
+                'role_id'   => $user->role_id
+            );
+            $this->session->set_userdata($session_data);
 
-            // Redirect based on role_id
+            // Update login_at field after successful login
+            $this->auth_model->update_login_at($user->id);
+
             if ($user->role_id == 1 || $user->role_id == 2) {
-                redirect('admin');
+                redirect(base_url('admin'));
             } elseif ($user->role_id == 3) {
                 redirect(base_url());
             }
         } else {
-            // Set the error flag for incorrect login attempt
             $this->load->view('Partials/Fitur/header');
             $this->load->view('Partials/Fitur/Login/content', ['login_failed' => true]);
             $this->load->view('Partials/Fitur/footer');
