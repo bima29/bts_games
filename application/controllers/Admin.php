@@ -17,9 +17,6 @@ class Admin extends CI_Controller {
 
     public function index()
     {
-        $role_id = $this->session->userdata('role_id');
-        echo $role_id;
-        die;
         $this->load->view('admin/partials/header');
         $this->load->view('admin/partials/navigate');
         $this->load->view('admin/index');
