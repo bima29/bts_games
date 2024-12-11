@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="<?=base_url('assets/css/login.css')?>">
+<link rel="stylesheet" href="<?= base_url('assets/css/login.css') ?>">
 
 <div class="container-fluid container-bg-img-fitur-login">
     <div class="row justify-content-center align-items-center bg-color-blur-white-5">
@@ -7,15 +7,22 @@
                 <i class="fa-solid fa-arrow-left white"></i>
             </a>
             <h4 class="text-center mb-4 text-white">Masuk ke Akun Anda</h4>
-            <form>
+
+            <?php if (isset($login_failed) && $login_failed): ?>
+                <div class="alert alert-danger mt-2" role="alert">
+                    Username / password Salah
+                </div>
+            <?php endif; ?>
+
+            <form action="<?= base_url('auth/login') ?>" method="POST">
                 <div class="mb-3">
                     <label for="email" class="form-label text-white">Alamat Email</label>
-                    <input type="email" class="form-control" id="email" placeholder="Masukkan email anda" required>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan email anda" required>
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label text-white">Kata Sandi</label>
                     <div class="password-input-group">
-                        <input type="password" class="form-control" id="password" placeholder="Masukkan kata sandi" required>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan kata sandi" required>
                         <i class="toggle-password bi bi-eye" id="togglePassword"></i>
                     </div>
                 </div>
@@ -34,4 +41,5 @@
         </div>
     </div>
 </div>
-<script src="<?=base_url('assets/js/login.js')?>"></script>
+
+<script src="<?= base_url('assets/js/login.js') ?>"></script>

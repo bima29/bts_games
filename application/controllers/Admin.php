@@ -8,14 +8,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @property CI_DB $db
  */
 class Admin extends CI_Controller {
+
+    public function __construct()
+    {
+        parent::__construct();
+       
+    }
+
     public function index()
     {
+        $role_id = $this->session->userdata('role_id');
+        echo $role_id;
+        die;
         $this->load->view('admin/partials/header');
         $this->load->view('admin/partials/navigate');
         $this->load->view('admin/index');
         $this->load->view('admin/partials/footer');
     }
- 
+
     public function track_order()
     {
         $this->load->view('admin/partials/header');
@@ -23,7 +33,7 @@ class Admin extends CI_Controller {
         $this->load->view('admin/track_order');
         $this->load->view('admin/partials/footer');
     }
-  
+
     public function price_list()
     {
         $this->load->view('admin/partials/header');
@@ -31,7 +41,7 @@ class Admin extends CI_Controller {
         $this->load->view('admin/price_list');
         $this->load->view('admin/partials/footer');
     }
-   
+
     public function live_chat()
     {
         $this->load->view('admin/partials/header');
@@ -79,5 +89,28 @@ class Admin extends CI_Controller {
         $this->load->view('admin/digiflazz');
         $this->load->view('admin/partials/footer');
     }
-   
+
+    public function account_role()
+    {
+        $this->load->view('admin/partials/header');
+        $this->load->view('admin/partials/navigate');
+        $this->load->view('admin/account_role');
+        $this->load->view('admin/partials/footer');
+    }
+
+    public function manage_account()
+    {
+        $this->load->view('admin/partials/header');
+        $this->load->view('admin/partials/navigate');
+        $this->load->view('admin/manage_account');
+        $this->load->view('admin/partials/footer');
+    }
+
+    public function profile()
+    {
+        $this->load->view('admin/partials/header');
+        $this->load->view('admin/partials/navigate');
+        $this->load->view('admin/profile');
+        $this->load->view('admin/partials/footer');
+    }
 }
