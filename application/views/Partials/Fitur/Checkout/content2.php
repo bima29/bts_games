@@ -1,104 +1,9 @@
-<style>
-    body,
-    html {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-        font-family: Arial, sans-serif;
-        background-image: url('https://images3.alphacoders.com/204/204599.jpg');
-        background-size: cover;
-        background-position: center;
-    }
-
-    .checkout-container {
-        background-color: rgba(255, 255, 255, 0.9);
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    }
-
-    .game-info img {
-        max-width: 100%;
-        border-radius: 10px;
-    }
-
-    .game-info {
-        text-align: center;
-    }
-
-    .game-info h2 {
-        text-align: left;
-    }
-
-    .game-info h4 {
-        margin-top: 10px;
-        font-size: 1.5rem;
-        color: #333;
-    }
-
-    .denomination-option {
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 10px;
-    }
-
-    .denomination-card {
-        background-color: #0505;
-        color: white;
-        border: none;
-        border-radius: 8px;
-        display: flex;
-        padding: 15px;
-        cursor: pointer;
-        transition: transform 0.3s, background-color 0.3s;
-        width: 200px;
-        height: 100px;
-    }
-
-    .payment-method input {
-        margin-right: 10px;
-    }
-
-    .btn-primary {
-        background-color: #007bff;
-        border: none;
-    }
-
-    .btn-primary:hover {
-        background-color: #0056b3;
-    }
-
-    .container-fluid.d-flex {
-        min-height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: rgba(225, 225, 225, 0.4);
-        padding: 20px;
-        box-sizing: border-box;
-    }
-
-    @media (max-width: 768px) {
-        .checkout-container {
-            width: 90%;
-            max-width: none;
-        }
-
-        .checkout-container img {
-            max-width: 100%;
-        }
-
-        .container-fluid.d-flex {
-            padding: 10px;
-        }
-    }
-</style>
+<link rel="stylesheet" href="<?=base_url('assets/css/content2.css')?>">
 <div class="container-fluid d-none d-md-flex sticky-top header-top">
     <div class="container">
         <div class="d-flex justify-content-between align-items-center topbar">
             <div class="top-link">
-                <img src="<?= base_url('assets/img/logoBTS.png') ?>" alt="Logo" class="img-fluid" style="width: 100%; max-width: 150px;">
+                <img src="<?= base_url('assets/img/logoBTS.png') ?>" alt="Logo" class="img-fluid img-fluid-header">
             </div>
             <div class="top-info d-flex">
 
@@ -109,29 +14,29 @@
                 </div>
                 <div class="componen-header-icon-bg rounded" id="searchIcon">
                     <small class="me-3 text-white-50">
-                        <i class="fa-solid fa-magnifying-glass fa-lg search-icon" style="color: white;"></i>
+                        <i class="fa-solid fa-magnifying-glass fa-lg search-icon white"></i>
                     </small>
                 </div>
                 <div class="componen-header-icon-bg rounded">
                     <small class="me-3 text-white-50">
-                        <a href="<?= base_url('home/login'); ?>" class="text-center">
-                            <i class="fa-solid fa-right-to-bracket fa-lg" style="color: white;"></i>
+                        <a href="<?= base_url('auth'); ?>" class="text-center">
+                            <i class="fa-solid fa-right-to-bracket fa-lg white"></i>
                         </a>
                     </small>
                 </div>
-                <a class="text-decoration-none text-white" href="<?= base_url('home/login'); ?>">Masuk/Daftar</a>
+                <a class="text-decoration-none text-white" href="<?= base_url('auth'); ?>">Masuk/Daftar</a>
             </div>
         </div>
     </div>
 </div>
 
-<div class="container-fluid d-flex  mb-4" style="background-color: rgba(225, 225, 225, 0.4);">
+<div class="container-fluid d-flex mb-4 bg-color-blur-white-4">
     <div class="row w-100 justify-content-center align-items-center">
 
         <div class="col-md-6 justify-content-center  mt-4">
-            <div class="checkout-container" style="width: 100%; max-width: 900px; padding: 20px; border: 1px solid #ddd; border-radius: 10px;">
+            <div class="checkout-container cc-size">
                 <a href="<?= base_url('Home/Checkout1'); ?>">
-                    <i class="fa-solid fa-arrow-left mb-4" style="color:black;"></i>
+                    <i class="fa-solid fa-arrow-left mb-4 black"></i>
                 </a>
                 <div class="text-center">
                     <img src="https://static-src.vocagame.com/gamestoreindonesia/banner%20wp-abe2-original.webp" class="card-img" alt="Mobile Legends Banner">
@@ -171,10 +76,10 @@
     </div>
 </div>
 
-<div class="container-fluid footer bg-dark wow fadeIn" data-wow-delay=".3s">
+<div class="container-fluid footer bg-dark">
     <div class="container pt-5 pb-4">
         <div class="row g-5">
-            <div class="col-lg-3 col-md-6">
+            <div class="col-lg-4 col-md-6">
                 <a href="index.html" class="text-decoration-none">
                     <h1 class="text-white fw-bold d-block text">BTS <span class="text-success">Store</span> </h1>
                 </a>
@@ -191,7 +96,7 @@
                             class="fab fa-linkedin-in text-primary"></i></a>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6">
+            <div class="col-lg-4 col-md-6">
                 <a href="#" class="h3 text-white text-decoration-none">Peta Situs</a>
                 <div class="mt-4 d-flex flex-column short-link">
                     <a href="" class="mb-2 text-white text-decoration-none"><i
@@ -204,20 +109,7 @@
                             class="fas fa-angle-right text-white me-2"></i>Daftar</a>
                 </div>
             </div>
-
-            <div class="col-lg-3 col-md-6">
-                <a href="#" class="h3 text-white text-decoration-none">Halaman</a>
-                <div class="mt-4 d-flex flex-column short-link">
-                    <a href="" class="mb-2 text-white text-decoration-none"><i
-                            class="fas fa-angle-right text-white me-2"></i>loyalty</a>
-                    <a href="" class="mb-2 text-white text-decoration-none"><i
-                            class="fas fa-angle-right text-white me-2"></i>Syarat dan Ketentuan</a>
-                    <a href="" class="mb-2 text-white text-decoration-none"><i
-                            class="fas fa-angle-right text-white me-2"></i>Kebijakan Privasi</a>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6">
+            <div class="col-lg-4 col-md-6">
                 <a href="#" class="h3 text-white text-decoration-none">Hubungi Kami</a>
                 <div class="text-white mt-4 d-flex flex-column contact-link">
                     <a href="#" class="pb-3 text-light border-bottom border-dark text-decoration-none"><i
@@ -241,28 +133,7 @@
         </div>
     </div>
 </div>
-<script>
-    function selectDenomination(element) {
-        document.querySelectorAll('.denomination-card').forEach(card => {
-            card.classList.remove('active');
-        });
-
-        element.classList.add('active');
-    }
-    const searchIcon = document.getElementById('searchIcon');
-    const searchForm = document.getElementById('searchForm');
-
-    searchIcon.addEventListener('click', () => {
-        searchForm.classList.toggle('active');
-    });
-
-    document.addEventListener('click', (event) => {
-        if (!searchForm.contains(event.target) && !searchIcon.contains(event.target)) {
-            searchForm.classList.remove('active');
-        }
-    });
-
-</script>
+<script src="<?=base_url('assets/js/content2.js')?>"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>

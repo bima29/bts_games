@@ -1,58 +1,10 @@
-<style>
-    .container-wrapper {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        background-color: rgba(255, 255, 255, 0.5);
-    }
-
-    .login-card {
-        background-color: rgba(0, 0, 0, 0.5);
-        border-radius: 15px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        width: 100%;
-        max-width: 400px;
-        padding: 20px;
-    }
-
-    form .form-control {
-        border-radius: 8px;
-    }
-
-    form .btn {
-        border-radius: 8px;
-    }
-
-    .password-input-group {
-        position: relative;
-    }
-
-    .password-input-group .toggle-password {
-        position: absolute;
-        right: 10px;
-        top: 50%;
-        transform: translateY(-50%);
-        cursor: pointer;
-    }
-
-    @media (max-width: 576px) {
-        .login-card {
-            padding: 15px;
-        }
-    }
-</style>
-
-<div class="container-fluid" style="background-image:url('https://images3.alphacoders.com/204/204599.jpg');
-background-size: cover;
-background-position: center;
-background-repeat: no-repeat;
-">
-    <div class="container-wrapper">
+<link rel="stylesheet" href="<?=base_url('assets/css/signin.css')?>">
+<div class="container-fluid container-bg-img-fitur-signin">
+    <div class="container-wrapper bg-color-blur-black-5">
         <div class="row justify-content-center align-items-center w-100">
             <div class="card login-card p-4">
                 <a href="<?= base_url(''); ?>">
-                    <i class="fa-solid fa-arrow-left" style="color:white;"></i>
+                    <i class="fa-solid fa-arrow-left white"></i>
                 </a>
                 <h4 class="text-center mb-4 text-white">Daftarkan Akun Anda</h4>
                 <form>
@@ -102,20 +54,4 @@ background-repeat: no-repeat;
         </div>
     </div>
 </div>
-<script>
-    function toggleVisibility(toggleId, inputId) {
-        const togglePassword = document.getElementById(toggleId);
-        const passwordInput = document.getElementById(inputId);
-
-        togglePassword.addEventListener('click', function() {
-            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-            passwordInput.setAttribute('type', type);
-
-            this.classList.toggle('bi-eye');
-            this.classList.toggle('bi-eye-slash');
-        });
-    }
-
-    toggleVisibility('togglePassword1', 'password');
-    toggleVisibility('togglePassword2', 'passwordVer');
-</script>
+<script src="<?=base_url('assets/js/signin.js')?>"></script>

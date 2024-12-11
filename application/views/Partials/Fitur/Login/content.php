@@ -1,52 +1,10 @@
-<style>
-    body,
-    html {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-    }
+<link rel="stylesheet" href="<?=base_url('assets/css/login.css')?>">
 
-    .row {
-        height: 100vh;
-        /* Full screen height */
-    }
-
-    .login-card {
-        max-width: 400px;
-        margin: auto;
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    /* fitur password encryption */
-    .password-input-group {
-        position: relative;
-    }
-
-    .toggle-password {
-        position: absolute;
-        top: 50%;
-        right: 10px;
-        transform: translateY(-50%);
-        cursor: pointer;
-        color: #6c757d;
-        /* Bootstrap's muted color */
-    }
-
-    .toggle-password:hover {
-        color: #000;
-        /* Darker on hover */
-    }
-</style>
-
-<div class="container-fluid" style="background-image:url('https://images3.alphacoders.com/204/204599.jpg');
-background-size: cover;
-background-position: center;
-background-repeat: no-repeat;
-">
-    <div class="row justify-content-center align-items-center" style="background-color: rgba(255, 255, 255, 0.5);">
-        <div class="card login-card p-4 w-100" style="background-color: rgba(0, 0, 0, 0.5);">
-            <a href="<?= base_url(''); ?>">
-                <i class="fa-solid fa-arrow-left" style="color:white;"></i>
+<div class="container-fluid container-bg-img-fitur-login">
+    <div class="row justify-content-center align-items-center bg-color-blur-white-5">
+        <div class="card login-card p-4 w-100 bg-color-blur-black-5">
+            <a href="<?= base_url('Home/index'); ?>">
+                <i class="fa-solid fa-arrow-left white"></i>
             </a>
             <h4 class="text-center mb-4 text-white">Masuk ke Akun Anda</h4>
             <form>
@@ -76,15 +34,4 @@ background-repeat: no-repeat;
         </div>
     </div>
 </div>
-<script>
-    const togglePassword = document.getElementById('togglePassword');
-    const passwordInput = document.getElementById('password');
-
-    togglePassword.addEventListener('click', function() {
-        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-        passwordInput.setAttribute('type', type);
-
-        this.classList.toggle('bi-eye');
-        this.classList.toggle('bi-eye-slash');
-    });
-</script>
+<script src="<?=base_url('assets/js/login.js')?>"></script>

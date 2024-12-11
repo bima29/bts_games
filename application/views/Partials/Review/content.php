@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
 $title = 'All Game||BTS Store';
 ?>
 <div class="container-fluid" style="background-image:url('https://i.pinimg.com/originals/59/b6/6c/59b66c61993907eb560fda88b6f12b25.jpg');
@@ -124,4 +124,4 @@ height: 100%;
         </div>
     </div>
 </div>
-</div>
+</div> -->

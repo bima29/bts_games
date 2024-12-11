@@ -18,6 +18,13 @@
             backdrop-filter: blur(10px);
             color: rgb(255, 255, 255);
         }
+        .img-fluid-c{
+            width: 100%; 
+            max-width: 150px;
+        }
+        .i-color-c-white{
+            color: white;
+        }
     </style>
 </head>
 
@@ -26,7 +33,7 @@
         <div class="container">
             <div class="d-flex justify-content-between align-items-center topbar">
                 <div class="top-link">
-                    <img src="<?= base_url('assets/img/logoBTS.png') ?>" alt="Logo" class="img-fluid" style="width: 100%; max-width: 150px;">
+                    <img src="<?= base_url('assets/img/logoBTS.png') ?>" alt="Logo" class="img-fluid img-fluid-c" >
                 </div>
                 <div class="top-info d-flex">
 
@@ -37,13 +44,13 @@
                     </div>
                     <div class="componen-header-icon-bg rounded" id="searchIcon">
                         <small class="me-3 text-white-50">
-                            <i class="fa-solid fa-magnifying-glass fa-lg search-icon" style="color: white;"></i>
+                            <i class="fa-solid fa-magnifying-glass fa-lg search-icon i-color-c-white"></i>
                         </small>
                     </div>
                     <div class="componen-header-icon-bg rounded">
                         <small class="me-3 text-white-50">
                             <a href="<?= base_url('home/login'); ?>" class="text-center">
-                                <i class="fa-solid fa-right-to-bracket fa-lg" style="color: white;"></i>
+                                <i class="fa-solid fa-right-to-bracket fa-lg i-color-c-white" ></i>
                             </a>
                         </small>
                     </div>

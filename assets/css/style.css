@@ -3,15 +3,142 @@
     padding: 0;
 }
 
+/* bg page */
+.container-bg-img-home {
+    background-image: url("https://media.suara.com/pictures/1600x840/2024/06/27/99491-hero-hou-yi-honor-of-kings.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow: auto;
+    height: 100%;
+}
+.container-bg-img-allgame {
+    background-image: url("https://cdn.idntimes.com/content-images/post/20190717/pubg-3840x2160-playerunknowns-battlegrounds-4k-16970-79555bc83fa81a9de78f9e0b33fa87d9.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow: auto;
+    height: 100%;
+}
+.container-bg-img-trackorder {
+    background-image: url("https://images.alphacoders.com/116/1163842.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow: auto;
+    height: 100%;
+}
+.container-bg-img-pricelist {
+    background-image: url("https://gamebrott.com/wp-content/uploads/2021/06/4-League.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow: auto;
+    height: 100%;
+}
+.container-bg-img-livechat {
+    background-image: url("https://gamebrott.com/wp-content/uploads/2021/06/4-League.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow: auto;
+    height: 100%;
+}
+.container-bg-img-fitur-login {
+    background-image: url("https://images3.alphacoders.com/204/204599.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow: auto;
+    height: 100%;
+}
+.container-bg-img-fitur-signin {
+    background-image: url("https://images3.alphacoders.com/204/204599.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow: auto;
+    height: 100%;
+}
+.bg-color-blur-black-4{
+    background-color: rgba(0, 0, 0, 0.4);
+}
+.bg-color-blur-black-5{
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.bg-color-blur-black-6{
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.bg-color-blur-black-7{
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.bg-color-blur-white-3{
+    background-color: rgba(225, 225, 225, 0.3);
+}
+.bg-color-blur-white-4{
+    background-color: rgba(225, 225, 225, 0.4);
+}
+.b-r-5px{
+    border-radius:5px
+}
+.fs-p-br-input{
+    font-size: 1.2rem; 
+    padding: 0.75rem; 
+    border-right: none;
+}
+.custom-input:focus {
+    color: black !important; /* Ubah warna font menjadi hitam saat papan ketik aktif */
+    background-color: white; /* Jika diperlukan, ubah latar belakang saat fokus */
+}
+.img-fluid-allgame-icon{
+    max-width: 50px; 
+    max-height: 50px; 
+    object-fit: cover;
+}
+.img-fluid-location{
+    max-width: 70px; 
+    max-height: 70px; 
+    object-fit: cover;
+}
+.img-fluid-pricelist{
+    max-width: 70px; 
+    max-height: 70px; 
+    object-fit: cover;
+}
+.white{
+    color: white;
+}
+.black{
+    color:black;
+}
+
+.icon-fa-magnifying-glass{
+    color: gray; 
+    font-size: 1.5rem;
+}
+.btn-fontsize-padding{
+    font-size: 1.2rem; 
+    padding: 0.75rem 1.5rem;
+}
+.min-height-50vh{
+    min-height: 50vh;
+}
+
+
+
 .header-top {
     background: rgba(0, 0, 0, 0.9);
-    /* Warna hitam dengan transparansi */
     -webkit-backdrop-filter: blur(10px);
-    /* Untuk browser berbasis WebKit */
     backdrop-filter: blur(10px);
-    /* Efek blur */
     color: rgb(255, 255, 255);
-    /* Warna teks putih untuk kontras */
 }
 
 .hover {
@@ -19,7 +146,7 @@
 }
 
 .hover:hover {
-    color: #00021F;
+    color: #00021f;
 }
 
 .carousel-item img {
@@ -160,8 +287,6 @@ body {
     width: 300px;
 }
 
-
-
 /* ===================LIVE CHAT==================== */
 .chat-box {
     height: 400px;
@@ -200,45 +325,39 @@ body {
     color: #fff;
 }
 
-
-
 @media (max-width: 768px) {
     .card {
-        height: auto; 
+        height: auto;
     }
     .card-img-top {
-        height: 150px; 
-        object-fit: cover; 
+        height: 150px;
+        object-fit: cover;
     }
 }
 
 .responsive-p {
     display: inline-block;
     background-color: #fff;
-    border-radius: 8px; 
+    border-radius: 8px;
     margin-right: 0;
     padding: 5px 10px;
     font-size: 14px;
-    color: #000; 
-    overflow-wrap: break-word; 
-    word-wrap: break-word; 
-    text-align: center; 
+    color: #000;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    text-align: center;
 }
-
 
 @media (max-width: 768px) {
     .responsive-p {
-        font-size: 12px; 
+        font-size: 12px;
         padding: 4px 8px;
     }
 }
 
 @media (max-width: 576px) {
     .responsive-p {
-        font-size: 10px; 
+        font-size: 10px;
         padding: 3px 6px;
     }
 }
-
-
-

@@ -1,0 +1,97 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-image: url("https://images3.alphacoders.com/204/204599.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.checkout-container {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.game-info img {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+.game-info {
+    text-align: center;
+}
+
+.game-info a {
+    text-align: left;
+}
+
+.game-info h2 {
+    text-align: center;
+}
+
+.game-info h4 {
+    margin-top: 10px;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.denomination-wrapper {
+    display: flex;
+    justify-content: center;
+    background-color: #f8f9fa;
+    padding: 10px;
+}
+
+.denomination-option {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    width: max-content;
+}
+
+@media (max-width: 1024px) {
+    .denomination-option {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .denomination-option {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .denomination-option {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+.denomination-card {
+    background-color: #0505;
+    color: white;
+    border-radius: 8px;
+    width: 200px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition:
+        transform 0.3s,
+        background-color 0.3s;
+}
+
+.denomination-card:hover {
+    transform: scale(1.05);
+    background-color: #3333;
+}
+
+.img-fluid-header{
+    width: 100%; max-width: 150px;
+}

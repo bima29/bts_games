@@ -1,7 +1,7 @@
 <div class="container-fluid footer bg-dark wow fadeIn" data-wow-delay=".3s">
     <div class="container pt-5 pb-4">
         <div class="row g-5">
-            <div class="col-lg-3 col-md-6">
+            <div class="col-lg-4 col-md-6">
                 <a href="index.html" class="text-decoration-none">
                     <h1 class="text-white fw-bold d-block text">BTS <span class="text-success">Store</span> </h1>
                 </a>
@@ -18,7 +18,7 @@
                             class="fab fa-linkedin-in text-primary"></i></a>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6">
+            <div class="col-lg-4 col-md-6">
                 <a href="#" class="h3 text-white text-decoration-none">Peta Situs</a>
                 <div class="mt-4 d-flex flex-column short-link">
                     <a href="" class="mb-2 text-white text-decoration-none"><i
@@ -32,19 +32,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-3 col-md-6">
-                <a href="#" class="h3 text-white text-decoration-none">Halaman</a>
-                <div class="mt-4 d-flex flex-column short-link">
-                    <a href="" class="mb-2 text-white text-decoration-none"><i
-                            class="fas fa-angle-right text-white me-2"></i>loyalty</a>
-                    <a href="" class="mb-2 text-white text-decoration-none"><i
-                            class="fas fa-angle-right text-white me-2"></i>Syarat dan Ketentuan</a>
-                    <a href="" class="mb-2 text-white text-decoration-none"><i
-                            class="fas fa-angle-right text-white me-2"></i>Kebijakan Privasi</a>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6">
+            <div class="col-lg-4 col-md-6">
                 <a href="#" class="h3 text-white text-decoration-none">Hubungi Kami</a>
                 <div class="text-white mt-4 d-flex flex-column contact-link">
                     <a href="#" class="pb-3 text-light border-bottom border-dark text-decoration-none"><i
