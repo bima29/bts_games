@@ -12,7 +12,6 @@
 
  <script src="<?= base_url('assets/dashboard'); ?>/plugins/jquery/jquery.min.js"></script>
 
- <script src="<?= base_url('assets/dashboard'); ?>/plugins/jquery-ui/jquery-ui.min.js"></script>
 
  <script>
      $.widget.bridge('uibutton', $.ui.button)
@@ -47,7 +46,9 @@
  <script src="<?= base_url('assets/dashboard'); ?>/js/tabel.js"></script>
 
 
- <script src="<?=base_url('assets/js/admin-action.js')?>"></script>
+ <script src="<?= base_url('assets/js/admin-action.js') ?>"></script>
+
+ 
  </body>
 
  </html>

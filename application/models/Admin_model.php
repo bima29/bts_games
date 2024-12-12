@@ -27,7 +27,7 @@ class Admin_model extends CI_Model
         $row = $query->row();
         return $row->profile_picture;
     }
-    
+
     public function get_user($user_id)
     {
         $this->db->where('id', $user_id);
@@ -40,4 +40,95 @@ class Admin_model extends CI_Model
         $this->db->where('id', $user_id);
         $this->db->update('users', $data);
     }
+
+
+    public function get_all_roles()
+    {
+        $this->db->select('id, role_id, role_name, role_description, created_at, updated_at');
+        $this->db->from('roles');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function saveRole($data)
+    {
+        $data['created_at'] = date('Y-m-d H:i:s');
+        $data['updated_at'] = date('Y-m-d H:i:s');
+        return $this->db->insert('roles', $data);
+    }
+
+    public function deleteRole($roleId)
+    {
+        return $this->db->where('role_id', $roleId)->delete('roles');
+    }
+
+
+    public function getRoleById($roleId)
+    {
+        return $this->db->where('role_id', $roleId)->get('roles')->row_array();
+    }
+
+    public function updateRole($roleId, $data)
+    {
+        return $this->db->where('role_id', $roleId)->update('roles', $data);
+    }
+
+    public function get_accounts()
+    {
+        $this->db->select('users.id, users.username, users.email, roles.role_name, users.role_id');
+        $this->db->from('users');
+        $this->db->join('roles', 'roles.role_id = users.role_id', 'left');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function get_roles()
+    {
+        $this->db->select('role_id, role_name');
+        $query = $this->db->get('roles');
+        return $query->result_array();
+    }
+
+    public function get_account_by_id($account_id)
+    {
+        $this->db->select('users.id, users.username, users.email, users.phone, users.full_name, users.profile_picture, users.role_id');
+        $this->db->from('users');
+        $this->db->join('roles', 'roles.role_id = users.role_id', 'left');
+        $this->db->where('users.id', $account_id);
+        $query = $this->db->get();
+        return $query->row_array();
+    }
+
+    public function insert_account($data)
+    {
+        $this->db->insert('users', $data);
+    }
+
+    public function delete_orders_by_user($user_id)
+    {
+        $this->db->where('user_id', $user_id);
+        return $this->db->delete('orders');
+    }
+
+    public function delete_account($id)
+    {
+        $this->db->where('id', $id);
+        return $this->db->delete('users');
+    }
+
+    public function update_account($account_id, $data)
+    {
+        $this->db->where('id', $account_id);
+        return $this->db->update('users', $data);
+    }
+
+
+    public function update_account_password($account_id, $data)
+{
+    $this->db->where('id', $account_id); // Find the account by ID
+    return $this->db->update('users', $data); // Update the password in the users table
+}
+
+
+    
 }
