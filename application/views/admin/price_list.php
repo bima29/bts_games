@@ -22,12 +22,12 @@
                     <p class="text-center text-dark font-weight-bold mb-0" style="font-size: 1.2rem;">
                         Silahkan masukkan kode produk atau layanan untuk melihat harga.
                     </p>
-                    <form action="<?= base_url('admin/price_list.php') ?>" method="POST" class="mt-3">
+                    <form action="#" method="POST" class="mt-3">
                         <div class="form-group">
                             <label for="product_code">Kode Produk:</label>
                             <input type="text" class="form-control" id="product_code" name="product_code" placeholder="Masukkan kode produk" required>
                         </div>
-                        <button type="submit" class="btn btn-primary w-100">Cari Harga</button>
+                        <button type="submit" class="btn btn-primary w-100" id="searchButton">Cari Harga</button>
                     </form>
                 </div>
             </div>
@@ -65,8 +65,8 @@
                                     <td>PC</td>
                                     <td>
                                         <a href="#" class="btn btn-info btn-sm">Detail</a>
-                                        <a href="#" class="btn btn-warning btn-sm">Edit</a>
-                                        <a href="#" class="btn btn-danger btn-sm">Hapus</a>
+                                        <a href="#" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal">Edit</a>
+                                        <a href="#" class="btn btn-danger btn-sm" onclick="deleteContent()">Delete</a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -133,4 +133,77 @@
             </div>
         </div>
     </section>
+</div>
+
+
+
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">Edit Content</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="editForm">
+                    <div class="form-group">
+                        <label for="gameType">Nama Game</label>
+                        <select class="form-control" id="gameType" name="gameType" required>
+                            <option value="Valorant">Valorant</option>
+                            <option value="Mobile Legend">Mobile Legend</option>
+                            <option value="Tencent">Tencent</option>
+                            <option value="Garena">Garena</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="categoryName">Kode Produk</label>
+                        <input type="text" class="form-control" id="categoryName" name="categoryName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="categoryName">Harga</label>
+                        <input type="text" class="form-control" id="categoryName" name="categoryName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="categoryName">Nominal</label>
+                        <input type="text" class="form-control" id="categoryName" name="categoryName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="gameType">Satuan</label>
+                        <select class="form-control" id="gameType" name="gameType" required>
+                            <option value="Diamond">Diamond</option>
+                            <option value="Cash">Cash</option>
+                            <option value="UC">UC</option>
+                            <option value="Point">Point</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="gameType">Kategori Game</label>
+                        <select class="form-control" id="gameType" name="gameType" required>
+                            <option value="Action">Action</option>
+                            <option value="Advanture">Advanture</option>
+                            <option value="Puzzle">Puzzle</option>
+                            <option value="RPG">RPG</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="gameType">Jenis</label>
+                        <select class="form-control" id="gameType" name="gameType" required>
+                            <option value="PC">PC</option>
+                            <option value="Mobile">Mobile</option>
+                            <option value="Console">Console</option>
+                            <option value="Pulsa">Pulsa</option>
+                            <option value="Paket Data">Paket Data</option>
+                            <option value="PLN">PLN</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="saveChanges()">Save changes</button>
+            </div>
+        </div>
+    </div>
 </div>

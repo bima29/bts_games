@@ -1,4 +1,3 @@
-
 <div class="content-wrapper">
     <div class="content-header">
         <div class="container-fluid">
@@ -36,8 +35,8 @@
                                     <td>Halo, saya ingin menanyakan tentang produk X.</td>
                                     <td>10 Desember 2024 08:30</td>
                                     <td>
-                                        <a href="#" class="btn btn-info btn-sm">Jawab</a>
-                                        <a href="#" class="btn btn-danger btn-sm">Hapus</a>
+                                        <a href="#" class="btn btn-info btn-sm" data-toggle="modal" data-target="#jawabModal">Jawab</a>
+                                        <a href="#" class="btn btn-danger btn-sm" onclick="deleteContent()">Delete</a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -75,4 +74,25 @@
             </div>
         </div>
     </section>
+</div>
+<div class="modal fade" id="jawabModal" tabindex="-1" role="dialog" aria-labelledby="jawabModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="jawabModalLabel">Live Chat</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="jawabForm">
+                    <div class="form-group">
+                        <label for="categoryName">Pesan</label>
+                        <input type="text" class="form-control" id="categoryName" name="categoryName" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Jawab</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>

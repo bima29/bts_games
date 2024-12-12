@@ -47,7 +47,7 @@
  <script src="<?= base_url('assets/dashboard'); ?>/js/tabel.js"></script>
 
 
- 
+ <script src="<?=base_url('assets/js/admin-action.js')?>"></script>
  </body>
 
  </html>

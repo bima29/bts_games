@@ -1,9 +1,12 @@
-<link rel="stylesheet" href="<?=base_url('assets/css/content2.css')?>">
+<link rel="stylesheet" href="<?= base_url('assets/css/content2.css') ?>">
 <div class="container-fluid d-none d-md-flex sticky-top header-top">
     <div class="container">
         <div class="d-flex justify-content-between align-items-center topbar">
-            <div class="top-link">
+            <div class="top-link d-flex justify-content-center align-items-center">
                 <img src="<?= base_url('assets/img/logoBTS.png') ?>" alt="Logo" class="img-fluid img-fluid-header">
+                <i>
+                    <h4 class="top-link">BTS STORE<span class="text-secondary"> INDONESIA</span></h4>
+                </i>
             </div>
             <div class="top-info d-flex">
 
@@ -133,7 +136,7 @@
         </div>
     </div>
 </div>
-<script src="<?=base_url('assets/js/content2.js')?>"></script>
+<script src="<?= base_url('assets/js/content2.js') ?>"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>

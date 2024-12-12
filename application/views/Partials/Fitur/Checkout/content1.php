@@ -3,8 +3,11 @@
 <div class="container-fluid d-none d-md-flex sticky-top header-top">
     <div class="container">
         <div class="d-flex justify-content-between align-items-center topbar">
-            <div class="top-link">
+            <div class="top-link d-flex justify-content-center align-items-center">
                 <img src="<?= base_url('assets/img/logoBTS.png') ?>" alt="Logo" class="img-fluid img-fluid-header">
+                <i>
+                    <h4 class="top-link">BTS STORE<span class="text-secondary"> INDONESIA</span></h4>
+                </i>
             </div>
             <div class="top-info d-flex">
 

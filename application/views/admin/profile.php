@@ -26,14 +26,14 @@
                     <div class="profile-info">
                         <div class="row">
                             <div class="col-md-4 text-center">
-                                <img src="path/to/profile-pic.jpg" alt="Profile Picture" class="img-thumbnail rounded-circle">
+                                <img src="<?= base_url('assets/universal/img/'); ?><?= $profil->profile_picture; ?>" alt="Profile Picture" class="img-thumbnail rounded-circle">
                             </div>
                             <div class="col-md-8">
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item"><strong>Nama Lengkap:</strong> John Doe</li>
-                                    <li class="list-group-item"><strong>Nama Pengguna:</strong> johndoe</li>
-                                    <li class="list-group-item"><strong>Email:</strong> johndoe@example.com</li>
-                                    <li class="list-group-item"><strong>No HP:</strong> +62 812-3456-7890</li>
+                                    <li class="list-group-item"><strong>Nama Lengkap:</strong> <?= $profil->full_name ?></li>
+                                    <li class="list-group-item"><strong>Nama Pengguna:</strong> <?= $profil->username ?></li>
+                                    <li class="list-group-item"><strong>Email:</strong> <?= $profil->email ?></li>
+                                    <li class="list-group-item"><strong>No HP:</strong> <?= $profil->phone ?></li>
                                     <li class="list-group-item"><strong>Password:</strong> *********</li>
                                 </ul>
                             </div>
@@ -56,7 +56,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="editProfileForm">
+                <form action="<?= base_url('admin/proses_edit_profile') ?>" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="profilePicture">Gambar Profil</label>
                         <input type="file" class="form-control" id="profilePicture" name="profilePicture">
@@ -95,7 +95,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="editPasswordForm">
+                <form action="<?= base_url('admin/proses_edit_password') ?>" method="post">
                     <div class="form-group">
                         <label for="currentPassword">Password Saat Ini</label>
                         <input type="password" class="form-control" id="currentPassword" name="currentPassword" required>
@@ -114,3 +114,4 @@
         </div>
     </div>
 </div>
+

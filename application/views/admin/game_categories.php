@@ -40,8 +40,8 @@
                                     <td>Game dengan aksi cepat dan intens</td>
                                     <td>PC</td>
                                     <td>
-                                        <a href="#" class="btn btn-info btn-sm">Edit</a>
-                                        <a href="#" class="btn btn-danger btn-sm">Hapus</a>
+                                        <a href="#" class="btn btn-info btn-sm" data-toggle="modal" data-target="#editModal">Edit</a>
+                                        <a href="#" class="btn btn-danger btn-sm" onclick="deleteContent()">Delete</a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -115,6 +115,49 @@
                     </div>
                     <button type="submit" class="btn btn-primary">Tambah Kategori</button>
                 </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">Edit Content</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="editForm">
+                <div class="form-group">
+                        <label for="gameType">Jenis</label>
+                        <select class="form-control" id="gameType" name="gameType" required>
+                            <option value="PC">PC</option>
+                            <option value="Mobile">Mobile</option>
+                            <option value="Console">Console</option>
+                            <option value="Pulsa">Pulsa</option>
+                            <option value="Paket Data">Paket Data</option>
+                            <option value="PLN">PLN</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="categoryName">Nama Pembeli</label>
+                        <input type="text" class="form-control" id="categoryName" name="categoryName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="categoryName">Category</label>
+                        <input type="text" class="form-control" id="categoryName" name="categoryName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="categoryName">Harga</label>
+                        <input type="text" class="form-control" id="categoryName" name="categoryName" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="saveChanges()">Save changes</button>
             </div>
         </div>
     </div>

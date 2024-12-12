@@ -1,6 +1,55 @@
-$(document).ready(function() {
-    // Initialize DataTables for all tables
-    $('#orderTable, #priceListTable, #chatListTable, #categoryTable, #bannerTable, #gameTable, #apiTable, #accountTable').DataTable({
+$(document).ready(function () {
+    $('#priceListTable').DataTable({
+        "paging": true,
+        "lengthChange": true,
+        "lengthMenu": [10, 50, 100],
+        "searching": true, 
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+        "dom": '<"d-flex justify-content-between"<"length-container"l>>tp',
+        "columnDefs": [{
+            "targets": '_all',
+            "orderable": true
+        }]
+    });
+    
+    // Fungsi untuk mencari data berdasarkan kode produk atau nama produk
+    $('#searchButton').on('click', function (event) {
+        event.preventDefault();
+        var search = $('#product_code').val().trim(); 
+        var table = $('#priceListTable').DataTable();
+        table.columns(1).search(search).draw(); 
+    });
+    
+    // Inisialisasi DataTable untuk tabel order
+    $('#orderTable').DataTable({
+        "paging": true,
+        "lengthChange": true,
+        "lengthMenu": [10, 50, 100],
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+        "dom": '<"d-flex justify-content-between"<"length-container"l>>tp',
+        "columnDefs": [{
+            "targets": '_all',
+            "orderable": true
+        }]
+    });
+
+    // Fungsi untuk mencari order berdasarkan nomor order
+    $('#trackOrderButton').on('click', function (event) {
+        event.preventDefault();
+        var orderNumber = $('#order_number').val();
+        var table = $('#orderTable').DataTable();
+        table.columns(0).search(orderNumber).draw(); 
+    });
+
+    // Inisialisasi DataTable untuk tabel lainnya
+    $('#chatListTable, #categoryTable, #bannerTable, #gameTable, #apiTable, #accountTable').DataTable({
         "paging": true,
         "lengthChange": true,
         "lengthMenu": [10, 50, 100],
@@ -16,15 +65,12 @@ $(document).ready(function() {
         }]
     });
 
-    // Custom adjustments for specific tables
-    $('#orderTable, #priceListTable').DataTable().settings()[0].searching = false; // Disable search functionality for these tables
-
-    // Adjustments for search and length containers
+    // Menambahkan kelas CSS untuk elemen DataTable
     $(".dataTables_length").addClass("length-container");
     $(".dataTables_filter").addClass("search-container");
 
-    // Add category form submission
-    $('#addCategoryForm').on('submit', function(event) {
+    // Fungsi untuk menambahkan kategori baru
+    $('#addCategoryForm').on('submit', function (event) {
         event.preventDefault();
         var categoryName = $('#categoryName').val();
         var categoryDescription = $('#categoryDescription').val();
@@ -47,8 +93,8 @@ $(document).ready(function() {
         $('#addCategoryModal').modal('hide');
     });
 
-    // Add account form submission
-    $('#addAccountForm').on('submit', function(event) {
+    // Fungsi untuk menambahkan akun baru
+    $('#addAccountForm').on('submit', function (event) {
         event.preventDefault();
         var username = $('#username').val();
         var email = $('#email').val();

@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
-    
+
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css'); ?>">
 
     <style>
@@ -18,11 +18,13 @@
             backdrop-filter: blur(10px);
             color: rgb(255, 255, 255);
         }
-        .img-fluid-c{
-            width: 100%; 
+
+        .img-fluid-c {
+            width: 100%;
             max-width: 150px;
         }
-        .i-color-c-white{
+
+        .i-color-c-white {
             color: white;
         }
     </style>
@@ -32,9 +34,13 @@
     <div class="container-fluid d-none d-md-flex sticky-top header-top">
         <div class="container">
             <div class="d-flex justify-content-between align-items-center topbar">
-                <div class="top-link">
-                    <img src="<?= base_url('assets/img/logoBTS.png') ?>" alt="Logo" class="img-fluid img-fluid-c" >
+                <div class="top-link d-flex justify-content-center align-items-center">
+                    <img src="<?= base_url('assets/img/logoBTS.png') ?>" alt="Logo" class="img-fluid img-fluid-c">
+                    <i>
+                        <h4 class="top-link">BTS STORE<span class="text-secondary"> INDONESIA</span></h4>
+                    </i>
                 </div>
+
                 <div class="top-info d-flex">
 
                     <div class="search-container">
@@ -50,7 +56,7 @@
                     <div class="componen-header-icon-bg rounded">
                         <small class="me-3 text-white-50">
                             <a href="<?= base_url('home/login'); ?>" class="text-center">
-                                <i class="fa-solid fa-right-to-bracket fa-lg i-color-c-white" ></i>
+                                <i class="fa-solid fa-right-to-bracket fa-lg i-color-c-white"></i>
                             </a>
                         </small>
                     </div>
