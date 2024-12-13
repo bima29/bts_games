@@ -19,7 +19,6 @@
         <div class="container-fluid">
             <div class="row bg-white p-4 rounded shadow-sm">
                 <div class="col-12">
-                    <!-- Menampilkan pesan notifikasi -->
                     <?php if ($this->session->flashdata('success')): ?>
                         <div class="alert alert-success">
                             <?= $this->session->flashdata('success'); ?>

@@ -10,7 +10,7 @@
                 <img src="<?= base_url('assets/universal/img/'); ?><?= $profil->profile_picture; ?>" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block"><?= $username;?></a>
+                <a href="#" class="d-block"><?= $username; ?></a>
             </div>
         </div>
 
@@ -69,11 +69,12 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="<?= base_url('admin/banner') ?>" class="nav-link <?= (uri_string() == 'admin/banner') ? 'active' : '' ?>">
+                    <a href="<?= base_url('admin/banner') ?>" class="nav-link <?= (uri_string() == 'admin/banner' || preg_match('/^admin\/edit_banner\/\d+/', uri_string())) ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-image"></i>
                         <p>Banners</p>
                     </a>
                 </li>
+
 
                 <li class="nav-item has-treeview <?= (uri_string() == 'admin/payment_gateway' || uri_string() == 'admin/digiflazz') ? 'menu-open' : '' ?>">
                     <a href="#" class="nav-link <?= (uri_string() == 'admin/payment_gateway' || uri_string() == 'admin/digiflazz') ? 'active' : '' ?>">

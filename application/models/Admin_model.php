@@ -124,11 +124,37 @@ class Admin_model extends CI_Model
 
 
     public function update_account_password($account_id, $data)
-{
-    $this->db->where('id', $account_id); // Find the account by ID
-    return $this->db->update('users', $data); // Update the password in the users table
-}
+    {
+        $this->db->where('id', $account_id);
+        return $this->db->update('users', $data);
+    }
 
+    public function get_all_banners()
+    {
+        return $this->db->get('banners')->result_array();
+    }
 
-    
+    public function add_banner($data)
+    {
+        return $this->db->insert('banners', $data);
+    }
+
+    public function get_banner_by_id($id)
+    {
+        $this->db->where('id', $id);
+        $query = $this->db->get('banners');
+        return $query->row_array(); 
+    }
+
+    public function update_banner($id, $data)
+    {
+        $this->db->where('id', $id);
+        return $this->db->update('banners', $data);
+    }
+
+    public function delete_banner($id)
+    {
+        $this->db->where('id', $id);
+        return $this->db->delete('banners');
+    }
 }

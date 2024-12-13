@@ -41,6 +41,7 @@ class Admin extends CI_Controller
         $this->load->view('admin/partials/footer');
     }
 
+    // Track Order Start
     public function track_order()
     {
         $data['username'] = $this->session->userdata('username');
@@ -53,7 +54,9 @@ class Admin extends CI_Controller
         $this->load->view('admin/track_order');
         $this->load->view('admin/partials/footer');
     }
+    // Track Order End
 
+    // Price List Start
     public function price_list()
     {
         $data['username'] = $this->session->userdata('username');
@@ -66,7 +69,9 @@ class Admin extends CI_Controller
         $this->load->view('admin/price_list');
         $this->load->view('admin/partials/footer');
     }
+    // Price List End
 
+    // Live Chat Start
     public function live_chat()
     {
         $data['username'] = $this->session->userdata('username');
@@ -79,6 +84,9 @@ class Admin extends CI_Controller
         $this->load->view('admin/live_chat');
         $this->load->view('admin/partials/footer');
     }
+    // Live Chat End
+
+    // Chat Start
     public function chat()
     {
         $data['username'] = $this->session->userdata('username');
@@ -91,7 +99,9 @@ class Admin extends CI_Controller
         $this->load->view('admin/chat');
         $this->load->view('admin/partials/footer');
     }
+    // Chat End
 
+    // Game Categories Start
     public function game_categories()
     {
         $data['username'] = $this->session->userdata('username');
@@ -104,7 +114,9 @@ class Admin extends CI_Controller
         $this->load->view('admin/game_categories');
         $this->load->view('admin/partials/footer');
     }
+    // Game Categories End
 
+    // Game List Start
     public function game_list()
     {
         $data['username'] = $this->session->userdata('username');
@@ -117,7 +129,9 @@ class Admin extends CI_Controller
         $this->load->view('admin/game_list');
         $this->load->view('admin/partials/footer');
     }
+    // Game List End
 
+    // Bannner Start
     public function banner()
     {
         $data['username'] = $this->session->userdata('username');
@@ -125,12 +139,135 @@ class Admin extends CI_Controller
         $user_id = $this->session->userdata('user_id');
         $profil = $this->admin->get_profil($user_id);
         $data['profil'] = $profil;
+        $data['banners'] = $this->admin->get_all_banners();
+
         $this->load->view('admin/partials/header', $data);
         $this->load->view('admin/partials/navigate');
         $this->load->view('admin/banner');
         $this->load->view('admin/partials/footer');
     }
 
+    public function edit_banner($id = null)
+    {
+        if (!$id) {
+            $this->session->set_flashdata('error', 'Banner tidak ditemukan.');
+            redirect('admin/banner');
+        }
+
+        $data['username'] = $this->session->userdata('username');
+        $data['role_id'] = $this->session->userdata('role_id');
+        $user_id = $this->session->userdata('user_id');
+        $data['profil'] = $this->admin->get_profil($user_id);
+        $data['banner'] = $this->admin->get_banner_by_id($id);
+
+        if (!$data['banner']) {
+            $this->session->set_flashdata('error', 'Banner tidak ditemukan.');
+            redirect('admin/banner');
+        }
+
+        $this->load->view('admin/partials/header', $data);
+        $this->load->view('admin/partials/navigate');
+        $this->load->view('admin/banner/edit', $data); // Mengirimkan data banner ke view
+        $this->load->view('admin/partials/footer');
+    }
+
+
+    public function add_banner()
+    {
+        if (!empty($_FILES['bannerImage']['name'])) {
+            $config['upload_path'] = './assets/img/';
+            $config['allowed_types'] = 'jpg|jpeg|png';
+            $config['max_size'] = 2048;
+            $config['file_name'] = time() . '_' . $_FILES['bannerImage']['name'];
+
+            $this->load->library('upload', $config);
+
+            if ($this->upload->do_upload('bannerImage')) {
+                $uploadData = $this->upload->data();
+                $data = [
+                    'title' => $this->input->post('bannerTitle', true),
+                    'description' => $this->input->post('bannerDescription', true),
+                    'image' => $uploadData['file_name']
+                ];
+
+                if ($this->admin->add_banner($data)) {
+                    $this->session->set_flashdata('success', 'Banner berhasil ditambahkan.');
+                } else {
+                    $this->session->set_flashdata('error', 'Terjadi kesalahan saat menyimpan banner.');
+                }
+            } else {
+                $this->session->set_flashdata('error', $this->upload->display_errors());
+            }
+        } else {
+            $this->session->set_flashdata('error', 'Gambar banner wajib diunggah.');
+        }
+
+        redirect('admin/banner');
+    }
+
+
+
+    public function update_banner()
+    {
+        $id = $this->input->post('banner_id');
+        $data = [
+            'title' => $this->input->post('bannerTitle'),
+            'description' => $this->input->post('bannerDescription')
+        ];
+
+        $current_banner = $this->admin->get_banner_by_id($id);
+        $current_image = $current_banner['image'];
+
+        if (!empty($_FILES['bannerImage']['name'])) {
+            $config['upload_path'] = './assets/img/';
+            $config['allowed_types'] = 'jpg|png|jpeg';
+            $config['file_name'] = time() . '_' . $_FILES['bannerImage']['name'];
+
+            $this->load->library('upload', $config);
+
+            if ($this->upload->do_upload('bannerImage')) {
+                $data['image'] = $this->upload->data('file_name');
+
+                if (!empty($current_image) && file_exists('./assets/img/' . $current_image)) {
+                    unlink('./assets/img/' . $current_image);
+                }
+            } else {
+                echo json_encode(['status' => 'error', 'message' => $this->upload->display_errors()]);
+                return;
+            }
+        }
+
+        if ($this->admin->update_banner($id, $data)) {
+            $this->session->set_flashdata('success', 'Role successfully added.');
+        } else {
+            $this->session->set_flashdata('error', 'Failed to add role.');
+        }
+
+        redirect('admin/banner');
+    }
+
+    public function delete_banner($id)
+    {
+        $banner = $this->admin->get_banner_by_id($id);
+        $image = $banner['image'];
+
+        if ($this->admin->delete_banner($id)) {
+            if (!empty($image) && file_exists('./assets/img/' . $image)) {
+                unlink('./assets/img/' . $image);
+            }
+
+            $this->session->set_flashdata('success', 'Banner has been successfully deleted.');
+
+            redirect('admin/banner');
+        } else {
+            $this->session->set_flashdata('error', 'Failed to delete the banner. Please try again.');
+
+            redirect('admin/banner');
+        }
+    }
+    // Bannner End
+
+    // Payment Gateway Start
     public function payment_gateway()
     {
         $data['username'] = $this->session->userdata('username');
@@ -143,7 +280,9 @@ class Admin extends CI_Controller
         $this->load->view('admin/payment_gateway');
         $this->load->view('admin/partials/footer');
     }
+    // Payment Gateway End
 
+    // Digiflazz Start
     public function digiflazz()
     {
         $data['username'] = $this->session->userdata('username');
@@ -156,7 +295,9 @@ class Admin extends CI_Controller
         $this->load->view('admin/digiflazz');
         $this->load->view('admin/partials/footer');
     }
+    // Digiflazz End
 
+    // Account Role Start
     public function account_role()
     {
         $data['username'] = $this->session->userdata('username');
@@ -230,9 +371,9 @@ class Admin extends CI_Controller
         }
         redirect('admin/account_role');
     }
+    // Account Role End
 
-
-
+    // Manage Account Start
     public function manage_account()
     {
         $data['username'] = $this->session->userdata('username');
@@ -356,9 +497,10 @@ class Admin extends CI_Controller
         }
         redirect('admin/manage_account');
     }
+    // Manage Account End
 
 
-
+    // Profile Start
     public function profile()
     {
         $data['username'] = $this->session->userdata('username');
@@ -429,11 +571,15 @@ class Admin extends CI_Controller
         $this->session->set_flashdata('success', 'Password berhasil diupdate');
         redirect('admin/profile');
     }
+    // Profile End
 
+    // Logged OUT Start
     public function logout()
     {
         $this->session->sess_destroy();
 
         redirect(base_url('auth'));
     }
+    // Logged OUT End
+
 }
