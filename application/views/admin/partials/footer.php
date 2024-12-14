@@ -49,6 +49,15 @@
  <script src="<?= base_url('assets/js/admin-action.js') ?>"></script>
 
  
+
+ <!-- <script>
+     if (someObject && someObject.bridge) {
+         // Akses properti bridge
+     } else {
+         console.log('Objek bridge tidak tersedia');
+     }
+ </script> -->
+
  </body>
 
  </html>

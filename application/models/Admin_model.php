@@ -226,4 +226,17 @@ class Admin_model extends CI_Model
         $this->db->where('id', $game_id);
         $this->db->delete('games');
     }
+
+    public function get_price_list()
+    {
+        $this->db->select('*');
+        $query = $this->db->get('price_list');
+        return $query->result();
+    }
+    public function get_games()
+    {
+        $this->db->select('game_name, category, type');
+        $query = $this->db->get('games');
+        return $query->result();
+    }
 }

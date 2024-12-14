@@ -80,11 +80,17 @@ class Admin extends CI_Controller
         $user_id = $this->session->userdata('user_id');
         $profil = $this->admin->get_profil($user_id);
         $data['profil'] = $profil;
+
+        $data['price_list'] = $this->admin->get_price_list();
+        $data['games'] = $this->admin->get_games(); // Fetch games
+
         $this->load->view('admin/partials/header', $data);
         $this->load->view('admin/partials/navigate');
-        $this->load->view('admin/price_list');
+        $this->load->view('admin/price_list', $data);
         $this->load->view('admin/partials/footer');
     }
+
+
     public function edit_price_list()
     {
         $data['username'] = $this->session->userdata('username');
