@@ -109,7 +109,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="editForm">
+                <form id="editForm" method="POST" action="<?= base_url('admin/addprice_list')?>">
                     <div class="form-group">
                         <label for="gameType">Nama Game</label>
                         <input type="text" class="form-control" id="gameSearch" placeholder="Masukan kata kunci untuk mencari nama game pada pilih nama game" autocomplete="off">
@@ -158,9 +158,9 @@
         options.forEach(function(option) {
             let gameName = option.textContent.toLowerCase();
             if (gameName.indexOf(searchQuery) !== -1) {
-                option.style.display = 'block';  // Show matching option
+                option.style.display = 'block';  
             } else {
-                option.style.display = 'none';   // Hide non-matching option
+                option.style.display = 'none';   
             }
         });
     });

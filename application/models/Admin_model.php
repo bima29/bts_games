@@ -239,4 +239,7 @@ class Admin_model extends CI_Model
         $query = $this->db->get('games');
         return $query->result();
     }
+    public function insert_price_list($data) {
+        return $this->db->insert('price_list', $data);
+    }
 }

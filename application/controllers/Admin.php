@@ -67,7 +67,7 @@ class Admin extends CI_Controller
 
         $this->load->view('admin/partials/header', $data);
         $this->load->view('admin/partials/navigate');
-        $this->load->view('admin/track_order/edit'); // Mengirimkan data banner ke view
+        $this->load->view('admin/track_order/edit'); 
         $this->load->view('admin/partials/footer');
     }
     //Track Order End 
@@ -82,12 +82,43 @@ class Admin extends CI_Controller
         $data['profil'] = $profil;
 
         $data['price_list'] = $this->admin->get_price_list();
-        $data['games'] = $this->admin->get_games(); // Fetch games
+        $data['games'] = $this->admin->get_games(); 
 
         $this->load->view('admin/partials/header', $data);
         $this->load->view('admin/partials/navigate');
         $this->load->view('admin/price_list', $data);
         $this->load->view('admin/partials/footer');
+    }
+
+    public function addprice_list()
+    {
+        $gameType = $this->input->post('gameType', TRUE); 
+        $categoryName = $this->input->post('categoryName', TRUE);
+        $harga = $this->input->post('harga', TRUE);
+        $nominal = $this->input->post('nominal', TRUE);
+        $unit = $this->input->post('unit', TRUE);
+        $category = $this->input->post('category', TRUE);
+        $type = $this->input->post('type', TRUE);
+
+        $data = [
+            'product_name' => $gameType,
+            'product_code' => $categoryName,
+            'price' => $harga,
+            'nominal' => $nominal,
+            'unit' => $unit,
+            'game_category' => $category,
+            'game_type' => $type,
+        ];
+
+        $result = $this->admin->insert_price_list($data);
+
+        if ($result) {
+            $this->session->set_flashdata('success', 'Price list berhasil ditambahkan.');
+        } else {
+            $this->session->set_flashdata('error', 'Gagal menambahkan price list.');
+        }
+
+        redirect('admin/price_list'); 
     }
 
 
