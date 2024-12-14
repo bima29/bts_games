@@ -19,58 +19,52 @@
         <div class="container-fluid">
             <div class="row bg-white p-4 rounded shadow-sm">
                 <div class="col-12">
-                    <form action="<?= base_url('admin/update_track_order'); ?>" method="post">
+                    <form action="<?= base_url('admin/update_price_list'); ?>" method="post">
+                        <input type="hidden" name="price_list_id" value="<?= $price_list['id']; ?>">
+
                         <div class="form-group">
                             <label for="gameType">Nama Game</label>
-                            <select class="form-control" id="gameType" name="gameType" required>
-                                <option value="Valorant">Valorant</option>
-                                <option value="Mobile Legend">Mobile Legend</option>
-                                <option value="Tencent">Tencent</option>
-                                <option value="Garena">Garena</option>
+                            <input type="text" class="form-control" id="gameSearch" placeholder="Masukkan kata kunci untuk mencari nama game" autocomplete="off">
+                            <select class="form-control mt-2" id="gameType" name="gameType" required>
+                                <option value="">Pilih Nama Game</option>
+                                <?php foreach ($games as $game): ?>
+                                    <option value="<?= $game->game_name; ?>" data-category="<?= $game->category; ?>" data-type="<?= $game->type; ?>" <?= $game->game_name === $price_list['product_name'] ? 'selected' : ''; ?>>
+                                        <?= $game->game_name; ?>
+                                    </option>
+                                <?php endforeach; ?>
                             </select>
                         </div>
+
                         <div class="form-group">
                             <label for="categoryName">Kode Produk</label>
-                            <input type="text" class="form-control" id="categoryName" name="categoryName" required>
+                            <input type="text" class="form-control" id="categoryName" name="categoryName" value="<?= $price_list['product_code']; ?>" required>
                         </div>
+
                         <div class="form-group">
-                            <label for="categoryName">Harga</label>
-                            <input type="text" class="form-control" id="categoryName" name="categoryName" required>
+                            <label for="price">Harga</label>
+                            <input type="text" class="form-control" id="price" name="price" value="<?= $price_list['price']; ?>" required>
                         </div>
+
                         <div class="form-group">
-                            <label for="categoryName">Nominal</label>
-                            <input type="text" class="form-control" id="categoryName" name="categoryName" required>
+                            <label for="nominal">Nominal</label>
+                            <input type="text" class="form-control" id="nominal" name="nominal" value="<?= $price_list['nominal']; ?>" required>
                         </div>
+
                         <div class="form-group">
-                            <label for="gameType">Satuan</label>
-                            <select class="form-control" id="gameType" name="gameType" required>
-                                <option value="Diamond">Diamond</option>
-                                <option value="Cash">Cash</option>
-                                <option value="UC">UC</option>
-                                <option value="Point">Point</option>
-                            </select>
+                            <label for="unit">Satuan</label>
+                            <input type="text" class="form-control" id="unit" name="unit" value="<?= $price_list['unit']; ?>" required>
                         </div>
+
                         <div class="form-group">
-                            <label for="gameType">Kategori Game</label>
-                            <select class="form-control" id="gameType" name="gameType" required>
-                                <option value="Action">Action</option>
-                                <option value="Advanture">Advanture</option>
-                                <option value="Puzzle">Puzzle</option>
-                                <option value="RPG">RPG</option>
-                            </select>
+                            <label for="game_category">Kategori Game</label>
+                            <input type="text" class="form-control" id="game_category" name="game_category" value="<?= $price_list['game_category']; ?>" readonly>
                         </div>
+
                         <div class="form-group">
-                            <label for="gameType">Jenis</label>
-                            <select class="form-control" id="gameType" name="gameType" required>
-                                <option value="PC">PC</option>
-                                <option value="Mobile">Mobile</option>
-                                <option value="Console">Console</option>
-                                <option value="Pulsa">Pulsa</option>
-                                <option value="Paket Data">Paket Data</option>
-                                <option value="PLN">PLN</option>
-                            </select>
+                            <label for="game_type">Jenis</label>
+                            <input type="text" class="form-control" id="game_type" name="game_type" value="<?= $price_list['game_type']; ?>" readonly>
                         </div>
-                        <input type="hidden" name="banner_id" value="">
+
                         <div class="form-group d-flex justify-content-between">
                             <a href="<?= base_url('admin/price_list'); ?>" class="btn btn-secondary">Kembali</a>
                             <button type="submit" class="btn btn-primary">Save changes</button>
@@ -81,3 +75,25 @@
         </div>
     </section>
 </div>
+
+<script>
+    document.getElementById('gameSearch').addEventListener('input', function () {
+        let searchQuery = this.value.toLowerCase();
+        let options = document.querySelectorAll('#gameType option');
+
+        options.forEach(function (option) {
+            let gameName = option.textContent.toLowerCase();
+            if (gameName.indexOf(searchQuery) !== -1) {
+                option.style.display = 'block';
+            } else {
+                option.style.display = 'none';
+            }
+        });
+    });
+
+    document.getElementById('gameType').addEventListener('change', function () {
+        let selectedOption = this.options[this.selectedIndex];
+        document.getElementById('game_category').value = selectedOption.getAttribute('data-category');
+        document.getElementById('game_type').value = selectedOption.getAttribute('data-type');
+    });
+</script>

@@ -76,53 +76,56 @@
                 </li>
 
 
-                <li class="nav-item has-treeview <?= (uri_string() == 'admin/payment_gateway' || uri_string() == 'admin/digiflazz') ? 'menu-open' : '' ?>">
-                    <a href="#" class="nav-link <?= (uri_string() == 'admin/payment_gateway' || uri_string() == 'admin/digiflazz' || uri_string() == 'admin/edit_payment_gateway' || uri_string() == 'admin/edit_digiflazz') ? 'active' : '' ?>">
-                        <i class="nav-icon fas fa-plug"></i>
-                        <p>
-                            Connect API
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview" style="background-color: #2c3e50; padding-left: 15px;">
-                        <li class="nav-item">
-                            <a href="<?= base_url('admin/payment_gateway') ?>" class="nav-link <?= (uri_string() == 'admin/payment_gateway' || uri_string() == 'admin/edit_payment_gateway') ? 'active' : '' ?>" style="padding-left: 30px;">
-                                <i class="nav-icon fas fa-wallet"></i>
-                                <p>Payment Gateway</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?= base_url('admin/digiflazz') ?>" class="nav-link <?= (uri_string() == 'admin/digiflazz' || uri_string() == 'admin/edit_digiflazz') ? 'active' : '' ?>" style="padding-left: 30px;">
-                                <i class="nav-icon fas fa-credit-card"></i>
-                                <p>Digiflazz</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                <?php if ($this->session->userdata('role_id') == 1): ?>
+                    <li class="nav-item has-treeview <?= (uri_string() == 'admin/payment_gateway' || uri_string() == 'admin/digiflazz') ? 'menu-open' : '' ?>">
+                        <a href="#" class="nav-link <?= (uri_string() == 'admin/payment_gateway' || uri_string() == 'admin/digiflazz' || uri_string() == 'admin/edit_payment_gateway' || uri_string() == 'admin/edit_digiflazz') ? 'active' : '' ?>">
+                            <i class="nav-icon fas fa-plug"></i>
+                            <p>
+                                Connect API
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview" style="background-color: #2c3e50; padding-left: 15px;">
+                            <li class="nav-item">
+                                <a href="<?= base_url('admin/payment_gateway') ?>" class="nav-link <?= (uri_string() == 'admin/payment_gateway' || uri_string() == 'admin/edit_payment_gateway') ? 'active' : '' ?>" style="padding-left: 30px;">
+                                    <i class="nav-icon fas fa-wallet"></i>
+                                    <p>Payment Gateway</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url('admin/digiflazz') ?>" class="nav-link <?= (uri_string() == 'admin/digiflazz' || uri_string() == 'admin/edit_digiflazz') ? 'active' : '' ?>" style="padding-left: 30px;">
+                                    <i class="nav-icon fas fa-credit-card"></i>
+                                    <p>Digiflazz</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
 
-                <li class="nav-item has-treeview <?= (uri_string() == 'admin/account_role' || uri_string() == 'admin/manage_account') ? 'menu-open' : '' ?>">
-                    <a href="#" class="nav-link <?= (uri_string() == 'admin/account_role' || uri_string() == 'admin/manage_account') ? 'active' : '' ?>">
-                        <i class="nav-icon fas fa-user-cog"></i>
-                        <p>
-                            Account
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview" style="background-color: #2c3e50; padding-left: 15px;">
-                        <li class="nav-item">
-                            <a href="<?= base_url('admin/account_role') ?>" class="nav-link <?= (uri_string() == 'admin/account_role') ? 'active' : '' ?>" style="padding-left: 30px;">
-                                <i class="nav-icon fas fa-id-badge"></i>
-                                <p>Account Role</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?= base_url('admin/manage_account') ?>" class="nav-link <?= (uri_string() == 'admin/manage_account') ? 'active' : '' ?>" style="padding-left: 30px;">
-                                <i class="nav-icon fas fa-cogs"></i>
-                                <p>Manage Account</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                    <li class="nav-item has-treeview <?= (uri_string() == 'admin/account_role' || uri_string() == 'admin/manage_account') ? 'menu-open' : '' ?>">
+                        <a href="#" class="nav-link <?= (uri_string() == 'admin/account_role' || uri_string() == 'admin/manage_account') ? 'active' : '' ?>">
+                            <i class="nav-icon fas fa-user-cog"></i>
+                            <p>
+                                Account
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview" style="background-color: #2c3e50; padding-left: 15px;">
+                            <li class="nav-item">
+                                <a href="<?= base_url('admin/account_role') ?>" class="nav-link <?= (uri_string() == 'admin/account_role') ? 'active' : '' ?>" style="padding-left: 30px;">
+                                    <i class="nav-icon fas fa-id-badge"></i>
+                                    <p>Account Role</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url('admin/manage_account') ?>" class="nav-link <?= (uri_string() == 'admin/manage_account') ? 'active' : '' ?>" style="padding-left: 30px;">
+                                    <i class="nav-icon fas fa-cogs"></i>
+                                    <p>Manage Account</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                <?php endif; ?>
+
 
                 <li class="nav-item">
                     <a href="<?= base_url('admin/profile') ?>" class="nav-link <?= (uri_string() == 'admin/profile') ? 'active' : '' ?>">

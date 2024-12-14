@@ -21,56 +21,33 @@
                 <div class="col-12">
                     <form>
                         <div class="form-group">
-                            <label for="gameType">Nama Game</label>
-                            <select class="form-control" id="gameType" name="gameType" required>
-                                <option value="Valorant">Valorant</option>
-                                <option value="Mobile Legend">Mobile Legend</option>
-                                <option value="Tencent">Tencent</option>
-                                <option value="Garena">Garena</option>
-                            </select>
+                            <label for="product_name">Nama Produk</label>
+                            <input type="text" class="form-control" id="product_name" name="product_name" value="<?= $category['product_name']; ?>" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="categoryName">Kode Produk</label>
-                            <input type="text" class="form-control" id="categoryName" name="categoryName" required>
+                            <label for="product_code">Kode Produk</label>
+                            <input type="text" class="form-control" id="product_code" name="product_code" value="<?= $category['product_code']; ?>" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="categoryName">Harga</label>
-                            <input type="text" class="form-control" id="categoryName" name="categoryName" required>
+                            <label for="price">Harga</label>
+                            <input type="text" class="form-control" id="price" name="price" value="<?= $category['price']; ?>" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="categoryName">Nominal</label>
-                            <input type="text" class="form-control" id="categoryName" name="categoryName" required>
+                            <label for="nominal">Nominal</label>
+                            <input type="text" class="form-control" id="nominal" name="nominal" value="<?= $category['nominal']; ?>" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="gameType">Satuan</label>
-                            <select class="form-control" id="gameType" name="gameType" required>
-                                <option value="Diamond">Diamond</option>
-                                <option value="Cash">Cash</option>
-                                <option value="UC">UC</option>
-                                <option value="Point">Point</option>
-                            </select>
+                            <label for="unit">Satuan</label>
+                            <input type="text" class="form-control" id="unit" name="unit" value="<?= $category['unit']; ?>" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="gameType">Kategori Game</label>
-                            <select class="form-control" id="gameType" name="gameType" required>
-                                <option value="Action">Action</option>
-                                <option value="Advanture">Advanture</option>
-                                <option value="Puzzle">Puzzle</option>
-                                <option value="RPG">RPG</option>
-                            </select>
+                            <label for="game_category">Kategori Game</label>
+                            <input type="text" class="form-control" id="game_category" name="game_category" value="<?= $category['game_category']; ?>" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="gameType">Jenis</label>
-                            <select class="form-control" id="gameType" name="gameType" required>
-                                <option value="PC">PC</option>
-                                <option value="Mobile">Mobile</option>
-                                <option value="Console">Console</option>
-                                <option value="Pulsa">Pulsa</option>
-                                <option value="Paket Data">Paket Data</option>
-                                <option value="PLN">PLN</option>
-                            </select>
+                            <label for="game_type">Jenis Game</label>
+                            <input type="text" class="form-control" id="game_type" name="game_type" value="<?= $category['game_type']; ?>" readonly>
                         </div>
-                        <input type="hidden" name="banner_id" value="">
                         <div class="form-group d-flex justify-content-between">
                             <a href="<?= base_url('admin/price_list'); ?>" class="btn btn-secondary">Kembali</a>
                         </div>

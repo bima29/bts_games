@@ -53,6 +53,13 @@ class Admin_model extends CI_Model
         return $query->result_array();
     }
 
+    public function get_roles()
+    {
+        $this->db->select('role_id, role_name');
+        $query = $this->db->get('roles');
+        return $query->result_array();
+    }
+
     public function get_account_by_id($account_id)
     {
         $this->db->select('users.id, users.username, users.email, users.phone, users.full_name, users.profile_picture, users.role_id');
@@ -239,7 +246,29 @@ class Admin_model extends CI_Model
         $query = $this->db->get('games');
         return $query->result();
     }
-    public function insert_price_list($data) {
+    public function insert_price_list($data)
+    {
         return $this->db->insert('price_list', $data);
+    }
+
+    public function get_price_list_by_id($price_list)
+    {
+        $this->db->where('id', $price_list);
+        $query = $this->db->get('price_list');
+        return $query->row_array();
+    }
+    public function get_gamess()
+    {
+        return $this->db->get('games')->result();
+    }
+    public function update_price_list($id, $data)
+    {
+        $this->db->where('id', $id);
+        $this->db->update('price_list', $data);
+    }
+    public function delete_price_list_by_id($id)
+    {
+        $this->db->where('id', $id);
+        return $this->db->delete('price_list');
     }
 }

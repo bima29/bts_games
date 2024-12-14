@@ -85,7 +85,9 @@
                                         <td>
                                             <a href="<?= base_url('admin/detail_price_list/' . $product->id) ?>" class="btn btn-info btn-sm">Detail</a>
                                             <a href="<?= base_url('admin/edit_price_list/' . $product->id) ?>" class="btn btn-warning btn-sm">Edit</a>
-                                            <a href="#" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus game ini?')">Hapus</a>
+                                            <a href="<?= base_url('admin/delete_price_list/' . $product->id) ?>"
+                                                class="btn btn-danger btn-sm"
+                                                onclick="return confirm('Yakin ingin menghapus game ini?')">Hapus</a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
@@ -109,7 +111,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="editForm" method="POST" action="<?= base_url('admin/addprice_list')?>">
+                <form id="editForm" method="POST" action="<?= base_url('admin/addprice_list') ?>">
                     <div class="form-group">
                         <label for="gameType">Nama Game</label>
                         <input type="text" class="form-control" id="gameSearch" placeholder="Masukan kata kunci untuk mencari nama game pada pilih nama game" autocomplete="off">
@@ -154,13 +156,13 @@
     document.getElementById('gameSearch').addEventListener('input', function() {
         let searchQuery = this.value.toLowerCase();
         let options = document.querySelectorAll('#gameType option');
-        
+
         options.forEach(function(option) {
             let gameName = option.textContent.toLowerCase();
             if (gameName.indexOf(searchQuery) !== -1) {
-                option.style.display = 'block';  
+                option.style.display = 'block';
             } else {
-                option.style.display = 'none';   
+                option.style.display = 'none';
             }
         });
     });
