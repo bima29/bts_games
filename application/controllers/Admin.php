@@ -54,7 +54,23 @@ class Admin extends CI_Controller
         $this->load->view('admin/track_order');
         $this->load->view('admin/partials/footer');
     }
-    // Track Order End
+
+
+
+    public function edit_track_order()
+    {
+        $data['username'] = $this->session->userdata('username');
+        $data['role_id'] = $this->session->userdata('role_id');
+        $user_id = $this->session->userdata('user_id');
+        $profil = $this->admin->get_profil($user_id);
+        $data['profil'] = $profil;
+
+        $this->load->view('admin/partials/header', $data);
+        $this->load->view('admin/partials/navigate');
+        $this->load->view('admin/track_order/edit'); // Mengirimkan data banner ke view
+        $this->load->view('admin/partials/footer');
+    }
+    //Track Order End 
 
     // Price List Start
     public function price_list()
@@ -67,6 +83,32 @@ class Admin extends CI_Controller
         $this->load->view('admin/partials/header', $data);
         $this->load->view('admin/partials/navigate');
         $this->load->view('admin/price_list');
+        $this->load->view('admin/partials/footer');
+    }
+    public function edit_price_list()
+    {
+        $data['username'] = $this->session->userdata('username');
+        $data['role_id'] = $this->session->userdata('role_id');
+        $user_id = $this->session->userdata('user_id');
+        $profil = $this->admin->get_profil($user_id);
+        $data['profil'] = $profil;
+
+        $this->load->view('admin/partials/header', $data);
+        $this->load->view('admin/partials/navigate');
+        $this->load->view('admin/price_list/edit'); // Mengirimkan data banner ke view
+        $this->load->view('admin/partials/footer');
+    }
+    public function detail_price_list()
+    {
+        $data['username'] = $this->session->userdata('username');
+        $data['role_id'] = $this->session->userdata('role_id');
+        $user_id = $this->session->userdata('user_id');
+        $profil = $this->admin->get_profil($user_id);
+        $data['profil'] = $profil;
+
+        $this->load->view('admin/partials/header', $data);
+        $this->load->view('admin/partials/navigate');
+        $this->load->view('admin/price_list/detail'); // Mengirimkan data banner ke view
         $this->load->view('admin/partials/footer');
     }
     // Price List End
@@ -109,11 +151,101 @@ class Admin extends CI_Controller
         $user_id = $this->session->userdata('user_id');
         $profil = $this->admin->get_profil($user_id);
         $data['profil'] = $profil;
+
+        $data['game_categories'] = $this->admin->get_game_categories();
+
         $this->load->view('admin/partials/header', $data);
         $this->load->view('admin/partials/navigate');
-        $this->load->view('admin/game_categories');
+        $this->load->view('admin/game_categories', $data);
         $this->load->view('admin/partials/footer');
     }
+
+    public function save_game_category()
+    {
+        $nama_kategori = $this->input->post('nama_kategori', TRUE);
+        $deskripsi = $this->input->post('deskripsi', TRUE);
+        $jenis = $this->input->post('jenis', TRUE);
+
+        if (empty($nama_kategori) || empty($deskripsi) || empty($jenis)) {
+            $this->session->set_flashdata('error', 'Semua field harus diisi.');
+            redirect('admin/game_categories');
+        } else {
+            $data = [
+                'nama_kategori' => $nama_kategori,
+                'deskripsi' => $deskripsi,
+                'jenis' => $jenis
+            ];
+            $this->admin->insert_game_category($data);
+
+            $this->session->set_flashdata('success', 'Kategori berhasil ditambahkan');
+            redirect('admin/game_categories');
+        }
+    }
+
+
+    public function edit_game_categories($category_id)
+    {
+        $data['username'] = $this->session->userdata('username');
+        $data['role_id'] = $this->session->userdata('role_id');
+        $user_id = $this->session->userdata('user_id');
+        $profil = $this->admin->get_profil($user_id);
+        $data['profil'] = $profil;
+
+        $category = $this->admin->get_game_category_by_id($category_id);
+
+        if ($category) {
+            $data['category'] = $category;
+        } else {
+            $this->session->set_flashdata('error', 'Kategori tidak ditemukan');
+            redirect('admin/game_categories');
+        }
+
+        $this->load->view('admin/partials/header', $data);
+        $this->load->view('admin/partials/navigate');
+        $this->load->view('admin/game_categories/edit', $data);
+        $this->load->view('admin/partials/footer');
+    }
+
+    public function update_game_category()
+    {
+        $category_id = $this->input->post('category_id');
+
+        $data = [
+            'nama_kategori' => $this->input->post('nama_kategori'),
+            'deskripsi' => $this->input->post('deskripsi'),
+            'jenis' => $this->input->post('jenis'),
+        ];
+
+        $result = $this->admin->update_game_category($category_id, $data);
+
+        if ($result) {
+            $this->session->set_flashdata('success', 'Kategori berhasil diperbarui');
+        } else {
+            $this->session->set_flashdata('error', 'Gagal memperbarui kategori');
+        }
+
+        redirect('admin/game_categories');
+    }
+
+
+
+    public function delete_game_category($category_id)
+    {
+        if ($category_id) {
+            $result = $this->admin->delete_game_category($category_id);
+
+            if ($result) {
+                $this->session->set_flashdata('success', 'Kategori berhasil dihapus');
+            } else {
+                $this->session->set_flashdata('error', 'Gagal menghapus kategori');
+            }
+        } else {
+            $this->session->set_flashdata('error', 'Kategori tidak ditemukan');
+        }
+
+        redirect('admin/game_categories');
+    }
+
     // Game Categories End
 
     // Game List Start
@@ -122,13 +254,172 @@ class Admin extends CI_Controller
         $data['username'] = $this->session->userdata('username');
         $data['role_id'] = $this->session->userdata('role_id');
         $user_id = $this->session->userdata('user_id');
+
         $profil = $this->admin->get_profil($user_id);
         $data['profil'] = $profil;
+
+        $categories = $this->admin->get_game_categoriess();
+        $unique_categories = array_map("unserialize", array_unique(array_map("serialize", $categories)));
+
+        $data['categories'] = $unique_categories;
+        $data['games'] = $this->admin->get_game_list();
+
         $this->load->view('admin/partials/header', $data);
         $this->load->view('admin/partials/navigate');
         $this->load->view('admin/game_list');
         $this->load->view('admin/partials/footer');
     }
+
+
+
+    public function add_game()
+    {
+        $game_name = $this->input->post('game_name', TRUE);
+        $game_code = $this->input->post('game_code', TRUE);
+        $game_category = $this->input->post('game_category', TRUE);
+        $game_type = $this->input->post('game_type', TRUE);
+        $game_description = $this->input->post('game_description', TRUE);
+
+        $config['upload_path'] = './assets/game_images/';
+        $config['allowed_types'] = 'jpg|jpeg|png|gif';
+        $config['max_size'] = 2048;
+        $this->load->library('upload', $config);
+
+        if ($this->upload->do_upload('game_image')) {
+            $upload_data = $this->upload->data();
+            $game_image = $upload_data['file_name'];
+        } else {
+            $game_image = '';
+        }
+
+        $data = [
+            'game_name' => $game_name,
+            'game_code' => $game_code,
+            'image' => $game_image,
+            'category' => $game_category,
+            'type' => $game_type,
+            'description' => $game_description
+        ];
+
+        if ($this->admin->insert_game($data)) {
+            $this->session->set_flashdata('success', 'Game berhasil ditambahkan.');
+            redirect('admin/game_list');
+        } else {
+            $this->session->set_flashdata('error', 'Gagal menambah game.');
+            redirect('admin/game_list');
+        }
+    }
+
+
+    public function edit_game_list($game_id)
+    {
+        $data['username'] = $this->session->userdata('username');
+        $data['role_id'] = $this->session->userdata('role_id');
+        $user_id = $this->session->userdata('user_id');
+        $profil = $this->admin->get_profil($user_id);
+        $data['profil'] = $profil;
+        $categories = $this->admin->get_game_categoriess();
+        $unique_categories = array_map("unserialize", array_unique(array_map("serialize", $categories)));
+
+        $data['categories'] = $unique_categories;
+        $data['game'] = $this->admin->get_game_by_id($game_id);
+        if (!$data['game']) {
+            $this->session->set_flashdata('error', 'Game tidak ditemukan');
+            redirect('admin/game_list');
+        }
+
+        $this->load->view('admin/partials/header', $data);
+        $this->load->view('admin/partials/navigate');
+        $this->load->view('admin/game_list/edit');
+        $this->load->view('admin/partials/footer');
+    }
+
+    public function update_game()
+    {
+        $this->load->helper('file');
+
+        $game_id = $this->input->post('game_id', true);
+        $game_name = $this->input->post('gameName', true);
+        $game_code = $this->input->post('gameCode', true);
+        $game_category = $this->input->post('game_category', true);
+        $game_type = $this->input->post('game_type', true);
+        $game_description = $this->input->post('gameDescription', true);
+
+        $game = $this->admin->get_game_by_id($game_id);
+        if (!$game) {
+            $this->session->set_flashdata('error', 'Game tidak ditemukan');
+            redirect('admin/game_list');
+        }
+
+        $config['upload_path'] = './assets/game_images/';
+        $config['allowed_types'] = 'jpg|jpeg|png';
+        $config['max_size'] = 2048;
+        $config['file_name'] = time() . '_' . $_FILES['gameImage']['name'];
+
+        $this->load->library('upload', $config);
+
+        if ($_FILES['gameImage']['name']) {
+            if ($this->upload->do_upload('gameImage')) {
+                $uploaded_image = $this->upload->data('file_name');
+                $this->admin->delete_old_image($game['image']); // Hapus gambar lama melalui model
+            } else {
+                $this->session->set_flashdata('error', 'Gagal mengunggah gambar: ' . $this->upload->display_errors());
+                redirect('admin/game_list');
+            }
+        } else {
+            $uploaded_image = $game['image'];
+        }
+
+        $update_data = [
+            'game_name' => $game_name,
+            'game_code' => $game_code,
+            'category' => $game_category,
+            'type' => $game_type,
+            'description' => $game_description,
+            'image' => $uploaded_image
+        ];
+
+        $this->admin->update_game_data($game_id, $update_data);
+
+        $this->session->set_flashdata('success', 'Data game berhasil diperbarui');
+        redirect('admin/game_list');
+    }
+
+    public function delete_game($game_id)
+    {
+        $game = $this->admin->get_game_by_id($game_id);
+        if (!$game) {
+            $this->session->set_flashdata('error', 'Game tidak ditemukan');
+            redirect('admin/game_list');
+        }
+
+        if (!empty($game['image']) && file_exists('./assets/game_images/' . $game['image'])) {
+            unlink('./assets/game_images/' . $game['image']);
+        }
+
+        $this->admin->delete_game($game_id);
+
+        $this->session->set_flashdata('success', 'Game berhasil dihapus');
+        redirect('admin/game_list');
+    }
+
+
+    public function detail_game_list($id)
+    {
+        $data['username'] = $this->session->userdata('username');
+        $data['role_id'] = $this->session->userdata('role_id');
+        $user_id = $this->session->userdata('user_id');
+        $profil = $this->admin->get_profil($user_id);
+        $data['profil'] = $profil;
+
+        $data['game'] = $this->admin->get_game_by_id($id);
+
+        $this->load->view('admin/partials/header', $data);
+        $this->load->view('admin/partials/navigate');
+        $this->load->view('admin/game_list/detail', $data);
+        $this->load->view('admin/partials/footer');
+    }
+
     // Game List End
 
     // Bannner Start
@@ -280,6 +571,19 @@ class Admin extends CI_Controller
         $this->load->view('admin/payment_gateway');
         $this->load->view('admin/partials/footer');
     }
+    public function edit_payment_gateway()
+    {
+        $data['username'] = $this->session->userdata('username');
+        $data['role_id'] = $this->session->userdata('role_id');
+        $user_id = $this->session->userdata('user_id');
+        $profil = $this->admin->get_profil($user_id);
+        $data['profil'] = $profil;
+
+        $this->load->view('admin/partials/header', $data);
+        $this->load->view('admin/partials/navigate');
+        $this->load->view('admin/payment_gateway/edit');
+        $this->load->view('admin/partials/footer');
+    }
     // Payment Gateway End
 
     // Digiflazz Start
@@ -293,6 +597,19 @@ class Admin extends CI_Controller
         $this->load->view('admin/partials/header', $data);
         $this->load->view('admin/partials/navigate');
         $this->load->view('admin/digiflazz');
+        $this->load->view('admin/partials/footer');
+    }
+    public function edit_digiflazz()
+    {
+        $data['username'] = $this->session->userdata('username');
+        $data['role_id'] = $this->session->userdata('role_id');
+        $user_id = $this->session->userdata('user_id');
+        $profil = $this->admin->get_profil($user_id);
+        $data['profil'] = $profil;
+
+        $this->load->view('admin/partials/header', $data);
+        $this->load->view('admin/partials/navigate');
+        $this->load->view('admin/digiflazz/edit');
         $this->load->view('admin/partials/footer');
     }
     // Digiflazz End

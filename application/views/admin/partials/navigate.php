@@ -24,14 +24,14 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="<?= base_url('admin/track_order') ?>" class="nav-link <?= (uri_string() == 'admin/track_order') ? 'active' : '' ?>">
+                    <a href="<?= base_url('admin/track_order') ?>" class="nav-link <?= (uri_string() == 'admin/track_order' || uri_string() == 'admin/edit_track_order') ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-truck"></i>
                         <p>Track Order</p>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="<?= base_url('admin/price_list') ?>" class="nav-link <?= (uri_string() == 'admin/price_list') ? 'active' : '' ?>">
+                    <a href="<?= base_url('admin/price_list') ?>" class="nav-link <?= (uri_string() == 'admin/price_list' || uri_string() == 'admin/edit_price_list' || uri_string() == 'admin/detail_price_list') ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-list-alt"></i>
                         <p>Price List</p>
                     </a>
@@ -44,8 +44,8 @@
                     </a>
                 </li>
 
-                <li class="nav-item has-treeview <?= (uri_string() == 'admin/game_categories' || uri_string() == 'admin/game_list') ? 'menu-open' : '' ?>">
-                    <a href="#" class="nav-link <?= (uri_string() == 'admin/game_categories' || uri_string() == 'admin/game_list') ? 'active' : '' ?>">
+                <li class="nav-item has-treeview <?= (strpos(uri_string(), 'admin/game_categories') !== false || strpos(uri_string(), 'admin/edit_game_categories') !== false || strpos(uri_string(), 'admin/detail_game_categories') !== false || strpos(uri_string(), 'admin/game_list') !== false || strpos(uri_string(), 'admin/edit_game_list') !== false || strpos(uri_string(), 'admin/detail_game_list') !== false) ? 'menu-open' : '' ?>">
+                    <a href="#" class="nav-link <?= (strpos(uri_string(), 'admin/game_categories') !== false || strpos(uri_string(), 'admin/edit_game_categories') !== false || strpos(uri_string(), 'admin/detail_game_categories') !== false || strpos(uri_string(), 'admin/game_list') !== false || strpos(uri_string(), 'admin/edit_game_list') !== false || strpos(uri_string(), 'admin/detail_game_list') !== false) ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-gamepad"></i>
                         <p>
                             All Games
@@ -54,13 +54,13 @@
                     </a>
                     <ul class="nav nav-treeview" style="background-color: #2c3e50; padding-left: 15px;">
                         <li class="nav-item">
-                            <a href="<?= base_url('admin/game_categories') ?>" class="nav-link <?= (uri_string() == 'admin/game_categories') ? 'active' : '' ?>" style="padding-left: 30px;">
+                            <a href="<?= base_url('admin/game_categories') ?>" class="nav-link <?= (strpos(uri_string(), 'admin/game_categories') !== false || strpos(uri_string(), 'admin/edit_game_categories') !== false || strpos(uri_string(), 'admin/detail_game_categories') !== false) ? 'active' : '' ?>" style="padding-left: 30px;">
                                 <i class="nav-icon fas fa-tags"></i>
                                 <p>Game Categories</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= base_url('admin/game_list') ?>" class="nav-link <?= (uri_string() == 'admin/game_list') ? 'active' : '' ?>" style="padding-left: 30px;">
+                            <a href="<?= base_url('admin/game_list') ?>" class="nav-link <?= (strpos(uri_string(), 'admin/game_list') !== false || strpos(uri_string(), 'admin/detail_game_list') !== false || strpos(uri_string(), 'admin/edit_game_list') !== false) ? 'active' : '' ?>" style="padding-left: 30px;">
                                 <i class="nav-icon fas fa-list"></i>
                                 <p>List of Games</p>
                             </a>
@@ -77,7 +77,7 @@
 
 
                 <li class="nav-item has-treeview <?= (uri_string() == 'admin/payment_gateway' || uri_string() == 'admin/digiflazz') ? 'menu-open' : '' ?>">
-                    <a href="#" class="nav-link <?= (uri_string() == 'admin/payment_gateway' || uri_string() == 'admin/digiflazz') ? 'active' : '' ?>">
+                    <a href="#" class="nav-link <?= (uri_string() == 'admin/payment_gateway' || uri_string() == 'admin/digiflazz' || uri_string() == 'admin/edit_payment_gateway' || uri_string() == 'admin/edit_digiflazz') ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-plug"></i>
                         <p>
                             Connect API
@@ -86,13 +86,13 @@
                     </a>
                     <ul class="nav nav-treeview" style="background-color: #2c3e50; padding-left: 15px;">
                         <li class="nav-item">
-                            <a href="<?= base_url('admin/payment_gateway') ?>" class="nav-link <?= (uri_string() == 'admin/payment_gateway') ? 'active' : '' ?>" style="padding-left: 30px;">
+                            <a href="<?= base_url('admin/payment_gateway') ?>" class="nav-link <?= (uri_string() == 'admin/payment_gateway' || uri_string() == 'admin/edit_payment_gateway') ? 'active' : '' ?>" style="padding-left: 30px;">
                                 <i class="nav-icon fas fa-wallet"></i>
                                 <p>Payment Gateway</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= base_url('admin/digiflazz') ?>" class="nav-link <?= (uri_string() == 'admin/digiflazz') ? 'active' : '' ?>" style="padding-left: 30px;">
+                            <a href="<?= base_url('admin/digiflazz') ?>" class="nav-link <?= (uri_string() == 'admin/digiflazz' || uri_string() == 'admin/edit_digiflazz') ? 'active' : '' ?>" style="padding-left: 30px;">
                                 <i class="nav-icon fas fa-credit-card"></i>
                                 <p>Digiflazz</p>
                             </a>

@@ -33,8 +33,8 @@
             </div>
 
             <div class="row mt-4">
-                <div class="col-12 text-left">
-                    <a href="#" class="btn btn-success">Tambah Harga</a>
+                <div class="d-flex justify-content-between mb-3">
+                    <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#addCategoryModal">Tambah Kategori</button>
                 </div>
             </div>
 
@@ -64,8 +64,8 @@
                                     <td>Action</td>
                                     <td>PC</td>
                                     <td>
-                                        <a href="#" class="btn btn-info btn-sm">Detail</a>
-                                        <a href="#" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal">Edit</a>
+                                        <a href="<?= base_url('admin/detail_price_list/')?>" class="btn btn-info btn-sm">Detail</a>
+                                        <a href="<?= base_url('admin/edit_price_list/')?>" class="btn btn-warning btn-sm">Edit</a>
                                         <a href="#" class="btn btn-danger btn-sm" onclick="deleteContent()">Delete</a>
                                     </td>
                                 </tr>
@@ -135,13 +135,11 @@
     </section>
 </div>
 
-
-
-<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+<div class="modal fade" id="addCategoryModal" tabindex="-1" role="dialog" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editModalLabel">Edit Content</h5>
+                <h5 class="modal-title" id="addCategoryModalLabel">Tambah Kategori Game</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -198,11 +196,8 @@
                             <option value="PLN">PLN</option>
                         </select>
                     </div>
+                    <button type="submit" class="btn btn-primary">Tambah Kategori</button>
                 </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onclick="saveChanges()">Save changes</button>
             </div>
         </div>
     </div>

@@ -19,6 +19,21 @@
         <div class="container-fluid">
             <div class="row bg-white p-4 rounded shadow-sm">
                 <div class="col-12">
+                    <?php if ($this->session->flashdata('success')): ?>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <?= $this->session->flashdata('success'); ?>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    <?php elseif ($this->session->flashdata('error')): ?>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <?= $this->session->flashdata('error'); ?>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    <?php endif; ?>
                     <div class="d-flex justify-content-between mb-3">
                         <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#addCategoryModal">Tambah Kategori</button>
                     </div>
@@ -26,7 +41,7 @@
                         <table id="categoryTable" class="table table-bordered table-striped table-hover">
                             <thead class="thead-light">
                                 <tr>
-                                    <th>ID</th>
+                                    <th>No</th>
                                     <th>Nama Kategori</th>
                                     <th>Deskripsi</th>
                                     <th>Jenis</th>
@@ -34,49 +49,25 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Action</td>
-                                    <td>Game dengan aksi cepat dan intens</td>
-                                    <td>PC</td>
-                                    <td>
-                                        <a href="#" class="btn btn-info btn-sm" data-toggle="modal" data-target="#editModal">Edit</a>
-                                        <a href="#" class="btn btn-danger btn-sm" onclick="deleteContent()">Delete</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Adventure</td>
-                                    <td>Game dengan petualangan dan eksplorasi</td>
-                                    <td>Mobile</td>
-                                    <td>
-                                        <a href="#" class="btn btn-info btn-sm">Edit</a>
-                                        <a href="#" class="btn btn-danger btn-sm">Hapus</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Puzzle</td>
-                                    <td>Game teka-teki yang menantang</td>
-                                    <td>PC</td>
-                                    <td>
-                                        <a href="#" class="btn btn-info btn-sm">Edit</a>
-                                        <a href="#" class="btn btn-danger btn-sm">Hapus</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>RPG</td>
-                                    <td>Game dengan elemen role-playing</td>
-                                    <td>Mobile</td>
-                                    <td>
-                                        <a href="#" class="btn btn-info btn-sm">Edit</a>
-                                        <a href="#" class="btn btn-danger btn-sm">Hapus</a>
-                                    </td>
-                                </tr>
+                                <?php
+                                $no = 1;
+                                foreach ($game_categories as $category):
+                                ?>
+                                    <tr>
+                                        <td><?= $no++; ?></td>
+                                        <td><?= $category['nama_kategori']; ?></td>
+                                        <td><?= $category['deskripsi']; ?></td>
+                                        <td><?= $category['jenis']; ?></td>
+                                        <td>
+                                            <a href="<?= base_url('admin/edit_game_categories/' . $category['id']); ?>" class="btn btn-info btn-sm">Edit</a>
+                                            <a href="<?= base_url('admin/delete_game_category/' . $category['id']); ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus kategori ini?')">Hapus</a>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -93,18 +84,18 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="addCategoryForm">
+                <form method="post" action="<?= base_url('admin/save_game_category'); ?>">
                     <div class="form-group">
                         <label for="categoryName">Nama Kategori</label>
-                        <input type="text" class="form-control" id="categoryName" name="categoryName" required>
+                        <input type="text" class="form-control" id="categoryName" name="nama_kategori" required>
                     </div>
                     <div class="form-group">
                         <label for="categoryDescription">Deskripsi</label>
-                        <textarea class="form-control" id="categoryDescription" name="categoryDescription" required></textarea>
+                        <textarea class="form-control" id="categoryDescription" name="deskripsi" required></textarea>
                     </div>
                     <div class="form-group">
                         <label for="gameType">Jenis</label>
-                        <select class="form-control" id="gameType" name="gameType" required>
+                        <select class="form-control" id="gameType" name="jenis" required>
                             <option value="PC">PC</option>
                             <option value="Mobile">Mobile</option>
                             <option value="Console">Console</option>
@@ -115,49 +106,6 @@
                     </div>
                     <button type="submit" class="btn btn-primary">Tambah Kategori</button>
                 </form>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editModalLabel">Edit Content</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="editForm">
-                <div class="form-group">
-                        <label for="gameType">Jenis</label>
-                        <select class="form-control" id="gameType" name="gameType" required>
-                            <option value="PC">PC</option>
-                            <option value="Mobile">Mobile</option>
-                            <option value="Console">Console</option>
-                            <option value="Pulsa">Pulsa</option>
-                            <option value="Paket Data">Paket Data</option>
-                            <option value="PLN">PLN</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="categoryName">Nama Pembeli</label>
-                        <input type="text" class="form-control" id="categoryName" name="categoryName" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="categoryName">Category</label>
-                        <input type="text" class="form-control" id="categoryName" name="categoryName" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="categoryName">Harga</label>
-                        <input type="text" class="form-control" id="categoryName" name="categoryName" required>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onclick="saveChanges()">Save changes</button>
             </div>
         </div>
     </div>

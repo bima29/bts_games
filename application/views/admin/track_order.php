@@ -56,7 +56,7 @@
                                     <td>2024-12-10</td>
                                     <td>John Doe</td>
                                     <td>
-                                        <a href="#" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal">Edit</a>
+                                        <a href="<?= base_url('admin/edit_track_order/')?>" class="btn btn-warning btn-sm" >Edit</a>
                                         <a href="#" class="btn btn-danger btn-sm" onclick="deleteContent()">Delete</a>
                                     </td>
                                 </tr>
