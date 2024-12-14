@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 14 Des 2024 pada 08.58
+-- Waktu pembuatan: 14 Des 2024 pada 16.46
 -- Versi server: 10.4.21-MariaDB
 -- Versi PHP: 7.4.25
 
@@ -112,6 +112,32 @@ CREATE TABLE `orders` (
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `price_list`
+--
+
+CREATE TABLE `price_list` (
+  `id` int(11) NOT NULL,
+  `product_name` varchar(255) NOT NULL,
+  `product_code` varchar(100) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `nominal` int(11) NOT NULL,
+  `unit` varchar(100) NOT NULL,
+  `game_category` varchar(100) NOT NULL,
+  `game_type` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `price_list`
+--
+
+INSERT INTO `price_list` (`id`, `product_name`, `product_code`, `price`, `nominal`, `unit`, `game_category`, `game_type`) VALUES
+(1, 'Game A', 'GA1200', '50000.00', 1200, 'Diamond', 'Action', 'PC'),
+(2, 'Game B', 'GB1200', '100000.00', 1200, 'Cash', 'Adventure', 'Mobile'),
+(4, 'Game D', 'GD1000', '25000.00', 1000, 'Diamond', 'RPG', 'Mobile');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `roles`
 --
 
@@ -158,7 +184,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `phone`, `password`, `full_name`, `profile_picture`, `role_id`, `created_at`, `updated_at`, `login_at`) VALUES
-(1, 'renaldi', 'renaldi123@gmail.com', '0863787837', '10c248a4d6e01b5ebaef47ac64bd822593e194cc', 'Renaldi Gionanda yulian', 'download.jpeg', 1, '2024-12-12 19:05:53', '2024-12-14 06:05:39', '2024-12-14 06:05:39');
+(1, 'renaldi', 'renaldi123@gmail.com', '0863787837', '10c248a4d6e01b5ebaef47ac64bd822593e194cc', 'Renaldi Gionanda yulian', 'download.jpeg', 1, '2024-12-12 19:05:53', '2024-12-14 15:44:37', '2024-12-14 15:44:37');
 
 --
 -- Indexes for dumped tables
@@ -188,6 +214,12 @@ ALTER TABLE `game_categories`
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`);
+
+--
+-- Indeks untuk tabel `price_list`
+--
+ALTER TABLE `price_list`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indeks untuk tabel `roles`
@@ -230,6 +262,12 @@ ALTER TABLE `orders`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT untuk tabel `price_list`
+--
+ALTER TABLE `price_list`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT untuk tabel `roles`
 --
 ALTER TABLE `roles`
@@ -239,7 +277,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
