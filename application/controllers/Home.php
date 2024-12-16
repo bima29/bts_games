@@ -5,10 +5,19 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Home extends CI_Controller
 {
 
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('Home_model', 'homes');
+
+    }
+
     public function index()
     {
+        $data['games'] = $this->homes->get_all_games();
+        $data['categories'] = $this->homes->get_all_categories();
 
-        $this->load->view('Partials/header');
+        $this->load->view('Partials/header', $data);
         $this->load->view('Partials/navigasi');
         $this->load->view('Partials/banner');
         $this->load->view('Partials/Home/content');
@@ -16,13 +25,19 @@ class Home extends CI_Controller
     }
     public function games()
     {
-        $this->load->view('Partials/header');
+        $data['games'] = $this->homes->get_all_games();
+        $data['categories'] = $this->homes->get_all_categories();
+
+        $this->load->view('Partials/header', $data);
         $this->load->view('Partials/navigasi');
         $this->load->view('Partials/All_Game/content');
         $this->load->view('Partials/footer');
     }
     public function track()
     {
+        if (!$this->session->userdata('user_id')) {
+            redirect(base_url('auth'));
+        }
         $this->load->view('Partials/header');
         $this->load->view('Partials/navigasi');
         $this->load->view('Partials/Track_Order/content');
@@ -44,6 +59,9 @@ class Home extends CI_Controller
     }
     public function Live()
     {
+        if (!$this->session->userdata('user_id')) {
+            redirect(base_url('auth'));
+        }
         $this->load->view('Partials/header');
         $this->load->view('Partials/navigasi');
         $this->load->view('Partials/Live/content');
@@ -51,18 +69,27 @@ class Home extends CI_Controller
     }
     public function Checkout1()
     {
+        if (!$this->session->userdata('user_id')) {
+            redirect(base_url('auth'));
+        }
         $this->load->view('Partials/Fitur/header');
         $this->load->view('Partials/Fitur/Checkout/content1');
         $this->load->view('Partials/Fitur/footer');
     }
     public function Checkout2()
     {
+        if (!$this->session->userdata('user_id')) {
+            redirect(base_url('auth'));
+        }
         $this->load->view('Partials/Fitur/header');
         $this->load->view('Partials/Fitur/Checkout/content2');
         $this->load->view('Partials/Fitur/footer');
     }
     public function Checkout3()
     {
+        if (!$this->session->userdata('user_id')) {
+            redirect(base_url('auth'));
+        }
         $this->load->view('Partials/Fitur/header');
         $this->load->view('Partials/Fitur/Checkout/content3');
         $this->load->view('Partials/Fitur/footer');

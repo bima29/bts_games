@@ -60,7 +60,7 @@
                                 <img src="<?= base_url('assets/universal/img/' . $this->session->userdata('profile_picture')) ?>" alt="Profile" class="rounded-circle border border-white profile-img" width="40" height="40" style="object-fit: cover;">
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="profileMenu">
-                                <li><a class="dropdown-item" href="#">Edit Profile</a></li>
+                                <li><a class="dropdown-item" href="#">My Profile</a></li>
                                 <li><a class="dropdown-item" href="<?= base_url('home/logout'); ?>">Log Out</a></li>
                             </ul>
                         </div>

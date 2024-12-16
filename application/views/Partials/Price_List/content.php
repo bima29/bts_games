@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="<?=base_url('assets/css/table2.css')?>">
+<link rel="stylesheet" href="<?= base_url('assets/css/table2.css') ?>">
 
 <div class="container-fluid container-bg-img-pricelist">
     <div class="container mt-5 rounded bg-color-blur-black-4">
@@ -20,88 +20,9 @@
                             <i class="fa-solid fa-magnifying-glass icon-fa-magnifying-glass"></i>
                         </span>
                         <input class="form-control text-white bg-color-blur-black-7 custom-input" type="text" placeholder="Ketik nama game..." aria-label="Order Number" style="font-size: 1.2rem; padding: 0.75rem; border-right: none;">
-                        <button class="btn btn-outline-success ms-0 fs-p-br-input" type="submit" >Cari Game</button>
+                        <button class="btn btn-outline-success ms-0 fs-p-br-input" type="submit">Cari Game</button>
                     </div>
                 </form>
-                <div class="row mt-4 mb-4">
-                    <div class="col-6 col-md-3 mb-3">
-                        <a href="<?= base_url('Home/Checkout1'); ?>" class="text-decoration-none">
-                            <div class="card align-items-center justify-content-center bg-color-blur-black-5">
-                                <img src="https://static-src.vocagame.com/gamestoreindonesia/ML-64f6.webp"
-                                    class="card-img-top gameImage" alt="Game Image">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title text-white">Mobile Legends: Bang Bang</h5>
-                                    <p class="card-text text-white">Moonton</p>
-                                </div>
-                                <h3 class="text-white gameText bg-color-blur-black-5 b-r-5px">
-                                    Mobile Legend
-                                </h3>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="col-6 col-md-3 mb-3">
-                        <a href="<?= base_url('Home/Checkout1'); ?>" class="text-decoration-none">
-                            <div class="card align-items-center justify-content-center bg-color-blur-black-5">
-                                <img src="https://static-src.vocagame.com/gamestoreindonesia/ML-64f6.webp"
-                                    class="card-img-top gameImage" alt="Game Image">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title text-white">Mobile Legends: Bang Bang</h5>
-                                    <p class="card-text text-white">Moonton</p>
-                                </div>
-                                <h3 class="text-white gameText bg-color-blur-black-5 b-r-5px">
-                                    Mobile Legend
-                                </h3>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="col-6 col-md-3 mb-3">
-                        <a href="<?= base_url('Home/Checkout1'); ?>" class="text-decoration-none">
-                            <div class="card align-items-center justify-content-center bg-color-blur-black-5">
-                                <img src="https://static-src.vocagame.com/gamestoreindonesia/ML-64f6.webp"
-                                    class="card-img-top gameImage" alt="Game Image">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title text-white">Mobile Legends: Bang Bang</h5>
-                                    <p class="card-text text-white">Moonton</p>
-                                </div>
-                                <h3 class="text-white gameText bg-color-blur-black-5 b-r-5px">
-                                    Mobile Legend
-                                </h3>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-3 mb-3">
-                        <a href="<?= base_url('Home/Checkout1'); ?>" class="text-decoration-none">
-                            <div class="card align-items-center justify-content-center bg-color-blur-black-5">
-                                <img src="https://static-src.vocagame.com/gamestoreindonesia/ML-64f6.webp"
-                                    class="card-img-top gameImage" alt="Game Image">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title text-white">Mobile Legends: Bang Bang</h5>
-                                    <p class="card-text text-white">Moonton</p>
-                                </div>
-                                <h3 class="text-white gameText bg-color-blur-black-5 b-r-5px">
-                                    Mobile Legend
-                                </h3>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-3 mb-3">
-                        <a href="<?= base_url('Home/Checkout1'); ?>" class="text-decoration-none">
-                            <div class="card align-items-center justify-content-center bg-color-blur-black-5">
-                                <img src="https://static-src.vocagame.com/gamestoreindonesia/ML-64f6.webp"
-                                    class="card-img-top gameImage" alt="Game Image">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title text-white">Mobile Legends: Bang Bang</h5>
-                                    <p class="card-text text-white">Moonton</p>
-                                </div>
-                                <h3 class="text-white gameText bg-color-blur-black-5 b-r-5px">
-                                    Mobile Legend
-                                </h3>
-                            </div>
-                        </a>
-                    </div>
-                </div>
             </div>
 
             <div class="container mt-4 mb-5 bg-color-blur-black-5">
