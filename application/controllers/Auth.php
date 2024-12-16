@@ -61,7 +61,8 @@ class Auth extends MY_Controller
             $session_data = array(
                 'user_id'   => $user->id,
                 'username'  => $user->username,
-                'role_id'   => $user->role_id
+                'role_id'   => $user->role_id,
+                'profile_picture'   => $user->profile_picture
             );
             $this->session->set_userdata($session_data);
 

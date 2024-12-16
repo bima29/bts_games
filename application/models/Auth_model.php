@@ -10,7 +10,7 @@ class Auth_model extends CI_Model
 
     public function get_user_by_email_password($email, $password)
     {
-        $this->db->select('id, username, role_id');
+        $this->db->select('id, username, role_id, profile_picture');
         $this->db->from('users');
         $this->db->where('email', $email);
         $this->db->where('password', $password);

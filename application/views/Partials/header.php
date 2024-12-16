@@ -42,7 +42,6 @@
                 </div>
 
                 <div class="top-info d-flex">
-
                     <div class="search-container">
                         <div class="search-form rounded-pill me-3" id="searchForm">
                             <input type="text" class="text-white" placeholder="Type to search...">
@@ -53,15 +52,30 @@
                             <i class="fa-solid fa-magnifying-glass fa-lg search-icon i-color-c-white"></i>
                         </small>
                     </div>
-                    <div class="componen-header-icon-bg rounded">
-                        <small class="me-3 text-white-50">
-                            <a href="<?= base_url('home/login'); ?>" class="text-center">
-                                <i class="fa-solid fa-right-to-bracket fa-lg i-color-c-white"></i>
+
+                    <?php if ($this->session->userdata('user_id')): ?>
+                        <!-- Display profile picture and menu when logged in -->
+                        <div class="dropdown">
+                            <a href="#" class="d-flex align-items-center text-white" id="profileMenu" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="<?= base_url('assets/universal/img/' . $this->session->userdata('profile_picture')) ?>" alt="Profile" class="rounded-circle border border-white profile-img" width="40" height="40" style="object-fit: cover;">
                             </a>
-                        </small>
-                    </div>
-                    <a class="text-decoration-none text-white" href="<?= base_url('auth'); ?>">Masuk/Daftar</a>
+                            <ul class="dropdown-menu" aria-labelledby="profileMenu">
+                                <li><a class="dropdown-item" href="#">Edit Profile</a></li>
+                                <li><a class="dropdown-item" href="<?= base_url('home/logout'); ?>">Log Out</a></li>
+                            </ul>
+                        </div>
+                    <?php else: ?>
+                        <!-- Show login link when not logged in -->
+                        <a class="text-decoration-none text-white" href="<?= base_url('auth'); ?>">Masuk/Daftar</a>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
     </div>
+
+    <style>
+        .profile-img:hover {
+            opacity: 0.8;
+            cursor: pointer;
+        }
+    </style>

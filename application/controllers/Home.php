@@ -1,12 +1,13 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Home extends CI_Controller {
+class Home extends CI_Controller
+{
 
     public function index()
     {
-        
+
         $this->load->view('Partials/header');
         $this->load->view('Partials/navigasi');
         $this->load->view('Partials/banner');
@@ -66,5 +67,10 @@ class Home extends CI_Controller {
         $this->load->view('Partials/Fitur/Checkout/content3');
         $this->load->view('Partials/Fitur/footer');
     }
-    
+
+    public function logout()
+    {
+        $this->session->sess_destroy();
+        redirect(base_url('auth'));
+    }
 }
