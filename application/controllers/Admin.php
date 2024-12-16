@@ -27,6 +27,13 @@ class Admin extends CI_Controller
 
     public function index()
     {
+        $role_id = $this->session->userdata('role_id');
+
+        if ($role_id != 1 && $role_id != 2) {
+            $this->session->set_flashdata('error', 'Access Denied: You do not have permission to access this page.');
+            redirect('admin/profile');
+        }
+
         $data['username'] = $this->session->userdata('username');
         $data['role_id'] = $this->session->userdata('role_id');
         $user_id = $this->session->userdata('user_id');
@@ -44,6 +51,13 @@ class Admin extends CI_Controller
     // Track Order Start
     public function track_order()
     {
+        $role_id = $this->session->userdata('role_id');
+
+        if ($role_id != 1 && $role_id != 2) {
+            $this->session->set_flashdata('error', 'Access Denied: You do not have permission to access this page.');
+            redirect('admin/profile');
+        }
+
         $data['username'] = $this->session->userdata('username');
         $data['role_id'] = $this->session->userdata('role_id');
         $user_id = $this->session->userdata('user_id');
@@ -59,6 +73,13 @@ class Admin extends CI_Controller
 
     public function edit_track_order()
     {
+        $role_id = $this->session->userdata('role_id');
+
+        if ($role_id != 1 && $role_id != 2) {
+            $this->session->set_flashdata('error', 'Access Denied: You do not have permission to access this page.');
+            redirect('admin/profile');
+        }
+
         $data['username'] = $this->session->userdata('username');
         $data['role_id'] = $this->session->userdata('role_id');
         $user_id = $this->session->userdata('user_id');
@@ -75,6 +96,13 @@ class Admin extends CI_Controller
     // Price List Start
     public function price_list()
     {
+        $role_id = $this->session->userdata('role_id');
+
+        if ($role_id != 1 && $role_id != 2) {
+            $this->session->set_flashdata('error', 'Access Denied: You do not have permission to access this page.');
+            redirect('admin/profile');
+        }
+
         $data['username'] = $this->session->userdata('username');
         $data['role_id'] = $this->session->userdata('role_id');
         $user_id = $this->session->userdata('user_id');
@@ -84,7 +112,7 @@ class Admin extends CI_Controller
         $search_query = $this->input->post('product_code');
         if (!empty($search_query)) {
             // Filter the price list based on product code
-            $data['price_list'] = $this->admin->get_price_list_by_code($search_query); 
+            $data['price_list'] = $this->admin->get_price_list_by_code($search_query);
         } else {
             // Get all price lists if no search query
             $data['price_list'] = $this->admin->get_price_list();
@@ -103,6 +131,13 @@ class Admin extends CI_Controller
 
     public function addprice_list()
     {
+        $role_id = $this->session->userdata('role_id');
+
+        if ($role_id != 1 && $role_id != 2) {
+            $this->session->set_flashdata('error', 'Access Denied: You do not have permission to access this page.');
+            redirect('admin/profile');
+        }
+
         $gameType = $this->input->post('gameType', TRUE);
         $categoryName = $this->input->post('categoryName', TRUE);
         $harga = $this->input->post('harga', TRUE);
@@ -135,6 +170,13 @@ class Admin extends CI_Controller
 
     public function edit_price_list($price_list_id)
     {
+        $role_id = $this->session->userdata('role_id');
+
+        if ($role_id != 1 && $role_id != 2) {
+            $this->session->set_flashdata('error', 'Access Denied: You do not have permission to access this page.');
+            redirect('admin/profile');
+        }
+
         $data['username'] = $this->session->userdata('username');
         $data['role_id'] = $this->session->userdata('role_id');
         $user_id = $this->session->userdata('user_id');
@@ -152,6 +194,12 @@ class Admin extends CI_Controller
 
     public function update_price_list()
     {
+        $role_id = $this->session->userdata('role_id');
+
+        if ($role_id != 1 && $role_id != 2) {
+            $this->session->set_flashdata('error', 'Access Denied: You do not have permission to access this page.');
+            redirect('admin/profile');
+        }
 
         $data = [
             'product_name'  => $this->input->post('gameType', TRUE),
@@ -173,6 +221,13 @@ class Admin extends CI_Controller
 
     public function delete_price_list($id)
     {
+        $role_id = $this->session->userdata('role_id');
+
+        if ($role_id != 1 && $role_id != 2) {
+            $this->session->set_flashdata('error', 'Access Denied: You do not have permission to access this page.');
+            redirect('admin/profile');
+        }
+
         if (!$this->session->userdata('username')) {
             redirect('login');
         }
@@ -191,6 +246,13 @@ class Admin extends CI_Controller
 
     public function detail_price_list($price_list)
     {
+        $role_id = $this->session->userdata('role_id');
+
+        if ($role_id != 1 && $role_id != 2) {
+            $this->session->set_flashdata('error', 'Access Denied: You do not have permission to access this page.');
+            redirect('admin/profile');
+        }
+
         $data['username'] = $this->session->userdata('username');
         $data['role_id'] = $this->session->userdata('role_id');
         $user_id = $this->session->userdata('user_id');
@@ -216,6 +278,13 @@ class Admin extends CI_Controller
     // Live Chat Start
     public function live_chat()
     {
+        $role_id = $this->session->userdata('role_id');
+
+        if ($role_id != 1 && $role_id != 2) {
+            $this->session->set_flashdata('error', 'Access Denied: You do not have permission to access this page.');
+            redirect('admin/profile');
+        }
+
         $data['username'] = $this->session->userdata('username');
         $data['role_id'] = $this->session->userdata('role_id');
         $user_id = $this->session->userdata('user_id');
@@ -231,6 +300,13 @@ class Admin extends CI_Controller
     // Chat Start
     public function chat()
     {
+        $role_id = $this->session->userdata('role_id');
+
+        if ($role_id != 1 && $role_id != 2) {
+            $this->session->set_flashdata('error', 'Access Denied: You do not have permission to access this page.');
+            redirect('admin/profile');
+        }
+
         $data['username'] = $this->session->userdata('username');
         $data['role_id'] = $this->session->userdata('role_id');
         $user_id = $this->session->userdata('user_id');
@@ -246,6 +322,13 @@ class Admin extends CI_Controller
     // Game Categories Start
     public function game_categories()
     {
+        $role_id = $this->session->userdata('role_id');
+
+        if ($role_id != 1 && $role_id != 2) {
+            $this->session->set_flashdata('error', 'Access Denied: You do not have permission to access this page.');
+            redirect('admin/profile');
+        }
+
         $data['username'] = $this->session->userdata('username');
         $data['role_id'] = $this->session->userdata('role_id');
         $user_id = $this->session->userdata('user_id');
@@ -262,6 +345,13 @@ class Admin extends CI_Controller
 
     public function save_game_category()
     {
+        $role_id = $this->session->userdata('role_id');
+
+        if ($role_id != 1 && $role_id != 2) {
+            $this->session->set_flashdata('error', 'Access Denied: You do not have permission to access this page.');
+            redirect('admin/profile');
+        }
+
         $nama_kategori = $this->input->post('nama_kategori', TRUE);
         $deskripsi = $this->input->post('deskripsi', TRUE);
         $jenis = $this->input->post('jenis', TRUE);
@@ -285,6 +375,13 @@ class Admin extends CI_Controller
 
     public function edit_game_categories($category_id)
     {
+        $role_id = $this->session->userdata('role_id');
+
+        if ($role_id != 1 && $role_id != 2) {
+            $this->session->set_flashdata('error', 'Access Denied: You do not have permission to access this page.');
+            redirect('admin/profile');
+        }
+
         $data['username'] = $this->session->userdata('username');
         $data['role_id'] = $this->session->userdata('role_id');
         $user_id = $this->session->userdata('user_id');
@@ -308,6 +405,13 @@ class Admin extends CI_Controller
 
     public function update_game_category()
     {
+        $role_id = $this->session->userdata('role_id');
+
+        if ($role_id != 1 && $role_id != 2) {
+            $this->session->set_flashdata('error', 'Access Denied: You do not have permission to access this page.');
+            redirect('admin/profile');
+        }
+
         $category_id = $this->input->post('category_id');
 
         $data = [
@@ -331,6 +435,13 @@ class Admin extends CI_Controller
 
     public function delete_game_category($category_id)
     {
+        $role_id = $this->session->userdata('role_id');
+
+        if ($role_id != 1 && $role_id != 2) {
+            $this->session->set_flashdata('error', 'Access Denied: You do not have permission to access this page.');
+            redirect('admin/profile');
+        }
+
         if ($category_id) {
             $result = $this->admin->delete_game_category($category_id);
 
@@ -351,6 +462,13 @@ class Admin extends CI_Controller
     // Game List Start
     public function game_list()
     {
+        $role_id = $this->session->userdata('role_id');
+
+        if ($role_id != 1 && $role_id != 2) {
+            $this->session->set_flashdata('error', 'Access Denied: You do not have permission to access this page.');
+            redirect('admin/profile');
+        }
+
         $data['username'] = $this->session->userdata('username');
         $data['role_id'] = $this->session->userdata('role_id');
         $user_id = $this->session->userdata('user_id');
@@ -374,6 +492,13 @@ class Admin extends CI_Controller
 
     public function add_game()
     {
+        $role_id = $this->session->userdata('role_id');
+
+        if ($role_id != 1 && $role_id != 2) {
+            $this->session->set_flashdata('error', 'Access Denied: You do not have permission to access this page.');
+            redirect('admin/profile');
+        }
+
         $game_name = $this->input->post('game_name', TRUE);
         $game_code = $this->input->post('game_code', TRUE);
         $game_category = $this->input->post('game_category', TRUE);
@@ -413,6 +538,13 @@ class Admin extends CI_Controller
 
     public function edit_game_list($game_id)
     {
+        $role_id = $this->session->userdata('role_id');
+
+        if ($role_id != 1 && $role_id != 2) {
+            $this->session->set_flashdata('error', 'Access Denied: You do not have permission to access this page.');
+            redirect('admin/profile');
+        }
+
         $data['username'] = $this->session->userdata('username');
         $data['role_id'] = $this->session->userdata('role_id');
         $user_id = $this->session->userdata('user_id');
@@ -436,6 +568,13 @@ class Admin extends CI_Controller
 
     public function update_game()
     {
+        $role_id = $this->session->userdata('role_id');
+
+        if ($role_id != 1 && $role_id != 2) {
+            $this->session->set_flashdata('error', 'Access Denied: You do not have permission to access this page.');
+            redirect('admin/profile');
+        }
+
         $this->load->helper('file');
 
         $game_id = $this->input->post('game_id', true);
@@ -487,6 +626,13 @@ class Admin extends CI_Controller
 
     public function delete_game($game_id)
     {
+        $role_id = $this->session->userdata('role_id');
+
+        if ($role_id != 1 && $role_id != 2) {
+            $this->session->set_flashdata('error', 'Access Denied: You do not have permission to access this page.');
+            redirect('admin/profile');
+        }
+
         $game = $this->admin->get_game_by_id($game_id);
         if (!$game) {
             $this->session->set_flashdata('error', 'Game tidak ditemukan');
@@ -506,6 +652,13 @@ class Admin extends CI_Controller
 
     public function detail_game_list($id)
     {
+        $role_id = $this->session->userdata('role_id');
+
+        if ($role_id != 1 && $role_id != 2) {
+            $this->session->set_flashdata('error', 'Access Denied: You do not have permission to access this page.');
+            redirect('admin/profile');
+        }
+
         $data['username'] = $this->session->userdata('username');
         $data['role_id'] = $this->session->userdata('role_id');
         $user_id = $this->session->userdata('user_id');
@@ -525,6 +678,13 @@ class Admin extends CI_Controller
     // Bannner Start
     public function banner()
     {
+        $role_id = $this->session->userdata('role_id');
+
+        if ($role_id != 1 && $role_id != 2) {
+            $this->session->set_flashdata('error', 'Access Denied: You do not have permission to access this page.');
+            redirect('admin/profile');
+        }
+
         $data['username'] = $this->session->userdata('username');
         $data['role_id'] = $this->session->userdata('role_id');
         $user_id = $this->session->userdata('user_id');
@@ -540,6 +700,13 @@ class Admin extends CI_Controller
 
     public function edit_banner($id = null)
     {
+        $role_id = $this->session->userdata('role_id');
+
+        if ($role_id != 1 && $role_id != 2) {
+            $this->session->set_flashdata('error', 'Access Denied: You do not have permission to access this page.');
+            redirect('admin/profile');
+        }
+
         if (!$id) {
             $this->session->set_flashdata('error', 'Banner tidak ditemukan.');
             redirect('admin/banner');
@@ -565,6 +732,13 @@ class Admin extends CI_Controller
 
     public function add_banner()
     {
+        $role_id = $this->session->userdata('role_id');
+
+        if ($role_id != 1 && $role_id != 2) {
+            $this->session->set_flashdata('error', 'Access Denied: You do not have permission to access this page.');
+            redirect('admin/profile');
+        }
+
         if (!empty($_FILES['bannerImage']['name'])) {
             $config['upload_path'] = './assets/img/';
             $config['allowed_types'] = 'jpg|jpeg|png';
@@ -600,6 +774,13 @@ class Admin extends CI_Controller
 
     public function update_banner()
     {
+        $role_id = $this->session->userdata('role_id');
+
+        if ($role_id != 1 && $role_id != 2) {
+            $this->session->set_flashdata('error', 'Access Denied: You do not have permission to access this page.');
+            redirect('admin/profile');
+        }
+
         $id = $this->input->post('banner_id');
         $data = [
             'title' => $this->input->post('bannerTitle'),
@@ -639,6 +820,13 @@ class Admin extends CI_Controller
 
     public function delete_banner($id)
     {
+        $role_id = $this->session->userdata('role_id');
+
+        if ($role_id != 1 && $role_id != 2) {
+            $this->session->set_flashdata('error', 'Access Denied: You do not have permission to access this page.');
+            redirect('admin/profile');
+        }
+
         $banner = $this->admin->get_banner_by_id($id);
         $image = $banner['image'];
 
@@ -665,7 +853,7 @@ class Admin extends CI_Controller
 
         if ($role_id != 1) {
             $this->session->set_flashdata('error', 'Access Denied: You do not have permission to access this page.');
-            redirect('admin/dashboard');
+            redirect('admin/profile');
         }
 
         $data['username'] = $this->session->userdata('username');
@@ -684,7 +872,7 @@ class Admin extends CI_Controller
 
         if ($role_id != 1) {
             $this->session->set_flashdata('error', 'Access Denied: You do not have permission to access this page.');
-            redirect('admin/dashboard');
+            redirect('admin/profile');
         }
         $data['username'] = $this->session->userdata('username');
         $data['role_id'] = $this->session->userdata('role_id');
@@ -706,7 +894,7 @@ class Admin extends CI_Controller
 
         if ($role_id != 1) {
             $this->session->set_flashdata('error', 'Access Denied: You do not have permission to access this page.');
-            redirect('admin/dashboard');
+            redirect('admin/profile');
         }
         $data['username'] = $this->session->userdata('username');
         $data['role_id'] = $this->session->userdata('role_id');
@@ -724,7 +912,7 @@ class Admin extends CI_Controller
 
         if ($role_id != 1) {
             $this->session->set_flashdata('error', 'Access Denied: You do not have permission to access this page.');
-            redirect('admin/dashboard');
+            redirect('admin/profile');
         }
         $data['username'] = $this->session->userdata('username');
         $data['role_id'] = $this->session->userdata('role_id');
@@ -746,7 +934,7 @@ class Admin extends CI_Controller
 
         if ($role_id != 1) {
             $this->session->set_flashdata('error', 'Access Denied: You do not have permission to access this page.');
-            redirect('admin/dashboard');
+            redirect('admin/profile');
         }
         $data['username'] = $this->session->userdata('username');
         $data['role_id'] = $this->session->userdata('role_id');
@@ -768,7 +956,7 @@ class Admin extends CI_Controller
 
         if ($role_id != 1) {
             $this->session->set_flashdata('error', 'Access Denied: You do not have permission to access this page.');
-            redirect('admin/dashboard');
+            redirect('admin/profile');
         }
         $roleId = $this->input->post('roleId');
         $roleName = $this->input->post('roleName');
@@ -795,7 +983,7 @@ class Admin extends CI_Controller
 
         if ($role_id != 1) {
             $this->session->set_flashdata('error', 'Access Denied: You do not have permission to access this page.');
-            redirect('admin/dashboard');
+            redirect('admin/profile');
         }
         $role = $this->admin->getRoleById($roleId);
         echo json_encode($role);
@@ -807,7 +995,7 @@ class Admin extends CI_Controller
 
         if ($role_id != 1) {
             $this->session->set_flashdata('error', 'Access Denied: You do not have permission to access this page.');
-            redirect('admin/dashboard');
+            redirect('admin/profile');
         }
         $roleId = $this->input->post('roleId');
         $roleName = $this->input->post('roleName');
@@ -834,7 +1022,7 @@ class Admin extends CI_Controller
 
         if ($role_id != 1) {
             $this->session->set_flashdata('error', 'Access Denied: You do not have permission to access this page.');
-            redirect('admin/dashboard');
+            redirect('admin/profile');
         }
         if ($this->admin->deleteRole($roleId)) {
             $this->session->set_flashdata('success', 'Role successfully deleted.');
@@ -852,7 +1040,7 @@ class Admin extends CI_Controller
 
         if ($role_id != 1) {
             $this->session->set_flashdata('error', 'Access Denied: You do not have permission to access this page.');
-            redirect('admin/dashboard');
+            redirect('admin/profile');
         }
         $data['username'] = $this->session->userdata('username');
         $data['role_id'] = $this->session->userdata('role_id');
@@ -876,7 +1064,7 @@ class Admin extends CI_Controller
 
         if ($role_id != 1) {
             $this->session->set_flashdata('error', 'Access Denied: You do not have permission to access this page.');
-            redirect('admin/dashboard');
+            redirect('admin/profile');
         }
         $this->load->helper(array('form', 'url'));
 
@@ -915,7 +1103,7 @@ class Admin extends CI_Controller
 
         if ($role_id != 1) {
             $this->session->set_flashdata('error', 'Access Denied: You do not have permission to access this page.');
-            redirect('admin/dashboard');
+            redirect('admin/profile');
         }
         $account_id = $this->input->get('id');
         $account = $this->admin->get_account_by_id($account_id);
@@ -928,7 +1116,7 @@ class Admin extends CI_Controller
 
         if ($role_id != 1) {
             $this->session->set_flashdata('error', 'Access Denied: You do not have permission to access this page.');
-            redirect('admin/dashboard');
+            redirect('admin/profile');
         }
         $account_id = $this->input->post('account_id');
         $username = $this->input->post('username');
@@ -965,7 +1153,7 @@ class Admin extends CI_Controller
 
         if ($role_id != 1) {
             $this->session->set_flashdata('error', 'Access Denied: You do not have permission to access this page.');
-            redirect('admin/dashboard');
+            redirect('admin/profile');
         }
         $account_id = $this->input->post('account_id');
         $new_password = $this->input->post('new_password');
@@ -993,7 +1181,7 @@ class Admin extends CI_Controller
 
         if ($role_id != 1) {
             $this->session->set_flashdata('error', 'Access Denied: You do not have permission to access this page.');
-            redirect('admin/dashboard');
+            redirect('admin/profile');
         }
         $this->admin->delete_orders_by_user($id);
 

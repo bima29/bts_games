@@ -16,6 +16,8 @@ class Home extends CI_Controller
     {
         $data['games'] = $this->homes->get_all_games();
         $data['categories'] = $this->homes->get_all_categories();
+        $data['banners'] = $this->homes->get_all_banners();
+
 
         $this->load->view('Partials/header', $data);
         $this->load->view('Partials/navigasi');
