@@ -271,4 +271,10 @@ class Admin_model extends CI_Model
         $this->db->where('id', $id);
         return $this->db->delete('price_list');
     }
+    public function get_price_list_by_code($product_code)
+    {
+        $this->db->like('product_code', $product_code);  
+        $query = $this->db->get('price_list');
+        return $query->result();
+    }
 }

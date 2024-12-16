@@ -37,13 +37,14 @@
                     <p class="text-center text-dark font-weight-bold mb-0" style="font-size: 1.2rem;">
                         Silahkan masukkan kode produk untuk melihat harga.
                     </p>
-                    <form action="#" method="POST" class="mt-3">
+                    <form action="<?= base_url('admin/price_list') ?>" method="POST" class="mt-3">
                         <div class="form-group">
                             <label for="product_code">Kode Produk:</label>
-                            <input type="text" class="form-control" id="product_code" name="product_code" placeholder="Masukkan kode produk" required>
+                            <input type="text" class="form-control" id="product_code" name="product_code" placeholder="Masukkan kode produk">
                         </div>
-                        <button type="submit" class="btn btn-primary w-100" id="searchButton">Cari Harga</button>
+                        <button type="submit" class="btn btn-primary w-100">Cari Harga</button>
                     </form>
+
                 </div>
             </div>
 
