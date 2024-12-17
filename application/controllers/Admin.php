@@ -1240,7 +1240,7 @@ class Admin extends CI_Controller
         <a href="' . base_url('admin/profile') . '" class="btn btn-primary">Kembali ke Profil</a>';
             exit;
         }
-        $data = array('password' => password_hash($new_password, PASSWORD_DEFAULT));
+        $data = array('password' => sha1($new_password));
         $this->admin->update_password($user_id, $data);
 
         $this->session->set_flashdata('success', 'Password berhasil diupdate');
