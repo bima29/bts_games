@@ -17,7 +17,7 @@
         <div class="row mt-4 mb-4">
             <?php foreach ($games as $game): ?>
                 <div class="col-6 col-md-3 mb-3">
-                    <a href="<?= base_url('Home/Checkout1'); ?>" class="text-decoration-none">
+                    <a href="<?= base_url('Home/Checkout1/' . $game->id); ?>" class="text-decoration-none">
                         <div class="card align-items-center justify-content-center bg-color-blur-black-5">
                             <img src="<?= base_url('assets/game_images/' . $game->image); ?>" class="card-img-top gameImage" alt="Game Image">
                             <div class="card-body text-center">

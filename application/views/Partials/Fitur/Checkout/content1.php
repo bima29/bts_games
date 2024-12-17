@@ -21,14 +21,21 @@
                         <i class="fa-solid fa-magnifying-glass fa-lg search-icon white"></i>
                     </small>
                 </div>
-                <div class="componen-header-icon-bg rounded">
-                    <small class="me-3 text-white-50">
-                        <a href="<?= base_url('auth'); ?>" class="text-center">
-                            <i class="fa-solid fa-right-to-bracket fa-lg white"></i>
+                <?php if ($this->session->userdata('user_id')): ?>
+                    <!-- Display profile picture and menu when logged in -->
+                    <div class="dropdown">
+                        <a href="#" class="d-flex align-items-center text-white" id="profileMenu" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="<?= base_url('assets/universal/img/' . $this->session->userdata('profile_picture')) ?>" alt="Profile" class="rounded-circle border border-white profile-img" width="40" height="40" style="object-fit: cover;">
                         </a>
-                    </small>
-                </div>
-                <a class="text-decoration-none text-white" href="<?= base_url('auth'); ?>">Masuk/Daftar</a>
+                        <ul class="dropdown-menu" aria-labelledby="profileMenu">
+                            <li><a class="dropdown-item" href="#">My Profile</a></li>
+                            <li><a class="dropdown-item" href="<?= base_url('home/logout'); ?>">Log Out</a></li>
+                        </ul>
+                    </div>
+                <?php else: ?>
+                    <!-- Show login link when not logged in -->
+                    <a class="text-decoration-none text-white" href="<?= base_url('auth'); ?>">Masuk/Daftar</a>
+                <?php endif; ?>
             </div>
         </div>
     </div>
@@ -38,64 +45,46 @@
     <div class="row mt-4 mb-4 justify-content-center align-items-center">
         <div class="col-md-10 d-flex mt-4">
             <div class="checkout-container">
-                <a href="<?= base_url('Home/index'); ?>">
+                <a href="javascript:history.back()">
                     <i class="fa-solid fa-arrow-left mb-4 black"></i>
                 </a>
+
                 <div class="game-info mb-4">
-                    <img src="https://static-src.vocagame.com/gamestoreindonesia/banner%20wp-abe2-original.webp" alt="Mobile Legends Banner">
-                    <h4>Mobile Legends: Bang Bang</h4>
-                    <p>
-                        Nikmati pengalaman bermain Mobile Legends dengan diamond yang tersedia.
-                        Pilih jumlah diamond yang sesuai dengan kebutuhan Anda.
-                    </p>
+                    <img src="<?= base_url('assets/game_images/' . $game->image); ?>" alt="<?= $game->game_name; ?>">
+                    <h4><?= $game->game_name; ?></h4>
+                    <p><?= $game->description; ?></p>
                     <hr>
                     <h2 class="mt-5">Pilih Nominal Top Up</h2>
                     <div class="mb-4">
                         <div class="d-flex flex-wrap gap-2 justify-content-center mb-3">
-                            <button class="btn btn-outline-dark rounded-pill py-2 px-4 fs-6">Diamond</button>
-                            <button class="btn btn-outline-dark rounded-pill py-2 px-4 fs-6">Weekly Diamond Pass</button>
-                            <button class="btn btn-outline-dark rounded-pill py-2 px-4 fs-6">Twilight Pass</button>
+                            <?php
+                            $displayed_units = [];
+                            foreach ($units as $unit):
+                                if (!in_array($unit->unit, $displayed_units)):
+                                    $displayed_units[] = $unit->unit;
+                            ?>
+                                    <button class="btn btn-outline-dark rounded-pill py-2 px-4 fs-6"><?= $unit->unit; ?></button>
+                            <?php
+                                endif;
+                            endforeach;
+                            ?>
                         </div>
+
+
+
                         <div class="denomination-wrapper">
                             <div class="denomination-option">
-                                <a class="text-decoration-none" href="<?= base_url('Home/Checkout2'); ?>">
-                                    <div class="denomination-card align-items-center justify-content-center">
-                                        <div class="text-primary fw-bold fs-4">Rp. 15.000</div>
-                                        <span class="fs-6">50 Diamonds</span>
-                                    </div>
-                                </a>
-                                <a class="text-decoration-none" href="<?= base_url('Home/Checkout2'); ?>">
-                                    <div class="denomination-card align-items-center justify-content-center">
-                                        <div class="text-primary fw-bold fs-4">Rp. 15.000</div>
-                                        <span class="fs-6">50 Diamonds</span>
-                                    </div>
-                                </a>
-                                <a class="text-decoration-none" href="<?= base_url('Home/Checkout2'); ?>">
-                                    <div class="denomination-card align-items-center justify-content-center">
-                                        <div class="text-primary fw-bold fs-4">Rp. 15.000</div>
-                                        <span class="fs-6">50 Diamonds</span>
-                                    </div>
-                                </a>
-                                <a class="text-decoration-none" href="<?= base_url('Home/Checkout2'); ?>">
-                                    <div class="denomination-card align-items-center justify-content-center">
-                                        <div class="text-primary fw-bold fs-4">Rp. 15.000</div>
-                                        <span class="fs-6">50 Diamonds</span>
-                                    </div>
-                                </a>
-                                <a class="text-decoration-none" href="<?= base_url('Home/Checkout2'); ?>">
-                                    <div class="denomination-card align-items-center justify-content-center">
-                                        <div class="text-primary fw-bold fs-4">Rp. 15.000</div>
-                                        <span class="fs-6">50 Diamonds</span>
-                                    </div>
-                                </a>
-                                <a class="text-decoration-none" href="<?= base_url('Home/Checkout2'); ?>">
-                                    <div class="denomination-card align-items-center justify-content-center">
-                                        <div class="text-primary fw-bold fs-4">Rp. 15.000</div>
-                                        <span class="fs-6">50 Diamonds</span>
-                                    </div>
-                                </a>
+                                <?php foreach ($price_list as $price): ?>
+                                    <a class="text-decoration-none" href="<?= base_url('Home/Checkout2/' . $price->id); ?>">
+                                        <div class="denomination-card align-items-center justify-content-center">
+                                            <div class="text-primary fw-bold fs-4">Rp. <?= number_format($price->price); ?></div>
+                                            <span class="fs-6"><?= $price->nominal; ?> <?= $price->unit; ?></span>
+                                        </div>
+                                    </a>
+                                <?php endforeach; ?>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>

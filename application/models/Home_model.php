@@ -19,7 +19,16 @@ class Home_model extends CI_Model
     }
     public function get_all_banners()
     {
-        $query = $this->db->get('banners');  
-        return $query->result();  
+        $query = $this->db->get('banners');
+        return $query->result();
+    }
+    public function get_game_by_id($id)
+    {
+        return $this->db->get_where('games', ['id' => $id])->row();
+    }
+
+    public function get_price_list_by_game_name($game_name)
+    {
+        return $this->db->get_where('price_list', ['product_name' => $game_name])->result();
     }
 }
