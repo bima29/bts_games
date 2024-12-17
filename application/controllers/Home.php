@@ -48,7 +48,7 @@ class Home extends CI_Controller
     {
         $this->load->view('Partials/header');
         $this->load->view('Partials/navigasi');
-        $this->load->view('Partials/Price_list/content');
+        $this->load->view('Partials/Price_List/content');
         $this->load->view('Partials/footer');
     }
     public function review()
