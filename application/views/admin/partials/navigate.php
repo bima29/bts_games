@@ -40,13 +40,6 @@
                         </a>
                     </li>
 
-                    <li class="nav-item">
-                        <a href="<?= base_url('admin/live_chat') ?>" class="nav-link <?= (uri_string() == 'admin/live_chat') ? 'active' : '' ?>">
-                            <i class="nav-icon fas fa-comment-dots"></i>
-                            <p>Live Chat</p>
-                        </a>
-                    </li>
-
                     <li class="nav-item has-treeview <?= (strpos(uri_string(), 'admin/game_categories') !== false || strpos(uri_string(), 'admin/edit_game_categories') !== false || strpos(uri_string(), 'admin/detail_game_categories') !== false || strpos(uri_string(), 'admin/game_list') !== false || strpos(uri_string(), 'admin/edit_game_list') !== false || strpos(uri_string(), 'admin/detail_game_list') !== false) ? 'menu-open' : '' ?>">
                         <a href="#" class="nav-link <?= (strpos(uri_string(), 'admin/game_categories') !== false || strpos(uri_string(), 'admin/edit_game_categories') !== false || strpos(uri_string(), 'admin/detail_game_categories') !== false || strpos(uri_string(), 'admin/game_list') !== false || strpos(uri_string(), 'admin/edit_game_list') !== false || strpos(uri_string(), 'admin/detail_game_list') !== false) ? 'active' : '' ?>">
                             <i class="nav-icon fas fa-gamepad"></i>

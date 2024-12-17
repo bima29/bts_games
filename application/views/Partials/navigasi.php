@@ -19,9 +19,6 @@
                     <li class="nav-item navbar-hover rounded me-2 <?= (uri_string() == 'Home/track') ? 'active' : ''; ?>">
                         <a class="nav-link" aria-current="page" href="<?= base_url('Home/track'); ?>"><i class="fas fa-truck me-2"></i>Lacak Pesanan</a>
                     </li>
-                    <li class="nav-item navbar-hover rounded me-2 <?= (uri_string() == 'Home/Live') ? 'active' : ''; ?>">
-                        <a class="nav-link" aria-current="page" href="<?= base_url('Home/Live'); ?>"><i class="fa-solid fa-headset me-2"></i>LiveChat</a>
-                    </li>
                 <?php endif; ?>
 
                 <li class="nav-item navbar-hover rounded me-2 <?= (uri_string() == 'Home/price') ? 'active' : ''; ?>">

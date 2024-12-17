@@ -275,27 +275,6 @@ class Admin extends CI_Controller
     }
     // Price List End
 
-    // Live Chat Start
-    public function live_chat()
-    {
-        $role_id = $this->session->userdata('role_id');
-
-        if ($role_id != 1 && $role_id != 2) {
-            $this->session->set_flashdata('error', 'Access Denied: You do not have permission to access this page.');
-            redirect('admin/profile');
-        }
-
-        $data['username'] = $this->session->userdata('username');
-        $data['role_id'] = $this->session->userdata('role_id');
-        $user_id = $this->session->userdata('user_id');
-        $profil = $this->admin->get_profil($user_id);
-        $data['profil'] = $profil;
-        $this->load->view('admin/partials/header', $data);
-        $this->load->view('admin/partials/navigate');
-        $this->load->view('admin/live_chat');
-        $this->load->view('admin/partials/footer');
-    }
-    // Live Chat End
 
     // Chat Start
     public function chat()

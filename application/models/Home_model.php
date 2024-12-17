@@ -31,4 +31,5 @@ class Home_model extends CI_Model
     {
         return $this->db->get_where('price_list', ['product_name' => $game_name])->result();
     }
+
 }
