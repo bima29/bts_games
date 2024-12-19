@@ -25,8 +25,12 @@ class Auth_model extends CI_Model
 
     public function update_login_at($user_id)
     {
-        $this->db->set('login_at', 'NOW()', FALSE); // Use NOW() to set the current timestamp
+        $this->db->set('login_at', 'NOW()', FALSE);
         $this->db->where('id', $user_id);
         $this->db->update('users');
+    }
+    public function insert_user($data)
+    {
+        return $this->db->insert('users', $data);
     }
 }

@@ -14,6 +14,12 @@
                 </div>
             <?php endif; ?>
 
+            <?php if ($this->session->flashdata('message')): ?>
+                <div class="alert alert-success mt-2" role="alert">
+                    <?= $this->session->flashdata('message'); ?>
+                </div>
+            <?php endif; ?>
+
             <form action="<?= base_url('auth/prosses_login') ?>" method="POST">
                 <div class="mb-3">
                     <label for="email" class="form-label text-white">Alamat Email</label>

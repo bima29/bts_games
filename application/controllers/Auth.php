@@ -41,6 +41,75 @@ class Auth extends MY_Controller
         }
     }
 
+    public function register()
+    {
+        $telp = $this->input->post('telp');
+        $email = $this->input->post('email');
+        $fullName = $this->input->post('fullName');
+        $nickName = $this->input->post('nickName');
+        $password = $this->input->post('password');
+        $passwordVer = $this->input->post('passwordVer');
+
+        $errors = [];
+
+        if (empty($telp)) {
+            $errors['telp'] = 'No Telepon is required.';
+        }
+
+        if (empty($email)) {
+            $errors['email'] = 'Email Address is required.';
+        } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $errors['email'] = 'Invalid email format.';
+        }
+
+        if (empty($fullName)) {
+            $errors['fullName'] = 'Nama Lengkap is required.';
+        }
+
+        if (empty($nickName)) {
+            $errors['nickName'] = 'Nama Panggilan is required.';
+        }
+
+        if (empty($password)) {
+            $errors['password'] = 'Password is required.';
+        } elseif (strlen($password) < 6) {
+            $errors['password'] = 'Password must be at least 6 characters.';
+        }
+
+        if (empty($passwordVer)) {
+            $errors['passwordVer'] = 'Password Verifikasi is required.';
+        } elseif ($password !== $passwordVer) {
+            $errors['passwordVer'] = 'Passwords do not match.';
+        }
+
+        if (!empty($errors)) {
+            $this->load->view('Partials/Fitur/header');
+            $this->load->view('Partials/Fitur/Sign/content', ['errors' => $errors]);
+            $this->load->view('Partials/Fitur/footer');
+        } else {
+            $data = array(
+                'username' => $nickName,
+                'email' => $email,
+                'phone' => $telp,
+                'password' => sha1($password),
+                'full_name' => $fullName,
+                'role_id' => 3,
+                'profile_picture' => 'default.jpg',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            );
+
+            if ($this->auth_model->insert_user($data)) {
+                $this->session->set_flashdata('message', 'Registrasi berhasil! Silakan login.');
+                redirect('auth');
+            } else {
+                $this->session->set_flashdata('message', 'Registrasi gagal! Coba lagi.');
+                redirect('sign_up');
+            }
+        }
+    }
+
+
     public function prosses_login()
     {
         if ($this->session->userdata('user_id')) {
