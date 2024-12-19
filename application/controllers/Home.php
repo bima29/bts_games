@@ -230,4 +230,69 @@ class Home extends CI_Controller
         $this->session->sess_destroy();
         redirect(base_url('auth'));
     }
+
+
+    public function digiflazz()
+    {
+        $username = 'siyonaop5jdD';
+        $dev_key = 'dev-089c5890-bc7f-11ef-89b8-ab41d3b11203';
+        $endpoint = 'https://api.digiflazz.com/v1/transaction';
+        $buyer_sku_code = 'x10';
+        $customer_no = '087800001230';
+        $ref_id = 'ref' . time();
+        $sign = md5($username . $dev_key . $ref_id);
+
+        $data = array(
+            'username' => $username,
+            'buyer_sku_code' => $buyer_sku_code,
+            'customer_no' => $customer_no,
+            'ref_id' => $ref_id,
+            'testing' => true,
+            'sign' => $sign
+        );
+
+        $data_string = json_encode($data);
+
+        $ch = curl_init($endpoint);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Content-Type: application/json',
+            'Content-Length: ' . strlen($data_string)
+        ));
+
+        $response = curl_exec($ch);
+
+        if (curl_errno($ch)) {
+            echo 'Curl error: ' . curl_error($ch);
+            curl_close($ch);
+            return;
+        }
+
+        curl_close($ch);
+
+        $result = json_decode($response);
+
+        if ($result === null && json_last_error() !== JSON_ERROR_NONE) {
+            echo 'Error decoding JSON response';
+            return;
+        }
+
+        if (isset($result->data->status)) {
+            switch (strtolower($result->data->status)) {
+                case 'pending':
+                    echo 'Topup request is pending';
+                    break;
+                case 'sukses':
+                    echo 'Topup request is successful';
+                    break;
+                default:
+                    echo 'Error: ' . (isset($result->data->message) ? $result->data->message : 'Unknown error');
+                    break;
+            }
+        } else {
+            echo 'Error: Unexpected response structure or missing status';
+        }
+    }
 }
