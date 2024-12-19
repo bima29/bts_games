@@ -176,46 +176,48 @@ class Home extends CI_Controller
 
     public function SavePayment()
     {
-        $status = $this->input->get('status');
-        $user_id = $this->session->userdata('user_id');
+        // echo "<pre>";
+        // print_r($_POST);
+        // echo "</pre>";
+
+        $status = $this->input->post('status');
+        $user_id = $this->input->post('user_id');
         $game_code = $this->input->post('game_code');
         $game_name = $this->input->post('game_name');
         $topup_amount = $this->input->post('topup_amount');
         $price = $this->input->post('price');
         $buyer_name = $this->input->post('buyer_name');
+        $gameId = $this->input->post('game_id');
 
-        if (!$user_id || !$game_code) {
-            redirect(base_url('home/track'));
+        if (!$game_code || !$game_name || !$topup_amount || !$price || !$buyer_name || !$gameId) {
+            echo "Missing required fields.";
+            die;
         }
 
         $data = [
             'user_id' => $user_id,
+            'gameid' => $gameId,
             'game_code' => $game_code,
             'game_name' => $game_name,
             'topup_amount' => $topup_amount,
             'price' => $price,
+            'order_date' => date('Y-m-d H:i:s'),
             'buyer_name' => $buyer_name,
             'status' => $status,
             'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
         ];
 
-        $this->db->insert('payments', $data);
+        $this->db->insert('orders', $data);
 
         if ($status === 'success') {
-            redirect(base_url('payment/success'));
+            echo ('Success Cok');
         } elseif ($status === 'pending') {
-            redirect(base_url('payment/pending'));
+            echo ('Pending Cok');
         } else {
-            redirect(base_url('payment/failed'));
+            echo ('Gagal Cok');
         }
     }
-
-
-
-
-
-
-
 
 
 
@@ -226,38 +228,4 @@ class Home extends CI_Controller
     }
 
 
-    public function check_api()
-    {
-
-        // Create a transaction
-        $transaction_details = array(
-            'order_id' => 'order-101', // Pastikan order ID unik
-            'gross_amount' => 100000, // Jumlah pembayaran
-        );
-
-        // Create customer data
-        $customer_details = array(
-            'first_name'    => "Budi",
-            'last_name'     => "Santoso",
-            'email'         => "budi.santoso@example.com",
-            'phone'         => "+628123456789",
-        );
-
-        // Create the transaction data
-        $transaction_data = array(
-            'payment_type' => 'credit_card', // Jenis pembayaran
-            'credit_card'  => array(
-                'secure' => true, // Untuk pembayaran dengan kartu kredit
-            ),
-            'transaction_details' => $transaction_details,
-            'customer_details' => $customer_details
-        );
-
-        // Get Snap Token
-        $snap_token = Snap::getSnapToken($transaction_data);
-
-        // Load the view and pass the snap_token to it
-        $data['snap_token'] = $snap_token;
-        $this->load->view('payment_view', $data);
-    }
 }

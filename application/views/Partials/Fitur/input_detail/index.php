@@ -12,7 +12,7 @@
             <hr>
         </div>
 
-        <form method="post" action="<?= base_url('Home/ProceedToPayment'); ?>" class="mb-4">
+        <form method="post" action="<?= base_url('Home/SavePayment'); ?>" class="mb-4">
             <div class="mb-3">
                 <label for="game_code" class="form-label">Game Code</label>
                 <input type="text" class="form-control" id="game_code" name="game_code" value="<?= $game->game_code; ?>" readonly style="text-align: center;">
@@ -23,6 +23,11 @@
                 <input type="text" class="form-control" id="user_id" name="user_id" value="<?= $this->session->userdata('user_id'); ?>" readonly style="text-align: center;">
             </div>
 
+            <div class="mb-3">
+                <label for="game_id" class="form-label">Game ID</label>
+                <input type="text" class="form-control" id="game_id" name="game_id" required style="text-align: center;">
+            </div>
+
             <h4 class="mt-3">Nominal: Rp. <?= number_format($price->price); ?></h4>
             <p><?= $price->nominal . ' ' . $price->unit; ?></p>
 
@@ -30,49 +35,104 @@
             <input type="hidden" name="topup_amount" value="<?= $price->nominal . ' ' . $price->unit; ?>">
             <input type="hidden" name="price" value="<?= $price->price; ?>">
             <input type="hidden" name="buyer_name" value="<?= $user->full_name; ?>">
-
             <input type="hidden" id="snap_token" name="snap_token" value="<?= $snap_token; ?>">
+            <input type="hidden" class="form-control" id="status" name="status" value="Sukses" readonly style="text-align: center;">
 
-            <button type="button" id="pay-button" class="btn btn-primary mt-4">Bayar Sekarang</button>
+
+            <button type="button" id="pay-button" class="btn btn-primary mt-4" disabled>Bayar Sekarang</button>
         </form>
 
         <script type="text/javascript">
-            // Function to check if user_id is filled
             function togglePayButton() {
-                var userId = document.getElementById('user_id').value;
+                var gameId = document.getElementById('game_id').value;
                 var payButton = document.getElementById('pay-button');
 
-                // Enable button if user_id is filled, otherwise disable it
-                payButton.disabled = !userId;
+                payButton.disabled = !gameId;
             }
 
-            // Attach input event listener to the user_id field
-            document.getElementById('user_id').addEventListener('input', togglePayButton);
+            document.getElementById('game_id').addEventListener('input', togglePayButton);
 
-            // Trigger Midtrans Snap payment modal on button click
             document.getElementById('pay-button').onclick = function() {
                 var snapToken = document.getElementById('snap_token').value;
 
                 snap.pay(snapToken, {
                     onSuccess: function(result) {
-                        alert("Pembayaran berhasil!");
-                        window.location.href = "<?= base_url('Home/SavePayment?status=success'); ?>";
+                        submitForm('success');
                     },
                     onPending: function(result) {
-                        alert("Pembayaran tertunda!");
-                        window.location.href = "<?= base_url('Home/SavePayment?status=pending'); ?>";
+                        submitForm('pending');
                     },
                     onError: function(result) {
-                        alert("Pembayaran gagal!");
-                        window.location.href = "<?= base_url('Home/SavePayment?status=failed'); ?>";
+                        submitForm('failed');
                     }
                 });
             };
+
+            function submitForm(status) {
+                var form = document.createElement('form');
+                form.method = 'POST';
+                form.action = '<?= base_url('Home/SavePayment'); ?>';
+
+                var statusInput = document.createElement('input');
+                statusInput.type = 'hidden';
+                statusInput.name = 'status';
+                statusInput.value = status;
+                form.appendChild(statusInput);
+
+                var gameCodeInput = document.createElement('input');
+                gameCodeInput.type = 'hidden';
+                gameCodeInput.name = 'game_code';
+                gameCodeInput.value = document.getElementById('game_code').value;
+                form.appendChild(gameCodeInput);
+
+                var userIdInput = document.createElement('input');
+                userIdInput.type = 'hidden';
+                userIdInput.name = 'user_id';
+                userIdInput.value = document.getElementById('user_id').value;
+                form.appendChild(userIdInput);
+
+                var gameIdInput = document.createElement('input');
+                gameIdInput.type = 'hidden';
+                gameIdInput.name = 'game_id';
+                gameIdInput.value = document.getElementById('game_id').value;
+                form.appendChild(gameIdInput);
+
+                var gameNameInput = document.createElement('input');
+                gameNameInput.type = 'hidden';
+                gameNameInput.name = 'game_name';
+                gameNameInput.value = document.querySelector('[name="game_name"]').value;
+                form.appendChild(gameNameInput);
+
+                var topupAmountInput = document.createElement('input');
+                topupAmountInput.type = 'hidden';
+                topupAmountInput.name = 'topup_amount';
+                topupAmountInput.value = document.querySelector('[name="topup_amount"]').value;
+                form.appendChild(topupAmountInput);
+
+                var priceInput = document.createElement('input');
+                priceInput.type = 'hidden';
+                priceInput.name = 'price';
+                priceInput.value = document.querySelector('[name="price"]').value;
+                form.appendChild(priceInput);
+
+                var buyerNameInput = document.createElement('input');
+                buyerNameInput.type = 'hidden';
+                buyerNameInput.name = 'buyer_name';
+                buyerNameInput.value = document.querySelector('[name="buyer_name"]').value;
+                form.appendChild(buyerNameInput);
+
+                var snapTokenInput = document.createElement('input');
+                snapTokenInput.type = 'hidden';
+                snapTokenInput.name = 'snap_token';
+                snapTokenInput.value = document.querySelector('[name="snap_token"]').value;
+                form.appendChild(snapTokenInput);
+
+                document.body.appendChild(form);
+                form.submit();
+            }
         </script>
 
         <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="YOUR_CLIENT_KEY"></script>
-
-
 
     </div>
 </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 17 Des 2024 pada 09.48
+-- Waktu pembuatan: 19 Des 2024 pada 12.27
 -- Versi server: 10.4.21-MariaDB
 -- Versi PHP: 7.4.25
 
@@ -100,14 +100,25 @@ INSERT INTO `game_categories` (`id`, `nama_kategori`, `deskripsi`, `jenis`) VALU
 CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
+  `gameid` varchar(50) NOT NULL,
+  `game_code` varchar(50) NOT NULL,
   `game_name` varchar(100) NOT NULL,
   `topup_amount` int(11) NOT NULL,
   `price` decimal(10,2) NOT NULL,
   `order_date` date NOT NULL,
   `buyer_name` varchar(100) NOT NULL,
+  `status` varchar(50) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `orders`
+--
+
+INSERT INTO `orders` (`id`, `user_id`, `gameid`, `game_code`, `game_name`, `topup_amount`, `price`, `order_date`, `buyer_name`, `status`, `created_at`, `updated_at`) VALUES
+(5, 1, 'awdwad', 'GC1500', 'Game C', 1000, '25000.00', '2024-12-19', 'Renaldi Gionanda yulian', 'success', '2024-12-19 05:15:30', '2024-12-19 05:15:30'),
+(6, 1, 'awdawdwa', 'GC1500', 'Game C', 1000, '25000.00', '2024-12-19', 'Renaldi Gionanda yulian', 'success', '2024-12-19 05:20:24', '2024-12-19 05:20:24');
 
 -- --------------------------------------------------------
 
@@ -133,7 +144,9 @@ CREATE TABLE `price_list` (
 INSERT INTO `price_list` (`id`, `product_name`, `product_code`, `price`, `nominal`, `unit`, `game_category`, `game_type`) VALUES
 (1, 'Game A', 'GA1200', '50000.00', 1200, 'Diamond', 'Action', 'PC'),
 (2, 'Game B', 'GB1200', '100000.00', 1200, 'Cash', 'Adventure', 'Mobile'),
-(4, 'Game C', 'GD1000', '25000.00', 1000, 'Diamond', 'RPG', 'Mobile');
+(4, 'Game C', 'GD1000', '25000.00', 1000, 'Diamond', 'RPG', 'Mobile'),
+(8, 'Game A', 'awd', '99999999.99', 13213, 'Diamond', 'Action', 'PC'),
+(9, 'Game A', 'Aspir', '14321215.00', 213213, 'Diamond', 'Action', 'PC');
 
 -- --------------------------------------------------------
 
@@ -184,7 +197,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `phone`, `password`, `full_name`, `profile_picture`, `role_id`, `created_at`, `updated_at`, `login_at`) VALUES
-(1, 'renaldi', 'renaldi123@gmail.com', '0863787837', '10c248a4d6e01b5ebaef47ac64bd822593e194cc', 'Renaldi Gionanda yulian', 'download.jpeg', 1, '2024-12-12 19:05:53', '2024-12-17 08:48:12', '2024-12-17 08:48:12'),
+(1, 'renaldi', 'renaldi123@gmail.com', '0863787837', '10c248a4d6e01b5ebaef47ac64bd822593e194cc', 'Renaldi Gionanda yulian', 'download.jpeg', 1, '2024-12-12 19:05:53', '2024-12-19 10:34:15', '2024-12-19 10:34:15'),
 (8, 'user', 'user@user.com', '009808098', '12dea96fec20593566ab75692c9949596833adc9', 'User', 'default.jpg', 3, '2024-12-16 14:25:20', '2024-12-17 07:04:59', '2024-12-17 07:04:59');
 
 --
@@ -260,13 +273,13 @@ ALTER TABLE `game_categories`
 -- AUTO_INCREMENT untuk tabel `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `price_list`
 --
 ALTER TABLE `price_list`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT untuk tabel `roles`
