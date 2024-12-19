@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 19 Des 2024 pada 12.27
+-- Waktu pembuatan: 19 Des 2024 pada 17.24
 -- Versi server: 10.4.21-MariaDB
 -- Versi PHP: 7.4.25
 
@@ -117,8 +117,31 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `user_id`, `gameid`, `game_code`, `game_name`, `topup_amount`, `price`, `order_date`, `buyer_name`, `status`, `created_at`, `updated_at`) VALUES
-(5, 1, 'awdwad', 'GC1500', 'Game C', 1000, '25000.00', '2024-12-19', 'Renaldi Gionanda yulian', 'success', '2024-12-19 05:15:30', '2024-12-19 05:15:30'),
-(6, 1, 'awdawdwa', 'GC1500', 'Game C', 1000, '25000.00', '2024-12-19', 'Renaldi Gionanda yulian', 'success', '2024-12-19 05:20:24', '2024-12-19 05:20:24');
+(5, 1, 'awdwad', 'GC1500', 'Game C', 1000, '25000.00', '2024-12-19', 'Renaldi Gionanda yulian', 'success', '2024-12-19 05:15:30', '2024-12-19 05:15:30');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `payment_gateway_config`
+--
+
+CREATE TABLE `payment_gateway_config` (
+  `id` int(11) NOT NULL,
+  `server_key` varchar(255) NOT NULL,
+  `client_key` varchar(255) NOT NULL,
+  `is_production` tinyint(1) NOT NULL,
+  `is_sanitized` tinyint(1) NOT NULL,
+  `is_3ds` tinyint(1) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `payment_gateway_config`
+--
+
+INSERT INTO `payment_gateway_config` (`id`, `server_key`, `client_key`, `is_production`, `is_sanitized`, `is_3ds`, `created_at`, `updated_at`) VALUES
+(1, 'SB-Mid-server-UwQkzOMxRx1D3PszIowaiO88', 'SB-Mid-client-Mb-zeSXdlNJ6hKQJ', 0, 1, 1, '2024-12-19 14:54:07', '2024-12-19 09:05:19');
 
 -- --------------------------------------------------------
 
@@ -197,7 +220,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `phone`, `password`, `full_name`, `profile_picture`, `role_id`, `created_at`, `updated_at`, `login_at`) VALUES
-(1, 'renaldi', 'renaldi123@gmail.com', '0863787837', '10c248a4d6e01b5ebaef47ac64bd822593e194cc', 'Renaldi Gionanda yulian', 'download.jpeg', 1, '2024-12-12 19:05:53', '2024-12-19 10:34:15', '2024-12-19 10:34:15'),
+(1, 'renaldi', 'renaldi123@gmail.com', '0863787837', '10c248a4d6e01b5ebaef47ac64bd822593e194cc', 'Renaldi Gionanda yulian', 'download.jpeg', 1, '2024-12-12 19:05:53', '2024-12-19 14:46:10', '2024-12-19 14:46:10'),
 (8, 'user', 'user@user.com', '009808098', '12dea96fec20593566ab75692c9949596833adc9', 'User', 'default.jpg', 3, '2024-12-16 14:25:20', '2024-12-17 07:04:59', '2024-12-17 07:04:59');
 
 --
@@ -228,6 +251,12 @@ ALTER TABLE `game_categories`
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`);
+
+--
+-- Indeks untuk tabel `payment_gateway_config`
+--
+ALTER TABLE `payment_gateway_config`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indeks untuk tabel `price_list`
@@ -276,6 +305,12 @@ ALTER TABLE `orders`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT untuk tabel `payment_gateway_config`
+--
+ALTER TABLE `payment_gateway_config`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT untuk tabel `price_list`
 --
 ALTER TABLE `price_list`
@@ -291,7 +326,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
