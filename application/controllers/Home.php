@@ -166,6 +166,7 @@ class Home extends CI_Controller
             'game' => $game,
             'price_id' => $price_id,
             'snap_token' => $snap_token,
+            'user' => $user,
         ];
 
         $this->load->view('Partials/Fitur/header', $data);
@@ -173,52 +174,41 @@ class Home extends CI_Controller
         $this->load->view('Partials/Fitur/footer');
     }
 
-    public function ProceedToPayment()
-{
-    $game_code = $this->input->post('game_code');
-    $user_id = $this->input->post('user_id');
-    $game_name = $this->input->post('game_name');
-    $topup_amount = $this->input->post('topup_amount');
-    $price = $this->input->post('price');
-    $buyer_name = $this->input->post('buyer_name');
-    $status = "pending"; // Default status
+    public function SavePayment()
+    {
+        $status = $this->input->get('status');
+        $user_id = $this->session->userdata('user_id');
+        $game_code = $this->input->post('game_code');
+        $game_name = $this->input->post('game_name');
+        $topup_amount = $this->input->post('topup_amount');
+        $price = $this->input->post('price');
+        $buyer_name = $this->input->post('buyer_name');
 
-    $order_data = [
-        'user_id' => $user_id,
-        'gameid' => $game_code,
-        'game_code' => $game_code,
-        'game_name' => $game_name,
-        'topup_amount' => $topup_amount,
-        'price' => $price,
-        'order_date' => date('Y-m-d H:i:s'),
-        'buyer_name' => $buyer_name,
-        'status' => $status,
-        'created_at' => date('Y-m-d H:i:s'),
-        'updated_at' => date('Y-m-d H:i:s'),
-    ];
+        if (!$user_id || !$game_code) {
+            redirect(base_url('home/track'));
+        }
 
-    $this->db->insert('orders', $order_data);
+        $data = [
+            'user_id' => $user_id,
+            'game_code' => $game_code,
+            'game_name' => $game_name,
+            'topup_amount' => $topup_amount,
+            'price' => $price,
+            'buyer_name' => $buyer_name,
+            'status' => $status,
+            'created_at' => date('Y-m-d H:i:s'),
+        ];
 
-    // Simulasi hasil pembayaran (bisa diganti sesuai logika internal)
-    $status = "success"; // Set 'success', 'failed', atau 'pending' sesuai hasil logika
+        $this->db->insert('payments', $data);
 
-    $this->db->where('id', $this->db->insert_id());
-    $this->db->update('orders', [
-        'status' => $status,
-        'updated_at' => date('Y-m-d H:i:s'),
-    ]);
-
-    if ($status === "success") {
-        $this->session->set_flashdata('success', 'Pembayaran berhasil!');
-    } elseif ($status === "pending") {
-        $this->session->set_flashdata('info', 'Pembayaran tertunda.');
-    } else {
-        $this->session->set_flashdata('error', 'Pembayaran gagal.');
+        if ($status === 'success') {
+            redirect(base_url('payment/success'));
+        } elseif ($status === 'pending') {
+            redirect(base_url('payment/pending'));
+        } else {
+            redirect(base_url('payment/failed'));
+        }
     }
-
-    redirect(base_url('Home'));
-}
-
 
 
 

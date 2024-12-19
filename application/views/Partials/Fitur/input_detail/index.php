@@ -14,23 +14,26 @@
 
         <form method="post" action="<?= base_url('Home/ProceedToPayment'); ?>" class="mb-4">
             <div class="mb-3">
-                <label for="game_id" class="form-label">Game Code</label>
+                <label for="game_code" class="form-label">Game Code</label>
                 <input type="text" class="form-control" id="game_code" name="game_code" value="<?= $game->game_code; ?>" readonly style="text-align: center;">
             </div>
 
             <div class="mb-3">
                 <label for="user_id" class="form-label">User ID</label>
-                <input type="text" class="form-control" id="user_id" name="user_id" placeholder="Masukkan User ID Anda" required style="text-align: center;">
+                <input type="text" class="form-control" id="user_id" name="user_id" value="<?= $this->session->userdata('user_id'); ?>" readonly style="text-align: center;">
             </div>
 
             <h4 class="mt-3">Nominal: Rp. <?= number_format($price->price); ?></h4>
             <p><?= $price->nominal . ' ' . $price->unit; ?></p>
 
-            <!-- Hidden input for snap_token -->
+            <input type="hidden" name="game_name" value="<?= $price->product_name; ?>">
+            <input type="hidden" name="topup_amount" value="<?= $price->nominal . ' ' . $price->unit; ?>">
+            <input type="hidden" name="price" value="<?= $price->price; ?>">
+            <input type="hidden" name="buyer_name" value="<?= $user->full_name; ?>">
+
             <input type="hidden" id="snap_token" name="snap_token" value="<?= $snap_token; ?>">
 
-            <!-- Payment button (initially disabled) -->
-            <button type="button" id="pay-button" class="btn btn-primary mt-4" disabled>Bayar Sekarang</button>
+            <button type="button" id="pay-button" class="btn btn-primary mt-4">Bayar Sekarang</button>
         </form>
 
         <script type="text/javascript">
@@ -53,18 +56,15 @@
                 snap.pay(snapToken, {
                     onSuccess: function(result) {
                         alert("Pembayaran berhasil!");
-                        console.log(result);
-
-                        // Redirect to success page or trigger callback
-                        window.location.href = "<?= base_url('payment/callback'); ?>";
+                        window.location.href = "<?= base_url('Home/SavePayment?status=success'); ?>";
                     },
                     onPending: function(result) {
                         alert("Pembayaran tertunda!");
-                        console.log(result);
+                        window.location.href = "<?= base_url('Home/SavePayment?status=pending'); ?>";
                     },
                     onError: function(result) {
                         alert("Pembayaran gagal!");
-                        console.log(result);
+                        window.location.href = "<?= base_url('Home/SavePayment?status=failed'); ?>";
                     }
                 });
             };
