@@ -19,9 +19,6 @@
         <div class="container-fluid">
             <div class="row bg-white p-4 rounded shadow-sm">
                 <div class="col-12">
-                    <div class="d-flex justify-content-between mb-3">
-                        <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#addApiModal">Tambah API</button>
-                    </div>
                     <div class="table-responsive">
                         <table id="apiTable" class="table table-bordered table-striped table-hover">
                             <thead class="thead-light">
@@ -30,31 +27,31 @@
                                     <th>Nama API</th>
                                     <th>Client Key</th>
                                     <th>Server Key</th>
+                                    <th>Is Production</th>
+                                    <th>Is Sanitized</th>
+                                    <th>Is 3DS</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Duitku Sandbox</td>
-                                    <td>12345-CLIENT-KEY</td>
-                                    <td>67890-SERVER-KEY</td>
-                                    <td>
-                                    <a href="<?=base_url('admin/edit_payment_gateway')?>" class="btn btn-warning btn-sm">Edit</a>
-                                    <a href="#" class="btn btn-danger btn-sm" onclick="deleteContent()">Delete</a>                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Duitku Production</td>
-                                    <td>ABCDE-CLIENT-KEY</td>
-                                    <td>FGHIJ-SERVER-KEY</td>
-                                    <td>
-                                        <a href="#" class="btn btn-warning btn-sm">Edit</a>
-                                        <a href="#" class="btn btn-danger btn-sm">Hapus</a>
-                                    </td>
-                                </tr>
+                                <?php foreach ($payment_gateways as $gateway): ?>
+                                    <tr>
+                                        <td><?= $gateway->id ?></td>
+                                        <td><?= $gateway->is_production ? 'Production' : 'Sandbox' ?></td>
+                                        <td><?= $gateway->client_key ?></td>
+                                        <td><?= $gateway->server_key ?></td>
+                                        <td><?= $gateway->is_production ? 'Yes' : 'No' ?></td>
+                                        <td><?= $gateway->is_sanitized ? 'Yes' : 'No' ?></td>
+                                        <td><?= $gateway->is_3ds ? 'Yes' : 'No' ?></td>
+                                        <td>
+                                            <a href="<?= base_url('admin/edit_payment_gateway/' . $gateway->id) ?>" class="btn btn-warning btn-sm">Edit</a>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
                             </tbody>
                         </table>
+
+
                     </div>
                 </div>
             </div>

@@ -13,11 +13,15 @@ class Home extends CI_Controller
         parent::__construct();
         $this->load->model('Home_model', 'homes');
         require_once FCPATH . 'vendor/autoload.php';
-        Config::$serverKey = 'SB-Mid-server-UwQkzOMxRx1D3PszIowaiO88';
-        Config::$clientKey = 'SB-Mid-client-Mb-zeSXdlNJ6hKQJ';
-        Config::$isProduction = false; // Set to true in production environment
-        Config::$isSanitized = true;
-        Config::$is3ds = true;
+        $this->load->database();
+        $query = $this->db->get_where('payment_gateway_config', ['id' => 1]);
+        $config = $query->row();
+
+        Config::$serverKey = $config->server_key;
+        Config::$clientKey = $config->client_key;
+        Config::$isProduction = (bool)$config->is_production;
+        Config::$isSanitized = (bool)$config->is_sanitized;
+        Config::$is3ds = (bool)$config->is_3ds;
     }
 
     public function index()
@@ -226,6 +230,4 @@ class Home extends CI_Controller
         $this->session->sess_destroy();
         redirect(base_url('auth'));
     }
-
-
 }

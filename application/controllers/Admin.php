@@ -838,14 +838,19 @@ class Admin extends CI_Controller
         $data['username'] = $this->session->userdata('username');
         $data['role_id'] = $this->session->userdata('role_id');
         $user_id = $this->session->userdata('user_id');
-        $profil = $this->admin->get_profil($user_id);
-        $data['profil'] = $profil;
+        $data['profil'] = $this->admin->get_profil($user_id);
+
+        $this->load->database();
+        $query = $this->db->get('payment_gateway_config');
+        $data['payment_gateways'] = $query->result();
+
         $this->load->view('admin/partials/header', $data);
         $this->load->view('admin/partials/navigate');
-        $this->load->view('admin/payment_gateway');
+        $this->load->view('admin/payment_gateway', $data);
         $this->load->view('admin/partials/footer');
     }
-    public function edit_payment_gateway()
+
+    public function edit_payment_gateway($id)
     {
         $role_id = $this->session->userdata('role_id');
 
@@ -858,12 +863,33 @@ class Admin extends CI_Controller
         $user_id = $this->session->userdata('user_id');
         $profil = $this->admin->get_profil($user_id);
         $data['profil'] = $profil;
+        $query = $this->db->get_where('payment_gateway_config', ['id' => $id]);
+        $data['gateway'] = $query->row();
 
         $this->load->view('admin/partials/header', $data);
         $this->load->view('admin/partials/navigate');
         $this->load->view('admin/payment_gateway/edit');
         $this->load->view('admin/partials/footer');
     }
+
+    public function update_payment_gateway()
+    {
+        $data = [
+            'client_key' => $this->input->post('client_key'),
+            'server_key' => $this->input->post('server_key'),
+            'is_production' => $this->input->post('is_production'),
+            'is_sanitized' => $this->input->post('is_sanitized'),
+            'is_3ds' => $this->input->post('is_3ds'),
+            'updated_at' => date('Y-m-d H:i:s')
+        ];
+
+        $this->db->where('id', $this->input->post('id'));
+        $this->db->update('payment_gateway_config', $data);
+
+        $this->session->set_flashdata('success', 'Payment Gateway updated successfully.');
+        redirect('admin/payment_gateway');
+    }
+
     // Payment Gateway End
 
     // Digiflazz Start

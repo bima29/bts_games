@@ -19,25 +19,49 @@
         <div class="container-fluid">
             <div class="row bg-white p-4 rounded shadow-sm">
                 <div class="col-12">
-                    <form action="<?= base_url('admin/update_track_order'); ?>" method="post">
+                    <form action="<?= base_url('admin/update_payment_gateway') ?>" method="post">
+                        <input type="hidden" name="id" value="<?= $gateway->id ?>">
+
                         <div class="form-group">
-                            <label for="apiName">Nama API</label>
-                            <input type="text" class="form-control" id="apiName" name="apiName" required>
+                            <label for="client_key">Client Key</label>
+                            <input type="text" id="client_key" name="client_key" value="<?= $gateway->client_key ?>" class="form-control" required>
                         </div>
+
                         <div class="form-group">
-                            <label for="clientKey">Client Key</label>
-                            <input type="text" class="form-control" id="clientKey" name="clientKey" required>
+                            <label for="server_key">Server Key</label>
+                            <input type="text" id="server_key" name="server_key" value="<?= $gateway->server_key ?>" class="form-control" required>
                         </div>
+
                         <div class="form-group">
-                            <label for="serverKey">Server Key</label>
-                            <input type="text" class="form-control" id="serverKey" name="serverKey" required>
+                            <label for="is_production">Is Production</label>
+                            <select id="is_production" name="is_production" class="form-control">
+                                <option value="1" <?= $gateway->is_production ? 'selected' : '' ?>>Yes</option>
+                                <option value="0" <?= !$gateway->is_production ? 'selected' : '' ?>>No</option>
+                            </select>
                         </div>
-                        <input type="hidden" name="banner_id" value="">
-                        <div class="form-group d-flex justify-content-between">
-                            <a href="<?= base_url('admin/payment_gateway'); ?>" class="btn btn-secondary">Kembali</a>
-                            <button type="submit" class="btn btn-primary">Save changes</button>
+
+                        <div class="form-group">
+                            <label for="is_sanitized">Is Sanitized</label>
+                            <select id="is_sanitized" name="is_sanitized" class="form-control">
+                                <option value="1" <?= $gateway->is_sanitized ? 'selected' : '' ?>>Yes</option>
+                                <option value="0" <?= !$gateway->is_sanitized ? 'selected' : '' ?>>No</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="is_3ds">Is 3DS</label>
+                            <select id="is_3ds" name="is_3ds" class="form-control">
+                                <option value="1" <?= $gateway->is_3ds ? 'selected' : '' ?>>Yes</option>
+                                <option value="0" <?= !$gateway->is_3ds ? 'selected' : '' ?>>No</option>
+                            </select>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <a href="<?= base_url('admin/payment_gateway') ?>" class="btn btn-secondary">Kembali</a>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
                         </div>
                     </form>
+
                 </div>
             </div>
         </div>
