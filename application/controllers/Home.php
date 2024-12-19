@@ -2,6 +2,9 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
+use Midtrans\Config;
+use Midtrans\Snap;
+
 class Home extends CI_Controller
 {
 
@@ -9,6 +12,12 @@ class Home extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Home_model', 'homes');
+        require_once FCPATH . 'vendor/autoload.php';
+        Config::$serverKey = 'SB-Mid-server-UwQkzOMxRx1D3PszIowaiO88';
+        Config::$clientKey = 'SB-Mid-client-Mb-zeSXdlNJ6hKQJ';
+        Config::$isProduction = false; // Set to true in production environment
+        Config::$isSanitized = true;
+        Config::$is3ds = true;
     }
 
     public function index()
@@ -108,11 +117,157 @@ class Home extends CI_Controller
         $this->load->view('Partials/Fitur/footer');
     }
 
+    public function Checkout2($price_id)
+    {
+        if (!$this->session->userdata('user_id')) {
+            redirect(base_url('auth'));
+        }
+
+        $user_id = $this->session->userdata('user_id');
+        $user = $this->db->get_where('users', ['id' => $user_id])->row();
+        if (!$user) {
+            show_404();
+        }
+
+        $price = $this->db->get_where('price_list', ['id' => $price_id])->row();
+        if (!$price) {
+            show_404();
+        }
+
+        $game = $this->db->get_where('games', ['game_name' => $price->product_name])->row();
+        if (!$game) {
+            show_404();
+        }
+
+        $gross_amount = round($price->price);
+        $transaction_details = [
+            'order_id' => 'order-' . uniqid(),
+            'gross_amount' => $gross_amount,
+        ];
+
+        $customer_details = [
+            'first_name' => $user->full_name,
+            'last_name' => "",
+            'email' => $user->email,
+            'phone' => $user->phone,
+        ];
+
+        $transaction_data = [
+            'payment_type' => 'credit_card',
+            'credit_card' => ['secure' => true],
+            'transaction_details' => $transaction_details,
+            'customer_details' => $customer_details,
+        ];
+
+        $snap_token = Snap::getSnapToken($transaction_data);
+
+        $data = [
+            'price' => $price,
+            'game' => $game,
+            'price_id' => $price_id,
+            'snap_token' => $snap_token,
+        ];
+
+        $this->load->view('Partials/Fitur/header', $data);
+        $this->load->view('Partials/Fitur/input_detail/index', $data);
+        $this->load->view('Partials/Fitur/footer');
+    }
+
+    public function ProceedToPayment()
+{
+    $game_code = $this->input->post('game_code');
+    $user_id = $this->input->post('user_id');
+    $game_name = $this->input->post('game_name');
+    $topup_amount = $this->input->post('topup_amount');
+    $price = $this->input->post('price');
+    $buyer_name = $this->input->post('buyer_name');
+    $status = "pending"; // Default status
+
+    $order_data = [
+        'user_id' => $user_id,
+        'gameid' => $game_code,
+        'game_code' => $game_code,
+        'game_name' => $game_name,
+        'topup_amount' => $topup_amount,
+        'price' => $price,
+        'order_date' => date('Y-m-d H:i:s'),
+        'buyer_name' => $buyer_name,
+        'status' => $status,
+        'created_at' => date('Y-m-d H:i:s'),
+        'updated_at' => date('Y-m-d H:i:s'),
+    ];
+
+    $this->db->insert('orders', $order_data);
+
+    // Simulasi hasil pembayaran (bisa diganti sesuai logika internal)
+    $status = "success"; // Set 'success', 'failed', atau 'pending' sesuai hasil logika
+
+    $this->db->where('id', $this->db->insert_id());
+    $this->db->update('orders', [
+        'status' => $status,
+        'updated_at' => date('Y-m-d H:i:s'),
+    ]);
+
+    if ($status === "success") {
+        $this->session->set_flashdata('success', 'Pembayaran berhasil!');
+    } elseif ($status === "pending") {
+        $this->session->set_flashdata('info', 'Pembayaran tertunda.');
+    } else {
+        $this->session->set_flashdata('error', 'Pembayaran gagal.');
+    }
+
+    redirect(base_url('Home'));
+}
+
+
+
+
+
+
+
+
+
 
 
     public function logout()
     {
         $this->session->sess_destroy();
         redirect(base_url('auth'));
+    }
+
+
+    public function check_api()
+    {
+
+        // Create a transaction
+        $transaction_details = array(
+            'order_id' => 'order-101', // Pastikan order ID unik
+            'gross_amount' => 100000, // Jumlah pembayaran
+        );
+
+        // Create customer data
+        $customer_details = array(
+            'first_name'    => "Budi",
+            'last_name'     => "Santoso",
+            'email'         => "budi.santoso@example.com",
+            'phone'         => "+628123456789",
+        );
+
+        // Create the transaction data
+        $transaction_data = array(
+            'payment_type' => 'credit_card', // Jenis pembayaran
+            'credit_card'  => array(
+                'secure' => true, // Untuk pembayaran dengan kartu kredit
+            ),
+            'transaction_details' => $transaction_details,
+            'customer_details' => $customer_details
+        );
+
+        // Get Snap Token
+        $snap_token = Snap::getSnapToken($transaction_data);
+
+        // Load the view and pass the snap_token to it
+        $data['snap_token'] = $snap_token;
+        $this->load->view('payment_view', $data);
     }
 }
