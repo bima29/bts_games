@@ -8,9 +8,10 @@
 
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item navbar-hover rounded me-2 <?= (uri_string() == '' || uri_string() == '/') ? 'active' : ''; ?>">
+                <li class="nav-item navbar-hover rounded me-2 <?= (uri_string() == '' || uri_string() == '/' || uri_string() == 'Home/index') ? 'active' : ''; ?>">
                     <a class="nav-link" aria-current="page" href="<?= base_url(); ?>"><i class="fas fa-home me-2"></i>Beranda</a>
                 </li>
+
                 <li class="nav-item navbar-hover rounded me-2 <?= (uri_string() == 'Home/games') ? 'active' : ''; ?>">
                     <a class="nav-link" aria-current="page" href="<?= base_url('Home/games'); ?>"><i class="fas fa-gamepad me-2"></i>Semua Game</a>
                 </li>
@@ -31,9 +32,9 @@
                             <a href="#" class="nav-link" id="profileMenu" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fas fa-user me-2"></i><?= $this->session->userdata('username'); ?>
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="profileMenu">
-                                <li><a class="dropdown-item" href="#">My Profile</a></li>
-                                <li><a class="dropdown-item" href="<?= base_url('home/logout'); ?>">Log Out</a></li>
+                            <ul class="dropdown-menu bg-secondary" aria-labelledby="profileMenu">
+                                <li><a class="dropdown-item navbar-hover" href="#">My Profile</a></li>
+                                <li><a class="dropdown-item navbar-hover mt-2" href="<?= base_url('home/logout'); ?>">Log Out</a></li>
                             </ul>
                         </div>
                     <?php else: ?>
@@ -45,6 +46,3 @@
 
     </div>
 </nav>
-
-
-<script src="<?= base_url('assets/js/searchicon.js') ?>"></script>

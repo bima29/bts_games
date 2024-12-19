@@ -41,18 +41,7 @@
                     </i>
                 </div>
 
-                <div class="top-info d-flex">
-                    <div class="search-container">
-                        <div class="search-form rounded-pill me-3" id="searchForm">
-                            <input type="text" class="text-white" placeholder="Type to search...">
-                        </div>
-                    </div>
-                    <div class="componen-header-icon-bg rounded" id="searchIcon">
-                        <small class="me-3 text-white-50">
-                            <i class="fa-solid fa-magnifying-glass fa-lg search-icon i-color-c-white"></i>
-                        </small>
-                    </div>
-
+                <div class="top-info d-flex align-items-center">
                     <?php if ($this->session->userdata('user_id')): ?>
                         <!-- Display profile picture and menu when logged in -->
                         <div class="dropdown">

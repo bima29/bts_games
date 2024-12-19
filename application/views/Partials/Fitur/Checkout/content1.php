@@ -9,18 +9,7 @@
                     <h4 class="top-link">BTS STORE<span class="text-secondary"> INDONESIA</span></h4>
                 </i>
             </div>
-            <div class="top-info d-flex">
-
-                <div class="search-container">
-                    <div class="search-form rounded-pill me-3" id="searchForm">
-                        <input type="text" class="text-white" placeholder="Type to search...">
-                    </div>
-                </div>
-                <div class="componen-header-icon-bg rounded" id="searchIcon">
-                    <small class="me-3 text-white-50">
-                        <i class="fa-solid fa-magnifying-glass fa-lg search-icon white"></i>
-                    </small>
-                </div>
+            <div class="top-info d-flex justify-content-center align-items-center">
                 <?php if ($this->session->userdata('user_id')): ?>
                     <!-- Display profile picture and menu when logged in -->
                     <div class="dropdown">
@@ -41,72 +30,71 @@
     </div>
 </div>
 
-<div class="container-fluid d-flex mb-4 bg-color-blur-white-4">
-    <div class="row mt-4 mb-4 justify-content-center align-items-center">
-        <div class="col-md-10 d-flex mt-4">
-            <div class="checkout-container">
-                <a href="javascript:history.back()">
-                    <i class="fa-solid fa-arrow-left mb-4 black"></i>
-                </a>
+<div class="container-fluid vh-100 d-flex justify-content-center align-items-center bg-color-blur-white-4">
+    <div class="checkout-container position-relative">
+        <!-- Icon Back di dalam checkout-container kiri atas -->
+        <a href="javascript:history.back()" class="position-absolute top-0 start-0 m-3">
+            <i class="fa-solid fa-arrow-left fs-4 text-dark"></i>
+        </a>
 
-                <div class="game-info mb-4">
-                    <img src="<?= base_url('assets/game_images/' . $game->image); ?>" alt="<?= $game->game_name; ?>">
-                    <h4><?= $game->game_name; ?></h4>
-                    <p><?= $game->description; ?></p>
-                    <hr>
-                    <h2 class="mt-5">Pilih Nominal Top Up</h2>
-                    <div class="mb-4">
-                        <div class="d-flex flex-wrap gap-2 justify-content-center mb-3">
-                            <?php
-                            $displayed_units = [];
-                            foreach ($units as $unit):
-                                if (!in_array($unit->unit, $displayed_units)):
-                                    $displayed_units[] = $unit->unit;
-                            ?>
-                                    <button class="btn btn-outline-dark rounded-pill py-2 px-4 fs-6"><?= $unit->unit; ?></button>
-                            <?php
-                                endif;
-                            endforeach;
-                            ?>
-                        </div>
+        <div class="game-info mb-4">
+            <img src="<?= base_url('assets/game_images/' . $game->image); ?>" alt="<?= $game->game_name; ?>" class="img-fluid">
+            <h4 class="mt-3"><?= $game->game_name; ?></h4>
+            <p><?= $game->description; ?></p>
+            <hr>
+        </div>
 
+        <!-- Pilihan Nominal Top-Up -->
+        <h2 class="mt-4 mb-4">Pilih Nominal Top Up</h2>
+        <div class="d-flex flex-wrap gap-2 justify-content-center mb-4">
+            <?php
+            $displayed_units = [];
+            foreach ($units as $unit):
+                if (!in_array($unit->unit, $displayed_units)):
+                    $displayed_units[] = $unit->unit;
+            ?>
+                    <button class="btn btn-outline-dark rounded-pill py-2 px-4 fs-6"><?= $unit->unit; ?></button>
+            <?php
+                endif;
+            endforeach;
+            ?>
+        </div>
 
-
-                        <div class="denomination-wrapper">
-                            <div class="denomination-option">
-                                <?php foreach ($price_list as $price): ?>
-                                    <a class="text-decoration-none" href="<?= base_url('Home/Checkout2/' . $price->id); ?>">
-                                        <div class="denomination-card align-items-center justify-content-center">
-                                            <div class="text-primary fw-bold fs-4">Rp. <?= number_format($price->price); ?></div>
-                                            <span class="fs-6"><?= $price->nominal; ?> <?= $price->unit; ?></span>
-                                        </div>
-                                    </a>
-                                <?php endforeach; ?>
+        <!-- Denomination Option -->
+        <div class="denomination-wrapper">
+            <div class="row">
+                <?php foreach ($price_list as $price): ?>
+                    <div class="col-12 col-sm-6 col-md-4 mb-3">
+                        <a href="<?= base_url('Home/Checkout2/' . $price->id); ?>" class="text-decoration-none">
+                            <div class="denomination-card d-flex flex-column justify-content-center align-items-center">
+                                <div class="text-primary fw-bold fs-4">Rp. <?= number_format($price->price); ?></div>
+                                <span class="fs-6"><?= $price->nominal; ?> <?= $price->unit; ?></span>
                             </div>
-                        </div>
-
+                        </a>
                     </div>
-                </div>
+                <?php endforeach; ?>
             </div>
         </div>
+
     </div>
 </div>
 
-<div class="container-fluid footer bg-dark wow fadeIn" data-wow-delay=".3s">
+
+<div class="container-fluid footer bg-dark wow fadeIn mt-auto" data-wow-delay=".3s">
     <div class="container pt-5 pb-4">
         <div class="row g-5">
             <div class="col-lg-4 col-md-6">
                 <a href="index.html" class="text-decoration-none">
                     <h1 class="text-white fw-bold d-block text">BTS <span class="text-success">Store</span> </h1>
                 </a>
-                <p class="mt-4 text-light">Pengembang Fourta adalah sebuah perusahaan terkemuka pengembangan web ,
-                    aplikasi seluler , dan e-perdagangan elektronikKami membuat custom</p>
+                <p class="text-justify text-light">BTS Store Indonesia adalah platform top up game dan Voucher Game harga termurah, tercepat dan terpercaya di Indonesia. Topup lebih dari 100++ game online Paling Top dunia seperti PUBG, Mobile Legend, Free Fire, Honor Of King dan game lainnya.Transaksi di sistem Kami tidak harus registrasi terlebih dahulu, Anda bisa transaksi tanpa daftar dengan mudah via web.
+                    Metode pembayaran yang kami dukung mudah digunakan.</p>
                 <div class="d-flex hightech-link">
                     <a href="" class="btn-light nav-fill btn btn-square rounded-circle me-2"><i
                             class="fab fa-facebook-f text-primary"></i></a>
                     <a href="" class="btn-light nav-fill btn btn-square rounded-circle me-2"><i
                             class="fab fa-twitter text-primary"></i></a>
-                    <a href="" class="btn-light nav-fill btn btn-square rounded-circle me-2"><i
+                    <a href="https://www.instagram.com/blacktigersquad.id/profilecard/?igsh=dzBuOTY4bzFvaDJz" class="btn-light nav-fill btn btn-square rounded-circle me-2"><i
                             class="fab fa-instagram text-primary"></i></a>
                     <a href="" class="btn-light nav-fill btn btn-square rounded-circle me-0"><i
                             class="fab fa-linkedin-in text-primary"></i></a>
@@ -137,7 +125,7 @@
                             class="fas fa-phone-alt text-white me-2 text-decoration-none"></i> +62 856-0874-4330</a>
                     <hr>
                     <a href="#" class="py-3 text-light border-bottom border-dark text-decoration-none"><i
-                            class="fas fa-envelope text-white me-2"></i> info@fourtadev.com</a>
+                            class="fas fa-envelope text-white me-2"></i> btsstore46@gmail.com</a>
                     <hr>
                 </div>
             </div>

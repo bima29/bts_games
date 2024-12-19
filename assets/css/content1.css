@@ -1,4 +1,4 @@
-body,
+body, 
 html {
     margin: 0;
     padding: 0;
@@ -7,13 +7,6 @@ html {
     background-image: url("https://images3.alphacoders.com/204/204599.jpg");
     background-size: cover;
     background-position: center;
-}
-
-.checkout-container {
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .game-info img {
@@ -42,16 +35,67 @@ html {
 .denomination-wrapper {
     display: flex;
     justify-content: center;
-    background-color: #f8f9fa;
     padding: 10px;
 }
 
+/* Checkout Container */
+.checkout-container {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 40px; /* Tambahkan padding lebih besar */
+    border-radius: 12px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    width: 100%; /* Tetap responsif */
+    max-width: 1000px; /* Lebar lebih besar */
+    position: relative;
+    transition: transform 0.3s; /* Efek hover */
+}
+
+.checkout-container:hover {
+    transform: scale(1.02); /* Perbesar sedikit saat hover */
+}
+
+/* Denomination Card */
+.denomination-card {
+    background-color: #050505;
+    color: white;
+    border-radius: 10px;
+    height: 140px; /* Tambahkan tinggi card */
+    width: 250px; /* Lebarkan card */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, background-color 0.3s;
+    cursor: pointer;
+}
+
+.denomination-card:hover {
+    transform: scale(1.1); /* Perbesar saat hover */
+    background-color: #444444; /* Gelapkan background */
+}
+
+/* Denomination Option */
 .denomination-option {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    width: max-content;
+    grid-template-columns: repeat(3, 1fr); /* 3 kolom */
+    gap: 20px; /* Jarak antar card lebih besar */
 }
+
+@media (max-width: 1024px) {
+    .denomination-option {
+        grid-template-columns: repeat(2, 1fr); /* 2 kolom di tablet */
+    }
+}
+
+@media (max-width: 768px) {
+    .denomination-option {
+        grid-template-columns: repeat(1, 1fr); /* 1 kolom di perangkat kecil */
+    }
+}
+
+
 
 @media (max-width: 1024px) {
     .denomination-option {
@@ -59,39 +103,20 @@ html {
     }
 }
 
-@media (max-width: 768px) {
-    .denomination-option {
-        grid-template-columns: repeat(2, 1fr);
-    }
+.img-fluid-header {
+    width: 100%;
+    max-width: 150px;
 }
 
-@media (max-width: 480px) {
-    .denomination-option {
-        grid-template-columns: repeat(1, 1fr);
-    }
+a.position-absolute {
+    text-decoration: none; /* Hilangkan garis bawah */
+    z-index: 10; /* Pastikan berada di atas elemen lain */
 }
 
-.denomination-card {
-    background-color: #0505;
-    color: white;
-    border-radius: 8px;
-    width: 200px;
-    height: 100px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    transition:
-        transform 0.3s,
-        background-color 0.3s;
+a.position-absolute i {
+    transition: transform 0.2s ease-in-out;
 }
 
-.denomination-card:hover {
-    transform: scale(1.05);
-    background-color: #3333;
-}
-
-.img-fluid-header{
-    width: 100%; max-width: 150px;
+a.position-absolute:hover i {
+    transform: scale(1.1);
 }

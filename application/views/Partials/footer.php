@@ -5,14 +5,14 @@
                 <a href="index.html" class="text-decoration-none">
                     <h1 class="text-white fw-bold d-block text">BTS <span class="text-success">Store</span> </h1>
                 </a>
-                <p class="mt-4 text-light">Pengembang Fourta adalah sebuah perusahaan terkemuka pengembangan web ,
-                    aplikasi seluler , dan e-perdagangan elektronikKami membuat custom</p>
+                <p class="text-light text-justify">BTS Store Indonesia adalah platform top up game dan Voucher Game harga termurah, tercepat dan terpercaya di Indonesia. Topup lebih dari 100++ game online Paling Top dunia seperti PUBG, Mobile Legend, Free Fire, Honor Of King dan game lainnya.Transaksi di sistem Kami tidak harus registrasi terlebih dahulu, Anda bisa transaksi tanpa daftar dengan mudah via web. Metode pembayaran yang kami 
+                    dukung mudah digunakan.</p>
                 <div class="d-flex hightech-link">
                     <a href="" class="btn-light nav-fill btn btn-square rounded-circle me-2"><i
                             class="fab fa-facebook-f text-primary"></i></a>
                     <a href="" class="btn-light nav-fill btn btn-square rounded-circle me-2"><i
                             class="fab fa-twitter text-primary"></i></a>
-                    <a href="" class="btn-light nav-fill btn btn-square rounded-circle me-2"><i
+                    <a href="https://www.instagram.com/blacktigersquad.id/profilecard/?igsh=dzBuOTY4bzFvaDJz" class="btn-light nav-fill btn btn-square rounded-circle me-2"><i
                             class="fab fa-instagram text-primary"></i></a>
                     <a href="" class="btn-light nav-fill btn btn-square rounded-circle me-0"><i
                             class="fab fa-linkedin-in text-primary"></i></a>
@@ -43,7 +43,7 @@
                             class="fas fa-phone-alt text-white me-2 text-decoration-none"></i> +62 856-0874-4330</a>
                     <hr>
                     <a href="#" class="py-3 text-light border-bottom border-dark text-decoration-none"><i
-                            class="fas fa-envelope text-white me-2"></i> info@fourtadev.com</a>
+                            class="fas fa-envelope text-white me-2"></i> btsstore46@gmail.com</a>
                     <hr>
                 </div>
             </div>

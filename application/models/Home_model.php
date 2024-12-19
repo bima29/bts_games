@@ -32,4 +32,21 @@ class Home_model extends CI_Model
         return $this->db->get_where('price_list', ['product_name' => $game_name])->result();
     }
 
+    public function get_all_prices()
+    {
+        return $this->db->get('price_list')->result_array();
+    }
+    public function get_games_by_category($category_name)
+    {
+        $this->db->like('category', $category_name);
+        $query = $this->db->get('games');
+        return $query->result();
+    }
+
+    public function get_games_by_search($search_query)
+    {
+        $this->db->like('game_name', $search_query);
+        $query = $this->db->get('games');
+        return $query->result();
+    }
 }

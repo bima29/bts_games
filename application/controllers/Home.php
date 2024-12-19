@@ -13,10 +13,17 @@ class Home extends CI_Controller
 
     public function index()
     {
-        $data['games'] = $this->homes->get_all_games();
+        $category_name = $this->input->get('category');
+        $search_query = $this->input->get('search');
+
+        if ($category_name) {
+            $data['games'] = $this->homes->get_games_by_category($category_name);
+        } else {
+            $data['games'] = $this->homes->get_games_by_search($search_query);
+        }
+
         $data['categories'] = $this->homes->get_all_categories();
         $data['banners'] = $this->homes->get_all_banners();
-
 
         $this->load->view('Partials/header', $data);
         $this->load->view('Partials/navigasi');
@@ -24,9 +31,20 @@ class Home extends CI_Controller
         $this->load->view('Partials/Home/content');
         $this->load->view('Partials/footer');
     }
+
+
+
     public function games()
     {
-        $data['games'] = $this->homes->get_all_games();
+        $category_name = $this->input->get('category');
+        $search_query = $this->input->get('search');
+
+        if ($category_name) {
+            $data['games'] = $this->homes->get_games_by_category($category_name);
+        } else {
+            $data['games'] = $this->homes->get_games_by_search($search_query);
+        }
+
         $data['categories'] = $this->homes->get_all_categories();
 
         $this->load->view('Partials/header', $data);
@@ -34,6 +52,7 @@ class Home extends CI_Controller
         $this->load->view('Partials/All_Game/content');
         $this->load->view('Partials/footer');
     }
+
     public function track()
     {
         if (!$this->session->userdata('user_id')) {
@@ -46,11 +65,14 @@ class Home extends CI_Controller
     }
     public function price()
     {
-        $this->load->view('Partials/header');
+        $data['prices'] = $this->homes->get_all_prices();
+
+        $this->load->view('Partials/header', $data);
         $this->load->view('Partials/navigasi');
         $this->load->view('Partials/Price_List/content');
         $this->load->view('Partials/footer');
     }
+
     public function review()
     {
         $this->load->view('Partials/header');
@@ -60,31 +82,31 @@ class Home extends CI_Controller
     }
 
     public function Checkout1($id)
-{
-    if (!$this->session->userdata('user_id')) {
-        redirect(base_url('auth'));
+    {
+        if (!$this->session->userdata('user_id')) {
+            redirect(base_url('auth'));
+        }
+
+        // Ambil data game berdasarkan ID
+        $data['game'] = $this->db->get_where('games', ['id' => $id])->row();
+
+        if (!$data['game']) {
+            show_404();
+        }
+
+        // Ambil data price_list berdasarkan game_name
+        $data['price_list'] = $this->db->get_where('price_list', ['product_name' => $data['game']->game_name])->result();
+
+        // Ambil unit unik dari price_list
+        $this->db->distinct();
+        $this->db->select('unit');
+        $this->db->where('product_name', $data['game']->game_name);
+        $data['units'] = $this->db->get('price_list')->result();
+
+        $this->load->view('Partials/Fitur/header', $data);
+        $this->load->view('Partials/Fitur/Checkout/content1', $data);
+        $this->load->view('Partials/Fitur/footer');
     }
-
-    // Ambil data game berdasarkan ID
-    $data['game'] = $this->db->get_where('games', ['id' => $id])->row();
-
-    if (!$data['game']) {
-        show_404();
-    }
-
-    // Ambil data price_list berdasarkan game_name
-    $data['price_list'] = $this->db->get_where('price_list', ['product_name' => $data['game']->game_name])->result();
-
-    // Ambil unit unik dari price_list
-    $this->db->distinct();
-    $this->db->select('unit');
-    $this->db->where('product_name', $data['game']->game_name);
-    $data['units'] = $this->db->get('price_list')->result();
-
-    $this->load->view('Partials/Fitur/header', $data);
-    $this->load->view('Partials/Fitur/Checkout/content1', $data);
-    $this->load->view('Partials/Fitur/footer');
-}
 
 
 

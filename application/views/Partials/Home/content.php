@@ -9,11 +9,34 @@
     <div class="container mt-5 rounded bg-color-blur-black-4">
         <h1 class="text-white">Welcome to BTS Store Indonesia</h1>
         <p class="text-white">Your one-stop shop for all your gaming needs!</p>
-        <div class="category-buttons d-flex flex-wrap gap-2 justify-content-start mt-3">
+        <div class="mt-5 d-flex justify-content-center align-items-center">
+            <div class="container rounded p-5 w-100 bg-color-blur-black-5">
+                <form class="d-flex w-100" method="get" action="<?= base_url('Home/index'); ?>">
+                    <div class="input-group w-100">
+                        <span class="input-group-text" id="basic-addon1">
+                            <i class="fa-solid fa-magnifying-glass icon-fa-magnifying-glass"></i>
+                        </span>
+                        <input class="form-control text-white bg-color-blur-black-7 fs-p-br-input custom-input" type="text" name="search" placeholder="Cari game yang anda inginkan..."
+                            aria-label="Order Number" value="<?= isset($_GET['search']) ? $_GET['search'] : ''; ?>">
+                        <button class="btn btn-outline-success ms-0 btn-fontsize-padding" type="submit">Cari</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+        <div class="category-buttons d-flex flex-wrap gap-2 justify-content-start mt-5">
+            <a href="<?= base_url('Home/index'); ?>" class="text-decoration-none">
+                <button class="btn btn-outline-light rounded-pill py-2 px-4 fs-6">Show All</button>
+            </a>
             <?php foreach ($categories as $category): ?>
-                <button class="btn btn-outline-light rounded-pill py-2 px-4 fs-6"><?= $category->nama_kategori; ?></button>
+                <a href="<?= base_url('Home/index?category=' . $category->nama_kategori . '&search=' . (isset($_GET['search']) ? $_GET['search'] : '')); ?>" class="text-decoration-none">
+                    <button class="btn btn-outline-light rounded-pill py-2 px-4 fs-6"><?= $category->nama_kategori; ?></button>
+                </a>
             <?php endforeach; ?>
         </div>
+
+
+
         <div class="row mt-4 mb-4">
             <?php foreach ($games as $game): ?>
                 <div class="col-6 col-md-3 mb-3">
@@ -32,6 +55,7 @@
                 </div>
             <?php endforeach; ?>
         </div>
+
 
         <hr>
     </div>
