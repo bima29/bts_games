@@ -63,15 +63,19 @@ class Admin extends CI_Controller
         $user_id = $this->session->userdata('user_id');
         $profil = $this->admin->get_profil($user_id);
         $data['profil'] = $profil;
+
+        $data['orders'] = $this->admin->get_orders();
+
         $this->load->view('admin/partials/header', $data);
         $this->load->view('admin/partials/navigate');
-        $this->load->view('admin/track_order');
+        $this->load->view('admin/track_order', $data);
         $this->load->view('admin/partials/footer');
     }
 
 
 
-    public function edit_track_order()
+
+    public function edit_track_order($order_id)
     {
         $role_id = $this->session->userdata('role_id');
 
@@ -86,11 +90,54 @@ class Admin extends CI_Controller
         $profil = $this->admin->get_profil($user_id);
         $data['profil'] = $profil;
 
+        $order = $this->admin->get_order_by_id($order_id);
+        $data['order'] = $order;
+
         $this->load->view('admin/partials/header', $data);
         $this->load->view('admin/partials/navigate');
         $this->load->view('admin/track_order/edit');
         $this->load->view('admin/partials/footer');
     }
+    public function update_track_order()
+    {
+        $role_id = $this->session->userdata('role_id');
+
+        if ($role_id != 1 && $role_id != 2) {
+            $this->session->set_flashdata('error', 'Access Denied: You do not have permission to access this page.');
+            redirect('admin/profile');
+        }
+
+        $order_id = $this->input->post('order_id');
+        $data = [
+            'gameId' => $this->input->post('game_id'),
+            'game_name' => $this->input->post('game_name'),
+            'topup_amount' => $this->input->post('topup_amount'),
+            'price' => $this->input->post('price'),
+            'status' => $this->input->post('status'),
+            'buyer_name' => $this->input->post('buyer_name'),
+        ];
+
+        // Update order details in the database
+        $this->admin->update_order($order_id, $data);
+
+        $this->session->set_flashdata('success', 'Order updated successfully');
+        redirect('admin/track_order');
+    }
+    public function delete_track_order($order_id)
+    {
+        $role_id = $this->session->userdata('role_id');
+
+        if ($role_id != 1 && $role_id != 2) {
+            $this->session->set_flashdata('error', 'Access Denied: You do not have permission to access this page.');
+            redirect('admin/profile');
+        }
+
+        $this->admin->delete_order($order_id);
+
+        $this->session->set_flashdata('success', 'Order deleted successfully');
+        redirect('admin/track_order');
+    }
+
     //Track Order End 
 
     // Price List Start

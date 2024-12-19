@@ -273,8 +273,40 @@ class Admin_model extends CI_Model
     }
     public function get_price_list_by_code($product_code)
     {
-        $this->db->like('product_code', $product_code);  
+        $this->db->like('product_code', $product_code);
         $query = $this->db->get('price_list');
         return $query->result();
+    }
+    public function get_orders()
+    {
+        $this->db->select('id, user_id, game_code, gameid, game_name, topup_amount, price, order_date, buyer_name, status, created_at');
+        $this->db->from('orders');
+        return $this->db->get()->result();
+    }
+    public function get_order_by_id($order_id)
+    {
+        $this->db->select('*');
+        $this->db->from('orders');
+        $this->db->where('id', $order_id);
+        $query = $this->db->get();
+
+        if ($query->num_rows() > 0) {
+            return $query->row();
+        } else {
+            return null;
+        }
+    }
+
+    public function update_order($order_id, $data)
+    {
+        $this->db->where('id', $order_id);
+        $this->db->update('orders', $data);
+        return $this->db->affected_rows() > 0;
+    }
+    public function delete_order($order_id)
+    {
+        $this->db->where('id', $order_id);
+        $this->db->delete('orders'); 
+        return $this->db->affected_rows() > 0; 
     }
 }
