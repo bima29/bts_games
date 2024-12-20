@@ -26,11 +26,13 @@
         </div>
         <div class="category-buttons d-flex flex-wrap gap-2 justify-content-start mt-5">
             <a href="<?= base_url('Home/index'); ?>" class="text-decoration-none">
-                <button class="btn btn-outline-light rounded-pill py-2 px-4 fs-6">Show All</button>
+                <button class="btn btn-outline-light rounded-pill py-2 px-4 fs-6 <?= !isset($_GET['category']) ? 'active' : ''; ?>">Show All</button>
             </a>
             <?php foreach ($categories as $category): ?>
                 <a href="<?= base_url('Home/index?category=' . $category->nama_kategori . '&search=' . (isset($_GET['search']) ? $_GET['search'] : '')); ?>" class="text-decoration-none">
-                    <button class="btn btn-outline-light rounded-pill py-2 px-4 fs-6"><?= $category->nama_kategori; ?></button>
+                    <button class="btn btn-outline-light rounded-pill py-2 px-4 fs-6 <?= isset($_GET['category']) && $_GET['category'] == $category->nama_kategori ? 'active' : ''; ?>">
+                        <?= $category->nama_kategori; ?>
+                    </button>
                 </a>
             <?php endforeach; ?>
         </div>
