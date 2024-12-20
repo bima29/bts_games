@@ -89,12 +89,6 @@
                                     <p>Payment Gateway</p>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a href="<?= base_url('admin/digiflazz') ?>" class="nav-link <?= (uri_string() == 'admin/digiflazz' || uri_string() == 'admin/edit_digiflazz') ? 'active' : '' ?>" style="padding-left: 30px;">
-                                    <i class="nav-icon fas fa-credit-card"></i>
-                                    <p>Digiflazz</p>
-                                </a>
-                            </li>
                         </ul>
                     </li>
 
