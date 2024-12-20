@@ -63,6 +63,7 @@
                                     <th>No</th>
                                     <th>Nama Produk</th>
                                     <th>Kode Produk</th>
+                                    <th>Kode Game</th>
                                     <th>Harga</th>
                                     <th>Nominal</th>
                                     <th>Satuan</th>
@@ -78,6 +79,7 @@
                                         <td><?= $no++ ?></td>
                                         <td><?= $product->product_name ?></td>
                                         <td><?= $product->product_code ?></td>
+                                        <td><?= $product->game_code ?></td>
                                         <td>Rp <?= number_format($product->price, 0, ',', '.') ?></td>
                                         <td><?= $product->nominal ?></td>
                                         <td><?= $product->unit ?></td>
@@ -119,8 +121,12 @@
                         <select class="form-control mt-2" id="gameType" name="gameType" required>
                             <option value="">Pilih Nama Game</option>
                             <?php foreach ($games as $game): ?>
-                                <option value="<?= $game->game_name ?>" data-category="<?= $game->category ?>" data-type="<?= $game->type ?>"><?= $game->game_name ?></option>
-                            <?php endforeach; ?>
+                                <option value="<?= $game->game_name ?>"
+                                    data-game_code="<?= $game->game_code ?>"
+                                    data-category="<?= $game->category ?>"
+                                    data-type="<?= $game->type ?>">
+                                    <?= $game->game_name ?>
+                                </option> <?php endforeach; ?>
                         </select>
                     </div>
                     <div class="form-group">
@@ -138,6 +144,10 @@
                     <div class="form-group">
                         <label for="unit">Satuan</label>
                         <input type="text" class="form-control" id="unit" name="unit" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="categoryName">Game Kode</label>
+                        <input type="text" class="form-control" id="game_code" name="game_code" readonly required>
                     </div>
                     <div class="form-group">
                         <label for="categoryName">Kategori Game</label>
@@ -171,6 +181,7 @@
     // Set category and type values when a game is selected
     document.getElementById('gameType').addEventListener('change', function() {
         let selectedOption = this.options[this.selectedIndex];
+        document.getElementById('game_code').value = selectedOption.getAttribute('data-game_code');
         document.getElementById('category').value = selectedOption.getAttribute('data-category');
         document.getElementById('type').value = selectedOption.getAttribute('data-type');
     });

@@ -43,13 +43,15 @@
 
                 <div class="top-info d-flex align-items-center">
                     <?php if ($this->session->userdata('user_id')): ?>
-                        <!-- Display profile picture and menu when logged in -->
                         <div class="dropdown">
                             <a href="#" class="d-flex align-items-center text-white" id="profileMenu" data-bs-toggle="dropdown" aria-expanded="false">
                                 <img src="<?= base_url('assets/universal/img/' . $this->session->userdata('profile_picture')) ?>" alt="Profile" class="rounded-circle border border-white profile-img" width="40" height="40" style="object-fit: cover;">
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="profileMenu">
-                                <li><a class="dropdown-item" href="#">My Profile</a></li>
+                                <?php if ($this->session->userdata('user_id') == 1 || $this->session->userdata('user_id') == 2): ?>
+                                    <li><a class="dropdown-item" href="<?= base_url('admin'); ?>">Dashboard</a></li>
+                                <?php endif; ?>
+                                <li><a class="dropdown-item" href="<?= base_url('admin/profile'); ?>">My Profile</a></li>
                                 <li><a class="dropdown-item" href="<?= base_url('home/logout'); ?>">Log Out</a></li>
                             </ul>
                         </div>

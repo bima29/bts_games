@@ -56,6 +56,11 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="game_category">Game Kode</label>
+                            <input type="text" class="form-control" id="game_category" name="game_category" value="<?= $price_list['game_code']; ?>" readonly>
+                        </div>
+
+                        <div class="form-group">
                             <label for="game_category">Kategori Game</label>
                             <input type="text" class="form-control" id="game_category" name="game_category" value="<?= $price_list['game_category']; ?>" readonly>
                         </div>

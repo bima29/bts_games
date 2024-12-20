@@ -27,20 +27,20 @@
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-.table td img {
-    width: 50px;
-    height: auto;
-    border-radius: 8px;
-}
-
 .btn {
     padding: 10px 20px;
     font-size: 14px;
     border-radius: 30px;
 }
 
-@media (max-width: 768px) {
+.table td img {
+    width: 50px;
+    height: auto;
+    border-radius: 8px;
+}
 
+/* Responsive Styles */
+@media (max-width: 768px) {
     .table td,
     .table th {
         padding: 10px;
@@ -62,14 +62,20 @@
         font-size: 12px;
     }
 
+    .table td,
+    .table th {
+        padding: 10px; /* Adjust padding for better readability */
+    }
+
+    /* Ensure both th and td are visible */
     .table td {
-        display: block;
-        text-align: left;
+        display: table-cell;
+        text-align: center;
         border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     }
 
     .table th {
-        display: none;
+        text-align: center;
     }
 
     .table td img {
@@ -78,5 +84,22 @@
 
     .btn {
         padding: 6px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .table td,
+    .table th {
+        padding: 8px;
+        font-size: 10px;
+    }
+
+    .table td img {
+        width: 25px;
+    }
+
+    .btn {
+        font-size: 10px;
+        padding: 4px 8px;
     }
 }

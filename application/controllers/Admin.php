@@ -192,10 +192,12 @@ class Admin extends CI_Controller
         $unit = $this->input->post('unit', TRUE);
         $category = $this->input->post('category', TRUE);
         $type = $this->input->post('type', TRUE);
+        $game_code = $this->input->post('game_code', TRUE);
 
         $data = [
             'product_name' => $gameType,
             'product_code' => $categoryName,
+            'game_code' => $game_code,
             'price' => $harga,
             'nominal' => $nominal,
             'unit' => $unit,

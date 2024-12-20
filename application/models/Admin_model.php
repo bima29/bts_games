@@ -242,7 +242,7 @@ class Admin_model extends CI_Model
     }
     public function get_games()
     {
-        $this->db->select('game_name, category, type');
+        $this->db->select('game_name, game_code, category, type');
         $query = $this->db->get('games');
         return $query->result();
     }

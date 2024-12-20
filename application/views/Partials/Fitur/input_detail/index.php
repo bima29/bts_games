@@ -15,7 +15,7 @@
         <form method="post" action="<?= base_url('Home/SavePayment'); ?>" class="mb-4">
             <div class="mb-3">
                 <label for="game_code" class="form-label">Game Code</label>
-                <input type="text" class="form-control" id="game_code" name="game_code" value="<?= $game->game_code; ?>" readonly style="text-align: center;">
+                <input type="text" class="form-control" id="game_code" name="game_code" value="<?= $price->product_code; ?>" readonly style="text-align: center;">
             </div>
 
             <div class="mb-3">

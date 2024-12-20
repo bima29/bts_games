@@ -41,6 +41,10 @@
                             <input type="text" class="form-control" id="unit" name="unit" value="<?= $category['unit']; ?>" readonly>
                         </div>
                         <div class="form-group">
+                            <label for="game_category">Game Kode</label>
+                            <input type="text" class="form-control" id="game_category" name="game_category" value="<?= $category['game_code']; ?>" readonly>
+                        </div>
+                        <div class="form-group">
                             <label for="game_category">Kategori Game</label>
                             <input type="text" class="form-control" id="game_category" name="game_category" value="<?= $category['game_category']; ?>" readonly>
                         </div>

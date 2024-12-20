@@ -5,27 +5,22 @@
             <i class="fa-solid fa-xmark d-none" id="close-icon"></i>
         </button>
 
-
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item navbar-hover rounded me-2 <?= (uri_string() == '' || uri_string() == '/' || uri_string() == 'Home/index') ? 'active' : ''; ?>">
                     <a class="nav-link" aria-current="page" href="<?= base_url(); ?>"><i class="fas fa-home me-2"></i>Beranda</a>
                 </li>
-
                 <li class="nav-item navbar-hover rounded me-2 <?= (uri_string() == 'Home/games') ? 'active' : ''; ?>">
                     <a class="nav-link" aria-current="page" href="<?= base_url('Home/games'); ?>"><i class="fas fa-gamepad me-2"></i>Semua Game</a>
                 </li>
-
                 <?php if ($this->session->userdata('user_id')): ?>
                     <li class="nav-item navbar-hover rounded me-2 <?= (uri_string() == 'Home/track') ? 'active' : ''; ?>">
                         <a class="nav-link" aria-current="page" href="<?= base_url('Home/track'); ?>"><i class="fas fa-truck me-2"></i>Lacak Pesanan</a>
                     </li>
                 <?php endif; ?>
-
                 <li class="nav-item navbar-hover rounded me-2 <?= (uri_string() == 'Home/price') ? 'active' : ''; ?>">
                     <a class="nav-link" aria-current="page" href="<?= base_url('Home/price'); ?>"><i class="fas fa-tag me-2"></i>Catatan Harga</a>
                 </li>
-
                 <li class="nav-item navbar-hover me-2 active d-block d-md-none">
                     <?php if ($this->session->userdata('user_id')): ?>
                         <div class="dropdown">
@@ -33,7 +28,10 @@
                                 <i class="fas fa-user me-2"></i><?= $this->session->userdata('username'); ?>
                             </a>
                             <ul class="dropdown-menu bg-secondary" aria-labelledby="profileMenu">
-                                <li><a class="dropdown-item navbar-hover" href="#">My Profile</a></li>
+                                <?php if ($this->session->userdata('user_id') == 1 || $this->session->userdata('user_id') == 2 ): ?>
+                                    <li><a class="dropdown-item navbar-hover" href="<?= base_url('admin'); ?>">Dashboard</a></li>
+                                <?php endif; ?>
+                                <li><a class="dropdown-item navbar-hover mt-2" href="<?= base_url('admin/profile'); ?>">My Profile</a></li>
                                 <li><a class="dropdown-item navbar-hover mt-2" href="<?= base_url('home/logout'); ?>">Log Out</a></li>
                             </ul>
                         </div>
@@ -43,6 +41,5 @@
                 </li>
             </ul>
         </div>
-
     </div>
 </nav>

@@ -132,6 +132,15 @@
                 </li>
 
                 <li class="nav-item">
+                    <a href="<?= base_url('') ?>" class="nav-link" style="padding: 0;">
+                        <button class="btn btn-success w-100" style="text-align: left;">
+                            <i class="nav-icon fas fa-globe"></i>
+                            <p style="display: inline-block; margin-left: 10px;">Lihat Tampilan Web</p>
+                        </button>
+                    </a>
+                </li>
+
+                <li class="nav-item">
                     <a href="<?= base_url('admin/logout') ?>" class="nav-link" style="padding: 0;">
                         <button class="btn btn-danger w-100" style="text-align: left;">
                             <i class="nav-icon fas fa-sign-out-alt"></i>

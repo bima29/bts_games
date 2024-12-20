@@ -23,3 +23,22 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const navbarCollapse = document.getElementById("navbarNav");
+    const navbarToggler = document.querySelector(".navbar-toggler");
+
+    navbarToggler.addEventListener("click", function () {
+        const isExpanded = navbarCollapse.classList.contains("show");
+
+        if (isExpanded) {
+            navbarCollapse.classList.remove("mt-3");
+        } else {
+            navbarCollapse.classList.add("mt-3");
+        }
+    });
+
+    navbarCollapse.addEventListener("hidden.bs.collapse", function () {
+        navbarCollapse.classList.remove("mt-3");
+    });
+});

@@ -1,4 +1,4 @@
-body, 
+body,
 html {
     margin: 0;
     padding: 0;
@@ -14,17 +14,10 @@ html {
     border-radius: 10px;
 }
 
-.game-info {
-    text-align: center;
-}
-
 .game-info a {
     text-align: left;
 }
 
-.game-info h2 {
-    text-align: center;
-}
 
 .game-info h4 {
     margin-top: 10px;
@@ -38,21 +31,32 @@ html {
     padding: 10px;
 }
 
-/* Checkout Container */
+.container-fluid-c {
+    position: relative; /* Agar tetap menjadi pembungkus elemen anak */
+    background-color: rgba(255, 255, 255, 0.9); /* Sesuai kebutuhan */
+    min-height: 100vh; /* Tinggi minimal 100% viewport */
+    display: flex; /* Gunakan flexbox untuk memusatkan konten */
+    justify-content: center;
+    align-items: flex-start; /* Konten mulai dari atas, bukan tengah */
+    padding-top: 20px; /* Tambahkan jarak atas untuk kenyamanan */
+    padding-bottom: 20px; /* Tambahkan jarak bawah */
+    box-sizing: border-box; /* Pastikan padding dihitung */
+}
+
 .checkout-container {
     background-color: rgba(255, 255, 255, 0.9);
-    padding: 40px; /* Tambahkan padding lebih besar */
+    padding: 40px;
     border-radius: 12px;
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
     text-align: center;
-    width: 100%; /* Tetap responsif */
-    max-width: 1000px; /* Lebar lebih besar */
+    width: 100%;
+    max-width: 1000px;
+    box-sizing: border-box;
     position: relative;
-    transition: transform 0.3s; /* Efek hover */
 }
 
-.checkout-container:hover {
-    transform: scale(1.02); /* Perbesar sedikit saat hover */
+.denomination-wrapper {
+    margin-top: 20px; /* Tambahkan jarak antar bagian */
 }
 
 /* Denomination Card */
@@ -60,48 +64,66 @@ html {
     background-color: #050505;
     color: white;
     border-radius: 10px;
-    height: 140px; /* Tambahkan tinggi card */
-    width: 250px; /* Lebarkan card */
+    height: 140px;
+    width: 250px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s, background-color 0.3s;
+    transition:
+        transform 0.3s,
+        background-color 0.3s;
     cursor: pointer;
 }
 
 .denomination-card:hover {
-    transform: scale(1.1); /* Perbesar saat hover */
-    background-color: #444444; /* Gelapkan background */
+    transform: scale(1.1);
+    background-color: #444444;
 }
 
 /* Denomination Option */
 .denomination-option {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 kolom */
-    gap: 20px; /* Jarak antar card lebih besar */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
 }
 
-@media (max-width: 1024px) {
+/* Responsive Styles */
+@media screen and (max-width: 1024px) {
     .denomination-option {
-        grid-template-columns: repeat(2, 1fr); /* 2 kolom di tablet */
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on smaller screens */
+    }
+
+    .denomination-card {
+        width: 220px; /* Slightly larger width for the cards */
+        height: 140px; /* Adjust height of the cards */
     }
 }
 
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
     .denomination-option {
-        grid-template-columns: repeat(1, 1fr); /* 1 kolom di perangkat kecil */
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on smaller screens */
+    }
+
+    .denomination-card {
+        width: 200px; /* Larger width for the cards */
+        height: 120px; /* Adjust height of the cards */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .denomination-option {
+        grid-template-columns: 1fr 1fr; /* Ensure 2 rows on very small screens */
+    }
+
+    .denomination-card {
+        width: 170px; /* Slightly larger width for the cards */
+        height: 110px; /* Adjust height of the cards */
     }
 }
 
 
-
-@media (max-width: 1024px) {
-    .denomination-option {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
 
 .img-fluid-header {
     width: 100%;
@@ -119,4 +141,93 @@ a.position-absolute i {
 
 a.position-absolute:hover i {
     transform: scale(1.1);
+}
+
+.m-3 {
+    position: absolute; /* Agar posisi ikon tidak terpengaruh oleh flex */
+    top: 10px; /* Sesuaikan jarak dari atas */
+    left: 10px; /* Posisikan di kiri */
+    z-index: 10; /* Pastikan ikon berada di atas elemen lain */
+}
+
+.m-3 i {
+    transition: transform 0.2s ease-in-out;
+}
+
+.m-3:hover i {
+    transform: scale(1.1); /* Efek saat hover */
+}
+
+/* General Text Styling */
+h4, p {
+    font-size: 1rem; /* Default font size */
+}
+
+/* Game Info */
+.game-info h4 {
+    font-size: 1.5rem; /* Larger font size for headings */
+}
+
+.game-info p {
+    font-size: 1rem; /* Default paragraph size */
+}
+
+/* Top-Up Amount Text */
+.denomination-card .text-primary {
+    font-size: 1.2rem; /* Primary text size */
+}
+
+/* Responsive Text Adjustments */
+@media screen and (max-width: 1024px) {
+    .game-info h4 {
+        font-size: 1.3rem; /* Slightly smaller heading for tablets */
+    }
+
+    .game-info p {
+        font-size: 0.9rem; /* Slightly smaller text for paragraphs */
+    }
+
+    .denomination-card .text-primary {
+        font-size: 1rem; /* Slightly smaller for mobile screens */
+    }
+
+    .denomination-card span {
+        font-size: 0.8rem; /* Smaller size for the unit text */
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .game-info h4 {
+        font-size: 1.1rem; /* Smaller heading on phones */
+    }
+
+    .game-info p {
+        font-size: 0.85rem; /* Adjust paragraph text */
+    }
+
+    .denomination-card .text-primary {
+        font-size: 0.9rem; /* Smaller size on phones */
+    }
+
+    .denomination-card span {
+        font-size: 0.75rem; /* Adjust the text size for units */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .game-info h4 {
+        font-size: 1rem; /* Even smaller heading for mobile */
+    }
+
+    .game-info p {
+        font-size: 0.75rem; /* Smaller paragraph text */
+    }
+
+    .denomination-card .text-primary {
+        font-size: 0.8rem; /* Adjust size for mobile */
+    }
+
+    .denomination-card span {
+        font-size: 0.6rem; /* Even smaller unit text */
+    }
 }

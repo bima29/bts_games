@@ -215,13 +215,85 @@ class Home extends CI_Controller
         $this->db->insert('orders', $data);
 
         if ($status === 'success') {
-            echo ('Success Cok');
+            $username = 'siyonaop5jdD';
+            $dev_key = 'dev-089c5890-bc7f-11ef-89b8-ab41d3b11203';
+            $endpoint = 'https://api.digiflazz.com/v1/transaction';
+            $buyer_sku_code = $data['game_code'];
+            $customer_no = $data['gameid'];
+            $ref_id = 'ref' . time();
+            $sign = md5($username . $dev_key . $ref_id);
+
+            $data = array(
+                'username' => $username,
+                'buyer_sku_code' => $buyer_sku_code,
+                'customer_no' => $customer_no,
+                'ref_id' => $ref_id,
+                'testing' => true,
+                'sign' => $sign
+            );
+
+
+            $data_string = json_encode($data);
+
+            $ch = curl_init($endpoint);
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                'Content-Type: application/json',
+                'Content-Length: ' . strlen($data_string)
+            ));
+
+            $response = curl_exec($ch);
+
+            if (curl_errno($ch)) {
+                echo 'Curl error: ' . curl_error($ch);
+                curl_close($ch);
+                return;
+            }
+
+            curl_close($ch);
+
+            $result = json_decode($response);
+
+            if ($result === null && json_last_error() !== JSON_ERROR_NONE) {
+                echo 'Error decoding JSON response';
+                return;
+            }
+
+            if (isset($result->data->status)) {
+                switch (strtolower($result->data->status)) {
+                    case 'pending':
+                        redirect('home/status_checkout?ref_id=' . $ref_id . '&game_code=' . $game_code . '&gameId=' . $gameId);
+                    case 'sukses':
+                        echo 'Topup request is successful';
+                        break;
+                    default:
+                        echo 'Error: ' . (isset($result->data->message) ? $result->data->message : 'Unknown error');
+                        break;
+                }
+            } else {
+                echo 'Error: Unexpected response structure or missing status';
+            }
         } elseif ($status === 'pending') {
-            echo ('Pending Cok');
+            echo ('Pending');
         } else {
-            echo ('Gagal Cok');
+            echo ('Gagal');
         }
     }
+
+    public function status_checkout()
+    {
+        $ref_id = $this->input->get('ref_id');
+        $game_code = $this->input->get('game_code');
+        $gameId = $this->input->get('gameId');
+
+        $data['ref_id'] = $ref_id;
+        $data['game_code'] = $game_code;
+        $data['gameId'] = $gameId;
+        $this->load->view('status', $data);
+    }
+
 
 
 
@@ -232,67 +304,67 @@ class Home extends CI_Controller
     }
 
 
-    public function digiflazz()
-    {
-        $username = 'siyonaop5jdD';
-        $dev_key = 'dev-089c5890-bc7f-11ef-89b8-ab41d3b11203';
-        $endpoint = 'https://api.digiflazz.com/v1/transaction';
-        $buyer_sku_code = 'x10';
-        $customer_no = '087800001230';
-        $ref_id = 'ref' . time();
-        $sign = md5($username . $dev_key . $ref_id);
+    // public function digiflazz()
+    // {
+    //     $username = 'siyonaop5jdD';
+    //     $dev_key = 'dev-089c5890-bc7f-11ef-89b8-ab41d3b11203';
+    //     $endpoint = 'https://api.digiflazz.com/v1/transaction';
+    //     $buyer_sku_code = 'i10'; // Updated SKU code
+    //     $customer_no = '085608744330'; // Updated customer number
+    //     $ref_id = 'test3'; // Updated Ref ID
+    //     $sign = md5($username . $dev_key . $ref_id); // MD5 signature for 'username' + 'dev_key' + 'ref_id'
 
-        $data = array(
-            'username' => $username,
-            'buyer_sku_code' => $buyer_sku_code,
-            'customer_no' => $customer_no,
-            'ref_id' => $ref_id,
-            'testing' => true,
-            'sign' => $sign
-        );
+    //     $data = array(
+    //         "username" => $username,
+    //         "buyer_sku_code" => $buyer_sku_code,
+    //         "customer_no" => $customer_no,
+    //         "ref_id" => $ref_id,
+    //         "testing" => true, // Set to true for testing environment
+    //         "sign" => $sign
+    //     );
 
-        $data_string = json_encode($data);
+    //     $data_string = json_encode($data);
 
-        $ch = curl_init($endpoint);
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-            'Content-Type: application/json',
-            'Content-Length: ' . strlen($data_string)
-        ));
+    //     $ch = curl_init($endpoint);
+    //     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+    //     curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
+    //     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    //     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+    //         'Content-Type: application/json',
+    //         'Content-Length: ' . strlen($data_string)
+    //     ));
 
-        $response = curl_exec($ch);
+    //     $response = curl_exec($ch);
 
-        if (curl_errno($ch)) {
-            echo 'Curl error: ' . curl_error($ch);
-            curl_close($ch);
-            return;
-        }
+    //     if (curl_errno($ch)) {
+    //         echo 'Curl error: ' . curl_error($ch);
+    //         curl_close($ch);
+    //         return;
+    //     }
 
-        curl_close($ch);
+    //     curl_close($ch);
 
-        $result = json_decode($response);
+    //     $result = json_decode($response);
 
-        if ($result === null && json_last_error() !== JSON_ERROR_NONE) {
-            echo 'Error decoding JSON response';
-            return;
-        }
+    //     if ($result === null && json_last_error() !== JSON_ERROR_NONE) {
+    //         echo 'Error decoding JSON response';
+    //         return;
+    //     }
 
-        if (isset($result->data->status)) {
-            switch (strtolower($result->data->status)) {
-                case 'pending':
-                    echo 'Topup request is pending';
-                    break;
-                case 'sukses':
-                    echo 'Topup request is successful';
-                    break;
-                default:
-                    echo 'Error: ' . (isset($result->data->message) ? $result->data->message : 'Unknown error');
-                    break;
-            }
-        } else {
-            echo 'Error: Unexpected response structure or missing status';
-        }
-    }
+    //     if (isset($result->data->status)) {
+    //         switch (strtolower($result->data->status)) {
+    //             case 'pending':
+    //                 echo 'Topup request is pending';
+    //                 break;
+    //             case 'sukses':
+    //                 echo 'Topup request is successful';
+    //                 break;
+    //             default:
+    //                 echo 'Error: ' . (isset($result->data->message) ? $result->data->message : 'Unknown error');
+    //                 break;
+    //         }
+    //     } else {
+    //         echo 'Error: Unexpected response structure or missing status';
+    //     }
+    // }
 }
