@@ -304,21 +304,30 @@ class Home extends CI_Controller
             if (isset($result->data->status)) {
                 switch (strtolower($result->data->status)) {
                     case 'pending':
-                        redirect('home/status_checkout?ref_id=' . $ref_id . '&game_code=' . $game_code . '&gameId=' . $gameId);
+                        redirect('home/status_checkout?status=pending&ref_id=' . $ref_id . '&game_code=' . $game_code . '&gameId=' . $gameId);
+                        break;
                     case 'sukses':
-                        echo 'Topup request is successful';
+                        redirect('home/status_checkout?status=success&ref_id=' . $ref_id . '&game_code=' . $game_code . '&gameId=' . $gameId);
                         break;
                     default:
-                        echo 'Error: ' . (isset($result->data->message) ? $result->data->message : 'Unknown error');
+                        redirect('home/status_checkout?status=failed&ref_id=' . $ref_id . '&game_code=' . $game_code . '&gameId=' . $gameId);
                         break;
                 }
             } else {
                 echo 'Error: Unexpected response structure or missing status';
             }
         } elseif ($status === 'pending') {
-            echo ('Pending');
+            if ($this->session->userdata('user_id')) {
+                echo 'Pending';
+            } else {
+                echo 'Gagal';
+            }
         } else {
-            echo ('Gagal');
+            if ($this->session->userdata('user_id')) {
+                echo 'Gagal';
+            } else {
+                echo 'Gagal';
+            }
         }
     }
 

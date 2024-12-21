@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Status Checkout</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/js-md5@2.3.0/build/md5.min.js"></script> <!-- Include MD5 library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Include jQuery -->
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -58,6 +61,40 @@
             margin-top: 10px;
         }
 
+        .redirect-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .redirect-button:hover {
+            background-color: #0056b3;
+        }
+
+        .refresh-button {
+            margin-top: 30px; /* Increased margin to provide more spacing */
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .refresh-button:hover {
+            background-color: #218838;
+        }
+
+        .refresh-info {
+            margin-top: 15px; /* Adjusted margin */
+            font-size: 14px;
+            color: #6c757d;
+        }
+
         @media (max-width: 600px) {
             .container {
                 padding: 20px;
@@ -70,63 +107,75 @@
         }
     </style>
 </head>
+
 <body>
 
-<div class="container">
-    <h1>Status Checkout</h1>
-    <p id="status" class="status-message">Checking your topup status...</p>
-    <p class="loading" id="loading-text">Please wait...</p>
-</div>
+    <div class="container">
+        <h1>Status Checkout</h1>
+        <p id="status" class="status-message">Checking your topup status...</p>
+        <p class="loading" id="loading-text">Please wait...</p>
 
-<script>
-    function checkStatus() {
-        var ref_id = '<?= $ref_id ?>';
-        var username = 'siyonaop5jdD';  
-        var dev_key = 'dev-089c5890-bc7f-11ef-89b8-ab41d3b11203'; 
-        var endpoint = 'https://api.digiflazz.com/v1/transaction';
+        <?php if ($this->session->userdata('user_id')): ?>
+            <a href="<?= base_url('home/track') ?>" class="redirect-button">Go to Order Tracking</a>
+        <?php else: ?>
+            <a href="<?= base_url() ?>" class="redirect-button">Back to Home</a>
+        <?php endif; ?>
 
-        var sign = md5(username + dev_key + ref_id);
+        <a href="javascript:void(0);" class="refresh-button" onclick="checkStatus()">Refresh Status</a>
+        <p class="refresh-info">Click to refresh and check the latest status of your topup request.</p>
+    </div>
 
-        var data = {
-            "username": username,
-            "buyer_sku_code": '<?= $game_code ?>',
-            "customer_no": '<?= $gameId ?>',
-            "ref_id": ref_id,
-            "testing": false, // Set to true for testing environment
-            "sign": sign
-        };
+    <script>
+        function checkStatus() {
+            var ref_id = '<?= $ref_id ?>';
+            var username = 'siyonaop5jdD';
+            var dev_key = 'dev-089c5890-bc7f-11ef-89b8-ab41d3b11203';
+            var endpoint = 'https://api.digiflazz.com/v1/transaction';
 
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", endpoint, true);
-        xhr.setRequestHeader("Content-Type", "application/json");
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                var result = JSON.parse(xhr.responseText);
-                if (result.data && result.data.status) {
-                    if (result.data.status === 'sukses') {
-                        document.getElementById("status").classList.add("status-success");
-                        document.getElementById("status").innerText = "Topup request is successful";
-                        setTimeout(function() {
-                            window.location.href = "home/track"; // Redirect to home/track after 5 seconds
-                        }, 5000);
+            var sign = md5(username + dev_key + ref_id);
+
+            var data = {
+                "username": username,
+                "buyer_sku_code": '<?= $game_code ?>',
+                "customer_no": '<?= $gameId ?>',
+                "ref_id": ref_id,
+                "testing": true,
+                "sign": sign
+            };
+
+            $.ajax({
+                url: endpoint,
+                method: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(data),
+                success: function(response) {
+                    var statusElement = $("#status");
+                    var loadingTextElement = $("#loading-text");
+                    if (response.data && response.data.status) {
+                        if (response.data.status === 'sukses') {
+                            statusElement.addClass("status-success").text("Topup request is successful");
+                        } else if (response.data.status === 'pending') {
+                            statusElement.addClass("status-error").text("Topup request is pending");
+                        } else {
+                            statusElement.addClass("status-error").text("Topup request failed. Retrying...");
+                        }
                     } else {
-                        document.getElementById("status").classList.add("status-error");
-                        document.getElementById("status").innerText = "Topup request failed. Retrying...";
-                        setTimeout(checkStatus, 10000); // Retry after 10 seconds if status is still pending
+                        statusElement.addClass("status-error").text("Error: Unexpected response structure or missing status");
                     }
-                } else {
-                    document.getElementById("status").classList.add("status-error");
-                    document.getElementById("status").innerText = "Error: Unexpected response structure or missing status";
+                    loadingTextElement.hide();
+                },
+                error: function() {
+                    $("#status").addClass("status-error").text("An error occurred while processing your request.");
+                    $("#loading-text").hide();
                 }
-            }
-        };
-        xhr.send(JSON.stringify(data));
-    }
+            });
+        }
 
-    window.onload = function() {
-        checkStatus();
-    }
-</script>
+        $(document).ready(function() {
+            setTimeout(checkStatus, 2000);
+        });
+    </script>
 
 </body>
+
 </html>
