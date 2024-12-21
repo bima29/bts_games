@@ -127,7 +127,7 @@ html {
 
 .img-fluid-header {
     width: 100%;
-    max-width: 150px;
+    max-width: 75px;
 }
 
 a.position-absolute {
@@ -158,76 +158,63 @@ a.position-absolute:hover i {
     transform: scale(1.1); /* Efek saat hover */
 }
 
-/* General Text Styling */
 h4, p {
-    font-size: 1rem; /* Default font size */
+    font-size: 1rem;
 }
 
-/* Game Info */
-.game-info h4 {
-    font-size: 1.5rem; /* Larger font size for headings */
+.denomination-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 8px;
+    gap: 15px; /* Jarak antar elemen lebih kecil */
+    width: 100%;
+    max-width: 900px; /* Lebar maksimal lebih kecil */
+    margin: 0 auto; /* Pusatkan di dalam container */
 }
 
-.game-info p {
-    font-size: 1rem; /* Default paragraph size */
-}
-
-/* Top-Up Amount Text */
-.denomination-card .text-primary {
-    font-size: 1.2rem; /* Primary text size */
-}
-
-/* Responsive Text Adjustments */
+/* Responsive Styles */
 @media screen and (max-width: 1024px) {
-    .game-info h4 {
-        font-size: 1.3rem; /* Slightly smaller heading for tablets */
+    .denomination-wrapper {
+        max-width: 700px; /* Lebar maksimal untuk tablet */
+        gap: 10px; /* Kurangi jarak antar elemen */
+        padding: 6px; /* Padding lebih kecil */
+    }
+    h4 {
+        font-size: 1.2rem; /* Font size untuk heading */
     }
 
-    .game-info p {
-        font-size: 0.9rem; /* Slightly smaller text for paragraphs */
-    }
-
-    .denomination-card .text-primary {
-        font-size: 1rem; /* Slightly smaller for mobile screens */
-    }
-
-    .denomination-card span {
-        font-size: 0.8rem; /* Smaller size for the unit text */
+    p {
+        font-size: 0.95rem; /* Font size untuk paragraph */
     }
 }
 
 @media screen and (max-width: 768px) {
-    .game-info h4 {
-        font-size: 1.1rem; /* Smaller heading on phones */
+    .denomination-wrapper {
+        max-width: 500px; /* Lebar maksimal untuk layar kecil */
+        gap: 8px; /* Jarak antar elemen lebih kecil lagi */
+        padding: 5px; /* Padding lebih kecil */
+    }
+    h4 {
+        font-size: 1rem; /* Font size lebih kecil untuk heading */
     }
 
-    .game-info p {
-        font-size: 0.85rem; /* Adjust paragraph text */
-    }
-
-    .denomination-card .text-primary {
-        font-size: 0.9rem; /* Smaller size on phones */
-    }
-
-    .denomination-card span {
-        font-size: 0.75rem; /* Adjust the text size for units */
+    p {
+        font-size: 0.85rem; /* Font size lebih kecil untuk paragraph */
     }
 }
 
 @media screen and (max-width: 480px) {
-    .game-info h4 {
-        font-size: 1rem; /* Even smaller heading for mobile */
+    .denomination-wrapper {
+        max-width: 90%; /* Gunakan 90% dari lebar layar */
+        gap: 5px; /* Minimalkan jarak antar elemen */
+        padding: 4px; /* Padding lebih kecil untuk layar kecil */
+    }
+    h4 {
+        font-size: 0.9rem; /* Ukuran heading lebih kecil */
     }
 
-    .game-info p {
-        font-size: 0.75rem; /* Smaller paragraph text */
-    }
-
-    .denomination-card .text-primary {
-        font-size: 0.8rem; /* Adjust size for mobile */
-    }
-
-    .denomination-card span {
-        font-size: 0.6rem; /* Even smaller unit text */
+    p {
+        font-size: 0.75rem; /* Ukuran paragraph lebih kecil */
     }
 }

@@ -11,17 +11,12 @@
 
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css'); ?>">
 
-    <style>
-        .header-top {
-            background: rgba(0, 0, 0, 0.9);
-            -webkit-backdrop-filter: blur(10px);
-            backdrop-filter: blur(10px);
-            color: rgb(255, 255, 255);
-        }
+    <link rel="icon" href="<?= base_url('assets/img/logo-2.jpg') ?>">
 
+    <style>
         .img-fluid-c {
             width: 100%;
-            max-width: 150px;
+            max-width: 75px;
         }
 
         .i-color-c-white {
@@ -34,10 +29,10 @@
     <div class="container-fluid d-none d-md-flex sticky-top header-top">
         <div class="container">
             <div class="d-flex justify-content-between align-items-center topbar">
-                <div class="top-link d-flex justify-content-center align-items-center">
-                    <img src="<?= base_url('assets/img/logoBTS.png') ?>" alt="Logo" class="img-fluid img-fluid-c">
+                <div class="top-link d-flex align-items-center">
+                    <img src="<?= base_url('assets/img/logo-2.jpg') ?>" alt="Logo" class="img-fluid img-fluid-c py-2 px-2">
                     <i>
-                        <h4 class="top-link">BTS STORE<span class="text-secondary"> INDONESIA</span></h4>
+                        <h4 class="top-link mt-2 ms-3">BTS STORE<span class="text-secondary mt-2"> INDONESIA</span></h4>
                     </i>
                 </div>
 

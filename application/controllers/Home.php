@@ -96,9 +96,6 @@ class Home extends CI_Controller
 
     public function Checkout1($id)
     {
-        if (!$this->session->userdata('user_id')) {
-            redirect(base_url('auth'));
-        }
 
         // Ambil data game berdasarkan ID
         $data['game'] = $this->db->get_where('games', ['id' => $id])->row();
@@ -123,11 +120,50 @@ class Home extends CI_Controller
 
     public function Checkout2($price_id)
     {
-        if (!$this->session->userdata('user_id')) {
-            redirect(base_url('auth'));
-        }
 
         $user_id = $this->session->userdata('user_id');
+
+        if (!$user_id) {
+            $price = $this->db->get_where('price_list', ['id' => $price_id])->row();
+            if (!$price) {
+                show_404();
+            }
+
+            $game = $this->db->get_where('games', ['game_name' => $price->product_name])->row();
+            if (!$game) {
+                show_404();
+            }
+
+            $gross_amount = round($price->price);
+
+            $transaction_details = [
+                'order_id' => 'order-' . uniqid(),
+                'gross_amount' => $gross_amount,
+            ];
+
+
+            $transaction_data = [
+                'payment_type' => 'credit_card',
+                'credit_card' => ['secure' => true],
+                'transaction_details' => $transaction_details,
+            ];
+
+            $snap_token = Snap::getSnapToken($transaction_data);
+
+            $data = [
+                'price' => $price,
+                'game' => $game,
+                'price_id' => $price_id,
+                'snap_token' => $snap_token,
+                'user' => null,
+            ];
+
+            $this->load->view('Partials/Fitur/header', $data);
+            $this->load->view('Partials/Fitur/input_detail/index', $data);
+            $this->load->view('Partials/Fitur/footer');
+            return;
+        }
+
         $user = $this->db->get_where('users', ['id' => $user_id])->row();
         if (!$user) {
             show_404();
@@ -144,6 +180,7 @@ class Home extends CI_Controller
         }
 
         $gross_amount = round($price->price);
+
         $transaction_details = [
             'order_id' => 'order-' . uniqid(),
             'gross_amount' => $gross_amount,
@@ -173,6 +210,7 @@ class Home extends CI_Controller
             'user' => $user,
         ];
 
+
         $this->load->view('Partials/Fitur/header', $data);
         $this->load->view('Partials/Fitur/input_detail/index', $data);
         $this->load->view('Partials/Fitur/footer');
@@ -191,6 +229,7 @@ class Home extends CI_Controller
         $topup_amount = $this->input->post('topup_amount');
         $price = $this->input->post('price');
         $buyer_name = $this->input->post('buyer_name');
+        $phone = $this->input->post('phone');
         $gameId = $this->input->post('game_id');
 
         if (!$game_code || !$game_name || !$topup_amount || !$price || !$buyer_name || !$gameId) {
@@ -207,6 +246,7 @@ class Home extends CI_Controller
             'price' => $price,
             'order_date' => date('Y-m-d H:i:s'),
             'buyer_name' => $buyer_name,
+            'ponsel' => $phone,
             'status' => $status,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),

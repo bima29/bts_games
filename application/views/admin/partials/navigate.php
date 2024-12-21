@@ -1,6 +1,6 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <a href="<?= base_url("admin") ?>" class="brand-link">
-        <img src="<?= base_url('assets/img'); ?>/logoBTS.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <img src="<?= base_url('assets/img'); ?>/logo-2.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">BTS STORE</span>
     </a>
 
@@ -74,8 +74,8 @@
 
 
                 <?php if ($this->session->userdata('role_id') == 1): ?>
-                    <li class="nav-item has-treeview <?= (uri_string() == 'admin/payment_gateway' || uri_string() == 'admin/digiflazz') ? 'menu-open' : '' ?>">
-                        <a href="#" class="nav-link <?= (uri_string() == 'admin/payment_gateway' || uri_string() == 'admin/digiflazz' || uri_string() == 'admin/edit_payment_gateway' || uri_string() == 'admin/edit_digiflazz') ? 'active' : '' ?>">
+                    <li class="nav-item has-treeview <?= (uri_string() == 'admin/payment_gateway') ? 'menu-open' : '' ?>">
+                        <a href="#" class="nav-link <?= (uri_string() == 'admin/payment_gateway' || uri_string() == 'admin/edit_payment_gateway') ? 'active' : '' ?>">
                             <i class="nav-icon fas fa-plug"></i>
                             <p>
                                 Connect API

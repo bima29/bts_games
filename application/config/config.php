@@ -24,6 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 $config['base_url'] = 'http://localhost/bts_games/';
+$config['base_url'] = 'http://192.168.8.102/bts_games/';
 
 /*
 |--------------------------------------------------------------------------

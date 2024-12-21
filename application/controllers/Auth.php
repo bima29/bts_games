@@ -131,6 +131,7 @@ class Auth extends MY_Controller
                 'user_id'   => $user->id,
                 'username'  => $user->username,
                 'role_id'   => $user->role_id,
+                'phone'   => $user->phone,
                 'profile_picture'   => $user->profile_picture
             );
             $this->session->set_userdata($session_data);

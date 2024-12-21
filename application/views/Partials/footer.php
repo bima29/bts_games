@@ -5,8 +5,7 @@
                 <a href="index.html" class="text-decoration-none">
                     <h1 class="text-white fw-bold d-block text">BTS <span class="text-success">Store</span> </h1>
                 </a>
-                <p class="text-light text-justify">BTS Store Indonesia adalah platform top up game dan Voucher Game harga termurah, tercepat dan terpercaya di Indonesia. Topup lebih dari 100++ game online Paling Top dunia seperti PUBG, Mobile Legend, Free Fire, Honor Of King dan game lainnya.Transaksi di sistem Kami tidak harus registrasi terlebih dahulu, Anda bisa transaksi tanpa daftar dengan mudah via web. Metode pembayaran yang kami 
-                    dukung mudah digunakan.</p>
+                <p class="text-light text-justify">BTS Store Indonesia adalah platform top up game dan Voucher Game harga termurah, tercepat dan terpercaya di Indonesia. Topup lebih dari 100++ game online Paling Top dunia seperti PUBG, Mobile Legend, Free Fire, Honor Of King dan game lainnya.Transaksi di sistem Kami tidak harus registrasi terlebih dahulu, Anda bisa transaksi tanpa daftar dengan mudah via web. Metode pembayaran yang kami dukung mudah digunakan.</p>
                 <div class="d-flex hightech-link">
                     <a href="" class="btn-light nav-fill btn btn-square rounded-circle me-2"><i
                             class="fab fa-facebook-f text-primary"></i></a>
@@ -21,13 +20,13 @@
             <div class="col-lg-4 col-md-6">
                 <a href="#" class="h3 text-white text-decoration-none">Peta Situs</a>
                 <div class="mt-4 d-flex flex-column short-link">
-                    <a href="" class="mb-2 text-white text-decoration-none"><i
+                    <a href="<?= base_url(); ?>" class="mb-2 text-white text-decoration-none"><i
                             class="fas fa-angle-right text-white me-2"></i>Beranda</a>
-                    <a href="" class="mb-2 text-white text-decoration-none"><i
+                    <a href="<?= base_url('Home/games'); ?>" class="mb-2 text-white text-decoration-none"><i
                             class="fas fa-angle-right text-white me-2"></i>Semua Game</a>
-                    <a href="" class="mb-2 text-white text-decoration-none"><i
+                    <a href="<?= base_url('auth'); ?>" class="mb-2 text-white text-decoration-none"><i
                             class="fas fa-angle-right text-white me-2"></i>Masuk</a>
-                    <a href="" class="mb-2 text-white text-decoration-none"><i
+                    <a href="<?= base_url('auth/register'); ?>" class="mb-2 text-white text-decoration-none"><i
                             class="fas fa-angle-right text-white me-2"></i>Daftar</a>
                 </div>
             </div>
@@ -35,10 +34,6 @@
             <div class="col-lg-4 col-md-6">
                 <a href="#" class="h3 text-white text-decoration-none">Hubungi Kami</a>
                 <div class="text-white mt-4 d-flex flex-column contact-link">
-                    <a href="#" class="pb-3 text-light border-bottom border-dark text-decoration-none"><i
-                            class="fas fa-map-marker-alt text-white me-2"></i> Kebonsari Kulon, Kota
-                        Probolinggo, Jawa Timur</a>
-                    <hr>
                     <a href="https://wa.me/+6285608744330" class="py-3 text-light border-bottom border-dark  text-decoration-none"><i
                             class="fas fa-phone-alt text-white me-2 text-decoration-none"></i> +62 856-0874-4330</a>
                     <hr>

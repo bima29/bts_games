@@ -24,6 +24,7 @@
 
             </div>
         </div>
+        
         <div class="category-buttons d-flex flex-wrap gap-2 justify-content-start mt-5">
             <a href="<?= base_url('Home/index'); ?>" class="text-decoration-none">
                 <button class="btn btn-outline-light rounded-pill py-2 px-4 fs-6 <?= !isset($_GET['category']) ? 'active' : ''; ?>">Show All</button>

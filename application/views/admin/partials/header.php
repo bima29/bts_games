@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>BTS Store | Admin</title>
-    <link rel="icon" href="<?= base_url('assets/img/logoBTS.png'); ?>">
+    <link rel="icon" href="<?= base_url('assets/img/logo-2.jpg'); ?>">
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">

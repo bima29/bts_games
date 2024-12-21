@@ -941,8 +941,6 @@ class Admin extends CI_Controller
 
     // Payment Gateway End
 
-   
-
     // Account Role Start
     public function account_role()
     {

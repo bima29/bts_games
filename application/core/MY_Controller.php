@@ -11,6 +11,7 @@ class MY_Controller extends CI_Controller
 
         $user_id = $this->session->userdata('user_id');
         $role_id = $this->session->userdata('role_id');
+        $role_id = $this->session->userdata('phone');
 
         if ($this->session->flashdata('success')) {
             $data['success'] = $this->session->flashdata('success');

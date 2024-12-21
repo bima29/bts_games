@@ -4,10 +4,10 @@
 <div class="container-fluid d-none d-md-flex sticky-top header-top">
     <div class="container">
         <div class="d-flex justify-content-between align-items-center topbar">
-            <div class="top-link d-flex justify-content-center align-items-center">
-                <img src="<?= base_url('assets/img/logoBTS.png') ?>" alt="Logo" class="img-fluid img-fluid-header">
+            <div class="top-link d-flex align-items-center">
+                <img src="<?= base_url('assets/img/logo-2.jpg') ?>" alt="Logo" class="img-fluid img-fluid-header py-2 px-2">
                 <i>
-                    <h4 class="top-link">BTS STORE<span class="text-secondary"> INDONESIA</span></h4>
+                    <h4 class="top-link mt-2 ms-3">BTS STORE<span class="text-secondary mt-2"> INDONESIA</span></h4>
                 </i>
             </div>
             <div class="top-info d-flex align-items-center">
@@ -34,7 +34,7 @@
 </div>
 
 <!-- Main Content -->
-<div class="container-fluid d-flex justify-content-center align-items-center bg-color-blur-white-4 mt-5">
+<div class="container-fluid d-flex justify-content-center align-items-center bg-color-blur-white-4 mt-5 mb-5">
     <div class="checkout-container">
         <!-- Back Icon -->
         <a href="javascript:history.back()" class="m-3">
@@ -82,27 +82,55 @@
     </div>
 </div>
 
-<!-- Footer -->
-<div class="container-fluid footer bg-dark wow fadeIn mt-5" data-wow-delay=".3s">
+<div class="container-fluid footer bg-dark wow fadeIn" data-wow-delay=".3s">
     <div class="container pt-5 pb-4">
         <div class="row g-5">
             <div class="col-lg-4 col-md-6">
                 <a href="index.html" class="text-decoration-none">
                     <h1 class="text-white fw-bold d-block text">BTS <span class="text-success">Store</span> </h1>
                 </a>
-                <p class="text-light">BTS Store Indonesia adalah platform top up game...</p>
+                <p class="text-light text-justify">BTS Store Indonesia adalah platform top up game dan Voucher Game harga termurah, tercepat dan terpercaya di Indonesia. Topup lebih dari 100++ game online Paling Top dunia seperti PUBG, Mobile Legend, Free Fire, Honor Of King dan game lainnya.Transaksi di sistem Kami tidak harus registrasi terlebih dahulu, Anda bisa transaksi tanpa daftar dengan mudah via web. Metode pembayaran yang kami dukung mudah digunakan.</p>
+                <div class="d-flex hightech-link">
+                    <a href="" class="btn-light nav-fill btn btn-square rounded-circle me-2"><i
+                            class="fab fa-facebook-f text-primary"></i></a>
+                    <a href="" class="btn-light nav-fill btn btn-square rounded-circle me-2"><i
+                            class="fab fa-twitter text-primary"></i></a>
+                    <a href="https://www.instagram.com/blacktigersquad.id/profilecard/?igsh=dzBuOTY4bzFvaDJz" class="btn-light nav-fill btn btn-square rounded-circle me-2"><i
+                            class="fab fa-instagram text-primary"></i></a>
+                    <a href="" class="btn-light nav-fill btn btn-square rounded-circle me-0"><i
+                            class="fab fa-linkedin-in text-primary"></i></a>
+                </div>
             </div>
             <div class="col-lg-4 col-md-6">
                 <a href="#" class="h3 text-white text-decoration-none">Peta Situs</a>
-                <div class="mt-4">
-                    <a href="#" class="text-white text-decoration-none">Beranda</a>
+                <div class="mt-4 d-flex flex-column short-link">
+                    <a href="<?= base_url(); ?>" class="mb-2 text-white text-decoration-none"><i
+                            class="fas fa-angle-right text-white me-2"></i>Beranda</a>
+                    <a href="<?= base_url('Home/games'); ?>" class="mb-2 text-white text-decoration-none"><i
+                            class="fas fa-angle-right text-white me-2"></i>Semua Game</a>
+                    <a href="<?= base_url('auth'); ?>" class="mb-2 text-white text-decoration-none"><i
+                            class="fas fa-angle-right text-white me-2"></i>Masuk</a>
+                    <a href="<?= base_url('auth/register'); ?>" class="mb-2 text-white text-decoration-none"><i
+                            class="fas fa-angle-right text-white me-2"></i>Daftar</a>
                 </div>
             </div>
+
             <div class="col-lg-4 col-md-6">
                 <a href="#" class="h3 text-white text-decoration-none">Hubungi Kami</a>
-                <div class="text-light mt-4">
-                    <a href="https://wa.me/+6285608744330" class="text-light text-decoration-none">WhatsApp</a>
+                <div class="text-white mt-4 d-flex flex-column contact-link">
+                    <a href="https://wa.me/+6285608744330" class="py-3 text-light border-bottom border-dark  text-decoration-none"><i
+                            class="fas fa-phone-alt text-white me-2 text-decoration-none"></i> +62 856-0874-4330</a>
+                    <hr>
+                    <a href="#" class="py-3 text-light border-bottom border-dark text-decoration-none"><i
+                            class="fas fa-envelope text-white me-2"></i> btsstore46@gmail.com</a>
+                    <hr>
                 </div>
+            </div>
+        </div>
+        <hr class="text-light mt-5 mb-4">
+        <div class="row">
+            <div class="col-md-6 text-center text-md-start">
+                <span class="text-light"><a href="#" class="text-white text-decoration-none">© 2024 BTS STORE INDONESIA </a></span>
             </div>
         </div>
     </div>
