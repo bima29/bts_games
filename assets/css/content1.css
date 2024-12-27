@@ -1,0 +1,260 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-image: url("../img/background_bts.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.game-info img {
+    width: 100%;
+    max-width: 300px;
+    height: 200px;     
+    object-fit: cover; 
+    border-radius: 10px;
+    display: block; 
+    margin: 0 auto; 
+}
+
+
+.game-info a {
+    text-align: left;
+}
+
+.game-info h4 {
+    margin-top: 10px;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.container-fluid-c {
+    position: relative; 
+    background-color: rgba(255, 255, 255, 0.9); 
+    min-height: 100vh; 
+    display: flex; 
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 20px; 
+    padding-bottom: 20px; 
+    box-sizing: border-box;
+}
+
+.checkout-container {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    width: 100%;
+    max-width: 1000px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.img-fluid-header {
+    width: 100%;
+    max-width: 75px;
+}
+
+a.position-absolute {
+    text-decoration: none; 
+    z-index: 10; 
+}
+
+a.position-absolute i {
+    transition: transform 0.2s ease-in-out;
+}
+
+a.position-absolute:hover i {
+    transform: scale(1.1);
+}
+
+.m-3 {
+    position: absolute; 
+    top: 10px;
+    left: 10px; 
+    z-index: 10; 
+}
+
+.m-3 i {
+    transition: transform 0.2s ease-in-out;
+}
+
+.m-3:hover i {
+    transform: scale(1.1); 
+}
+
+
+.denomination-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 10px;
+    gap: 15px; 
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+.denomination-card {
+    background-color: #050505;
+    color: white;
+    border-radius: 10px;
+    height: 140px;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, background-color 0.3s;
+    cursor: pointer;
+    text-align: center;
+    padding: 10px;
+}
+
+.denomination-card:hover {
+    transform: scale(1.1);
+    background-color: #444444;
+}
+
+.denomination-card p {
+    font-size: 1.25rem; 
+    margin: 0;
+}
+
+.denomination-card span {
+    font-size: 0.9rem; 
+    margin-top: 5px;
+}
+
+
+.denomination-option {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+
+@media screen and (max-width: 1024px) {
+    .denomination-option {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .denomination-card {
+        width: 220px;
+        height: 140px;
+    }
+
+    .denomination-card p {
+        font-size: 1.15rem; 
+    }
+
+    .denomination-card span {
+        font-size: 0.85rem; 
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .denomination-option {
+        grid-template-columns: repeat(2, 1fr); 
+    }
+
+    .denomination-card {
+        width: 200px;
+        height: 120px;
+    }
+
+    .denomination-card p {
+        font-size: 1rem; 
+    }
+
+    .denomination-card span {
+        font-size: 0.75rem; 
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .denomination-option {
+        grid-template-columns: repeat(2, 1fr); 
+    }
+
+    .denomination-card {
+        width: 170px;
+        height: 110px;
+    }
+
+    .denomination-card p {
+        font-size: 0.9rem; 
+    }
+
+    .denomination-card span {
+        font-size: 0.7rem; 
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .denomination-card {
+        width: 120px;
+        height: 80px;
+    }
+
+    .denomination-card p {
+        font-size: 0.8rem; 
+    }
+
+    .denomination-card span {
+        font-size: 0.6rem; 
+    }
+}
+
+.price-text {
+    font-size: 1.25rem; 
+}
+
+.unit-text {
+    font-size: 0.9rem; 
+}
+
+@media screen and (max-width: 1024px) {
+    .price-text {
+        font-size: 1.15rem; 
+    }
+
+    .unit-text {
+        font-size: 0.85rem; 
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .price-text {
+        font-size: 1rem; 
+    }
+
+    .unit-text {
+        font-size: 0.75rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .price-text {
+        font-size: 0.9rem; 
+    }
+
+    .unit-text {
+        font-size: 0.7rem; 
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .price-text {
+        font-size: 0.8rem; 
+    }
+
+    .unit-text {
+        font-size: 0.6rem; 
+    }
+}

@@ -1,0 +1,82 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-image: url("../img/background_bts.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.game-info img {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+.game-info a {
+    text-align: left;
+}
+
+.game-info h4 {
+    margin-top: 10px;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.container-fluid-c {
+    position: relative; 
+    background-color: rgba(255, 255, 255, 0.9); 
+    min-height: 100vh; 
+    display: flex; 
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 20px; 
+    padding-bottom: 20px;
+    box-sizing: border-box;
+}
+
+.checkout-container {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    width: 100%;
+    max-width: 1000px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.img-fluid-header {
+    width: 100%;
+    max-width: 75px;
+}
+
+a.position-absolute {
+    text-decoration: none; 
+    z-index: 10;
+}
+
+a.position-absolute i {
+    transition: transform 0.2s ease-in-out;
+}
+
+a.position-absolute:hover i {
+    transform: scale(1.1);
+}
+
+.m-3 {
+    position: absolute;
+    top: 10px;
+    left: 10px; 
+    z-index: 10; 
+}
+
+.m-3 i {
+    transition: transform 0.2s ease-in-out;
+}
+
+.m-3:hover i {
+    transform: scale(1.1);
+}

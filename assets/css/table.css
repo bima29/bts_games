@@ -1,0 +1,103 @@
+.table {
+    border-radius: 30px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.table thead {
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+}
+
+.table tbody tr:last-child td {
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+.table td,
+.table th {
+    vertical-align: middle;
+    padding: 20px;
+    border: none;
+    word-wrap: break-word;
+    text-align: center;
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.btn {
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 30px;
+}
+
+.table td img {
+    width: 50px;
+    height: auto;
+    border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+    .table td,
+    .table th {
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    .table td img {
+        width: 40px;
+    }
+
+    .btn {
+        font-size: 12px;
+        padding: 8px 16px;
+    }
+}
+
+@media (max-width: 576px) {
+    .table {
+        font-size: 12px;
+    }
+
+    .table td,
+    .table th {
+        padding: 10px; 
+    }
+
+    .table td {
+        display: table-cell;
+        text-align: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .table th {
+        text-align: center;
+    }
+
+    .table td img {
+        width: 30px;
+    }
+
+    .btn {
+        padding: 6px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .table td,
+    .table th {
+        padding: 8px;
+        font-size: 10px;
+    }
+
+    .table td img {
+        width: 25px;
+    }
+
+    .btn {
+        font-size: 10px;
+        padding: 4px 8px;
+    }
+}

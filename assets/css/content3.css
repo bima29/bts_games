@@ -1,0 +1,103 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-image: url("../img/background_bts.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.checkout-container {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.game-info img {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+.game-info {
+    text-align: center;
+}
+
+.game-info h2 {
+    text-align: left;
+}
+
+.game-info h4 {
+    margin-top: 10px;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.denomination-option {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.denomination-card {
+    background-color: #0505;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    display: flex;
+    padding: 15px;
+    cursor: pointer;
+    transition:
+        transform 0.3s,
+        background-color 0.3s;
+    width: 200px;
+    height: 100px;
+}
+
+.payment-method input {
+    margin-right: 10px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.container-fluid.d-flex {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(225, 225, 225, 0.4);
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .checkout-container {
+        width: 90%;
+        max-width: none;
+    }
+
+    .checkout-container img {
+        max-width: 100%;
+    }
+
+    .container-fluid.d-flex {
+        padding: 10px;
+    }
+}
+.img-fluid-header {
+    width: 100%;
+    max-width: 150px;
+}
+.cc-size{
+    padding: 20px; border: 1px solid #ddd; border-radius: 10px;
+}

@@ -1,0 +1,348 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container-bg-img-home {
+    background-image: url("../img/background_bts.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow: auto;
+    height: 100%;
+}
+.container-bg-img-allgame {
+    background-image: url("../img/background_bts.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow: auto;
+    height: 100%;
+}
+.container-bg-img-trackorder {
+    background-image: url("../img/background_bts.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow: auto;
+    height: 100%;
+}
+.container-bg-img-pricelist {
+    background-image: url("../img/background_bts.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow: auto;
+    height: 100%;
+}
+.container-bg-img-livechat {
+    background-image: url("../img/background_bts.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow: auto;
+    height: 100%;
+}
+.container-bg-img-fitur-login {
+    background-image: url("../img/background_bts.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow: auto;
+    height: 100%;
+}
+.container-bg-img-fitur-signin {
+    background-image: url("../img/background_bts.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow: auto;
+    height: 100%;
+}
+.bg-color-blur-black-4 {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+.bg-color-blur-black-5 {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.bg-color-blur-black-6 {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.bg-color-blur-black-7 {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.bg-color-blur-white-3 {
+    background-color: rgba(225, 225, 225, 0.3);
+}
+.bg-color-blur-white-4 {
+    background-color: rgba(225, 225, 225, 0.4);
+}
+.b-r-5px {
+    border-radius: 5px;
+}
+.fs-p-br-input {
+    font-size: 1.2rem;
+    padding: 0.75rem;
+    border-right: none;
+}
+.custom-input:focus {
+    color: black !important; 
+    background-color: white; 
+}
+.img-fluid-allgame-icon {
+    max-width: 50px;
+    max-height: 50px;
+    object-fit: cover;
+}
+.img-fluid-location {
+    max-width: 70px;
+    max-height: 70px;
+    object-fit: cover;
+}
+.img-fluid-pricelist {
+    max-width: 70px;
+    max-height: 70px;
+    object-fit: cover;
+}
+.white {
+    color: white;
+}
+.black {
+    color: black;
+}
+
+.icon-fa-magnifying-glass {
+    color: gray;
+    font-size: 1.5rem;
+}
+.btn-fontsize-padding {
+    font-size: 1.2rem;
+    padding: 0.75rem 1.5rem;
+}
+.min-height-50vh {
+    min-height: 50vh;
+}
+
+.header-top {
+    background: rgba(0, 0, 0, 0.9);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    color: rgb(255, 255, 255);
+}
+
+.hover {
+    color: antiquewhite;
+}
+
+.hover:hover {
+    color: #00021f;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: auto;
+}
+
+.navbar-hover:hover {
+    background-color: #007bff;
+}
+
+.navbar-hover a:hover,
+.navbar-hover.active a {
+    color: white !important;
+}
+
+.nav-item.active a {
+    color: #fff !important;
+    background-color: #007bff;
+    border-radius: 5px;
+}
+
+.bg-blur {
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: none;
+}
+
+.blurred {
+    filter: blur(5px);
+    transition: filter 0.3s ease;
+}
+
+.gameText {
+    position: absolute;
+    top: 40%;
+    margin-left: 5%;
+    display: none;
+    z-index: 10;
+}
+
+.card:hover .gameImage {
+    filter: blur(5px);
+}
+
+.card:hover .gameText {
+    display: block;
+}
+
+.blurred {
+    filter: blur(5px);
+    transition: filter 0.3s ease;
+}
+
+.card:hover .dataCover {
+    filter: blur(5px);
+}
+
+.centered-container {
+    justify-content: center;
+    align-items: center;
+}
+
+#loadingScreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.loadingGif {
+    width: 300px;
+    height: 300px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.search-icon {
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.search-form {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    width: 0;
+    height: 35px;
+    overflow: hidden;
+    transition: width 0.4s ease-in-out;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.search-form input {
+    width: 100%;
+    height: 100%;
+    padding: 0 10px;
+    font-size: 14px;
+    border: none;
+    outline: none;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.search-form.active {
+    width: 300px;
+}
+
+.chat-box {
+    height: 400px;
+    overflow-y: auto;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.chat-message {
+    margin-bottom: 10px;
+}
+
+.chat-message.admin {
+    text-align: left;
+}
+
+.chat-message.user {
+    text-align: right;
+}
+
+.chat-message p {
+    display: inline-block;
+    padding: 8px 12px;
+    border-radius: 12px;
+    max-width: 70%;
+}
+
+.chat-message.admin p {
+    background-color: #e9ecef;
+}
+
+.chat-message.user p {
+    background-color: #0d6efd;
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+    .card {
+        height: auto;
+    }
+    .card-img-top {
+        height: 150px;
+        object-fit: cover;
+    }
+}
+
+.responsive-p {
+    display: inline-block;
+    background-color: #fff;
+    border-radius: 8px;
+    margin-right: 0;
+    padding: 5px 10px;
+    font-size: 14px;
+    color: #000;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .table-hover th:nth-child(2),
+    .table-hover th:nth-child(6),
+    .table-hover th:nth-child(7),
+    .table-hover td:nth-child(2),
+    .table-hover td:nth-child(6),
+    .table-hover td:nth-child(7) {
+        display: none;
+    }
+}

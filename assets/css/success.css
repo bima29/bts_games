@@ -1,0 +1,22 @@
+.card {
+    border: none;
+    border-radius: 15px;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+.card-body {
+    padding: 40px;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+.icon {
+    font-size: 60px;
+    color: #28a745;
+    margin-bottom: 20px;
+}
+.btn-success {
+    padding: 10px 25px;
+    font-size: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.btn-success:hover {
+    background-color: #218838;
+}
